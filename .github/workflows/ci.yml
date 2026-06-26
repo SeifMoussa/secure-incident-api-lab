@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: test
+      JWT_SECRET_KEY: synthetic-ci-secret-for-local-workflow-only
+      RATE_LIMIT_ENABLED: "false"
+      DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run tests with coverage
+        run: python -m pytest --cov=app --cov-report=term-missing --cov-report=xml --cov-fail-under=95
+
+      - name: Ruff check
+        run: python -m ruff check .
+
+      - name: Ruff format check
+        run: python -m ruff format --check .
+
+  docs-safety-checks:
+    name: Docs Safety Checks
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: test
+      RATE_LIMIT_ENABLED: "false"
+      DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Export OpenAPI
+        run: python scripts/export_openapi.py
+
+      - name: Check docs safety
+        run: python scripts/check-docs.py
+
+      - name: Compile scripts
+        run: |
+          python -m py_compile scripts/export_openapi.py
+          python -m py_compile scripts/check-docs.py
+
+  api-smoke:
+    name: API Smoke
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: test
+      RATE_LIMIT_ENABLED: "false"
+      DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Uvicorn app factory help
+        run: python -m uvicorn app.main:create_app --factory --help
+
+      - name: Export OpenAPI
+        run: python scripts/export_openapi.py
+
+      - name: Alembic upgrade
+        run: python -m alembic upgrade head
+
+      - name: Alembic current
+        run: python -m alembic current
