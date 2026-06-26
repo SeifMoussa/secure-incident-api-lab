@@ -55,7 +55,7 @@ def test_no_accidental_domain_admin_or_ci_implementation() -> None:
 
 def test_only_phase_3_routes_are_registered(test_settings) -> None:
     app = create_app(test_settings)
-    route_paths = {route.path for route in app.routes}
+    route_paths = {route.path for route in app.routes if hasattr(route, "path")}
 
     assert "/" in route_paths
     assert "/health" in route_paths
@@ -64,8 +64,8 @@ def test_only_phase_3_routes_are_registered(test_settings) -> None:
     assert "/auth/refresh" in route_paths
     assert "/auth/logout" in route_paths
     assert "/auth/me" in route_paths
-    assert "/incidents" not in route_paths
-    assert "/audit" not in route_paths
+    assert "/incidents/" in route_paths
+    assert "/audit/" in route_paths
 
 
 def test_env_example_contains_placeholders_only() -> None:

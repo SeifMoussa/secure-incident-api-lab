@@ -52,7 +52,8 @@ def test_audit_logs_still_do_not_include_token_values(
     assert login.json()["refresh_token"] not in combined
 
 
-def test_no_ci_or_git_work_started_for_phase_8() -> None:
+def test_no_legacy_security_control_module_paths_exist() -> None:
     project_root = Path(__file__).resolve().parents[1]
 
-    assert not (project_root / ".git" / "HEAD").exists()
+    assert not (project_root / "app" / "security_headers.py").exists()
+    assert not (project_root / "app" / "rate_limit.py").exists()

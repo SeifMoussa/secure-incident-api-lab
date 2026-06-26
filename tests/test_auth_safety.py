@@ -37,7 +37,7 @@ def test_docs_do_not_contain_raw_auth_examples() -> None:
     assert "synthetic-test-secret-for-phase-3-only" not in docs_text
 
 
-def test_no_rbac_admin_domain_ci_or_git_work_started() -> None:
+def test_no_legacy_rbac_or_route_paths_exist() -> None:
     root = Path(__file__).resolve().parents[1]
     forbidden_paths = [
         "app/api/routes/users.py",
@@ -48,7 +48,6 @@ def test_no_rbac_admin_domain_ci_or_git_work_started() -> None:
         "app/api/routes/audit.py",
         "app/rbac",
         "app/security_headers.py",
-        ".git/HEAD",
     ]
 
     for relative_path in forbidden_paths:

@@ -44,12 +44,11 @@ def test_nested_resource_responses_do_not_include_sensitive_values(
     assert test_settings.jwt_secret_key not in combined
 
 
-def test_no_rate_limit_security_headers_ci_or_git_started() -> None:
+def test_no_legacy_rate_limit_or_security_header_paths_exist() -> None:
     root = Path(__file__).resolve().parents[1]
     forbidden_paths = [
         "app/security_headers.py",
         "app/rate_limit.py",
-        ".git/HEAD",
     ]
     for relative_path in forbidden_paths:
         assert not (root / relative_path).exists(), relative_path

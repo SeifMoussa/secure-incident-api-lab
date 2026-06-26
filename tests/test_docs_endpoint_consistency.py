@@ -1,5 +1,3 @@
-from fastapi.routing import APIRoute
-
 from app.config import Settings
 from app.main import create_app
 
@@ -12,14 +10,16 @@ def implemented_http_routes() -> set[str]:
     app = create_app(Settings(environment="test", rate_limit_enabled=False))
     routes: set[str] = set()
     for route in app.routes:
-        if not isinstance(route, APIRoute):
+        path = getattr(route, "path", None)
+        methods = getattr(route, "methods", None)
+        if not path or not methods:
             continue
-        if route.path in {"/docs", "/redoc", "/openapi.json"}:
+        if path in {"/docs", "/docs/oauth2-redirect", "/redoc", "/openapi.json"}:
             continue
-        for method in sorted(route.methods or []):
+        for method in sorted(methods):
             if method in {"HEAD", "OPTIONS"}:
                 continue
-            routes.add(f"{method} {normalized_path(route.path)}")
+            routes.add(f"{method} {normalized_path(path)}")
     return routes
 
 

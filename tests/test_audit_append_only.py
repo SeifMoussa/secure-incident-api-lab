@@ -20,10 +20,9 @@ def test_audit_log_is_append_only_at_api_level(
     assert client.delete("/audit/synthetic-id", headers=headers).status_code in {404, 405}
 
 
-def test_no_security_or_ci_files_added_for_phase_7() -> None:
+def test_no_legacy_security_module_paths_exist() -> None:
     from pathlib import Path
 
     project_root = Path(__file__).resolve().parents[1]
     assert not (project_root / "app" / "security_headers.py").exists()
     assert not (project_root / "app" / "rate_limit.py").exists()
-    assert not (project_root / ".git" / "HEAD").exists()
