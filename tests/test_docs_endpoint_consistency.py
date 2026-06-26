@@ -9,17 +9,25 @@ def normalized_path(path: str) -> str:
 def implemented_http_routes() -> set[str]:
     app = create_app(Settings(environment="test", rate_limit_enabled=False))
     routes: set[str] = set()
-    for route in app.routes:
-        path = getattr(route, "path", None)
-        methods = getattr(route, "methods", None)
-        if not path or not methods:
-            continue
-        if path in {"/docs", "/docs/oauth2-redirect", "/redoc", "/openapi.json"}:
-            continue
-        for method in sorted(methods):
-            if method in {"HEAD", "OPTIONS"}:
+
+    def collect(route_items) -> None:
+        for route in route_items:
+            nested_routes = getattr(route, "routes", None)
+            if nested_routes:
+                collect(nested_routes)
                 continue
-            routes.add(f"{method} {normalized_path(path)}")
+            path = getattr(route, "path", None)
+            methods = getattr(route, "methods", None)
+            if not path or not methods:
+                continue
+            if path in {"/docs", "/docs/oauth2-redirect", "/redoc", "/openapi.json"}:
+                continue
+            for method in sorted(methods):
+                if method in {"HEAD", "OPTIONS"}:
+                    continue
+                routes.add(f"{method} {normalized_path(path)}")
+
+    collect(app.routes)
     return routes
 
 
