@@ -8,7 +8,7 @@ license = "MIT"
 dependencies = [
   "fastapi>=0.110",
   "alembic>=1.13",
-  "bcrypt<5",
+  "bcrypt<6",
   "email-validator>=2.0",
   "passlib[bcrypt]>=1.7",
   "pydantic-settings>=2.0",
