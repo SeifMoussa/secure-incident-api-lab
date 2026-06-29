@@ -1,7 +1,6 @@
 """Authentication-related ORM models."""
 
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, Index, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -10,9 +9,6 @@ from app.common.enums import Role
 from app.common.models import TimestampMixin, utc_now
 from app.common.types import enum_column, new_uuid, uuid_string
 from app.database import Base
-
-if TYPE_CHECKING:
-    from app.incidents.models import Incident
 
 
 class User(TimestampMixin, Base):
@@ -31,7 +27,8 @@ class User(TimestampMixin, Base):
     role: Mapped[Role] = mapped_column(enum_column(Role), nullable=False, default=Role.VIEWER)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
-    created_incidents: Mapped[list["Incident"]] = relationship(
+    # String annotations let SQLAlchemy resolve related models from its registry without imports.
+    created_incidents: Mapped[list["Incident"]] = relationship(  # noqa: F821
         back_populates="creator",
         foreign_keys="Incident.created_by",
     )

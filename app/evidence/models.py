@@ -1,7 +1,6 @@
 """Evidence note and attachment metadata ORM models."""
 
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -9,9 +8,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.common.models import TimestampMixin, utc_now
 from app.common.types import new_uuid, uuid_string
 from app.database import Base
-
-if TYPE_CHECKING:
-    from app.incidents.models import Incident
 
 
 class EvidenceNote(TimestampMixin, Base):
@@ -28,7 +24,10 @@ class EvidenceNote(TimestampMixin, Base):
     tags: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=list)
     is_deleted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    incident: Mapped["Incident"] = relationship(back_populates="evidence_notes")
+    # String annotations let SQLAlchemy resolve related models from its registry without imports.
+    incident: Mapped["Incident"] = relationship(  # noqa: F821
+        back_populates="evidence_notes"
+    )
     attachments: Mapped[list["EvidenceAttachment"]] = relationship(back_populates="evidence_note")
 
 

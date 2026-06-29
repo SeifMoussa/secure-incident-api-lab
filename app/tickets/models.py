@@ -1,7 +1,6 @@
 """Ticket ORM models."""
 
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -10,9 +9,6 @@ from app.common.enums import TicketPriority, TicketStatus
 from app.common.models import TimestampMixin
 from app.common.types import enum_column, new_uuid, uuid_string
 from app.database import Base
-
-if TYPE_CHECKING:
-    from app.incidents.models import Incident
 
 
 class Ticket(TimestampMixin, Base):
@@ -39,4 +35,5 @@ class Ticket(TimestampMixin, Base):
     created_by: Mapped[str] = mapped_column(ForeignKey("users.user_id"), nullable=False)
     is_deleted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    incident: Mapped["Incident"] = relationship(back_populates="tickets")
+    # String annotations let SQLAlchemy resolve related models from its registry without imports.
+    incident: Mapped["Incident"] = relationship(back_populates="tickets")  # noqa: F821
