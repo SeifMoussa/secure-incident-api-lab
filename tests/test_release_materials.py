@@ -3,7 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_release_materials_exist_and_document_pending_hosted_work() -> None:
+def test_release_materials_exist_and_document_current_repository_status() -> None:
     release = ROOT / "RELEASE.md"
     checklist = ROOT / "docs" / "release-checklist.md"
 
@@ -15,8 +15,7 @@ def test_release_materials_exist_and_document_pending_hosted_work() -> None:
     for phrase in [
         "v0.1.0 - secure incident management api",
         "pending hosted checks",
-        "manual git publishing commands",
-        "github cli publishing commands",
+        "repository status",
         "suggested github topics",
         "linkedin post draft",
         "cv bullets",
@@ -24,10 +23,11 @@ def test_release_materials_exist_and_document_pending_hosted_work() -> None:
     ]:
         assert phrase in release_text
     for pending in [
-        "- [ ] git initialization pending.",
-        "- [ ] repository publishing pending.",
+        "- [x] git initialization complete.",
+        "- [x] repository publishing complete.",
+        "- [x] public repository visibility confirmed.",
         "- [ ] hosted ci pending.",
-        "- [ ] hosted codeql pending.",
+        ("- [ ] hosted codeql verification pending until the next pushed run completes."),
         "- [ ] branch protection pending.",
         "- [ ] `v0.1.0` tag pending.",
         "- [ ] github release pending.",
@@ -35,7 +35,7 @@ def test_release_materials_exist_and_document_pending_hosted_work() -> None:
         assert pending in checklist_text
 
 
-def test_release_materials_do_not_claim_publishing_done() -> None:
+def test_release_materials_do_not_claim_pending_hosted_or_release_work_done() -> None:
     text = (
         (ROOT / "RELEASE.md").read_text(encoding="utf-8")
         + "\n"
@@ -45,7 +45,6 @@ def test_release_materials_do_not_claim_publishing_done() -> None:
     for forbidden in [
         "hosted ci has passed",
         "hosted codeql has passed",
-        "repository is currently published",
         "release has been created",
         "branch protection is configured",
         "github issues have been created",

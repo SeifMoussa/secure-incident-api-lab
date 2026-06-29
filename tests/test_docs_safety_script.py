@@ -39,6 +39,10 @@ def test_docs_safety_script_rejects_unsafe_content() -> None:
         module.check_sensitive_patterns('{"access_token":"eyJaaaa.bbbbbbbb.cccccccc"}')
     with pytest.raises(SystemExit):
         module.check_forbidden_claims("Hosted CI has passed.")
+    with pytest.raises(SystemExit):
+        module.check_current_status("Repository publishing pending.")
+
+    module.check_forbidden_claims("The repository is published publicly.")
 
 
 def test_docs_safety_script_checks_required_files() -> None:

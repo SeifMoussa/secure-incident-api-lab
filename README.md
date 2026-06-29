@@ -142,11 +142,11 @@ python -m alembic upgrade head
 python -m alembic current
 ```
 
-## Current Local Quality Status
+## Current Quality Status
 
-Latest local Phase 12 validation:
+Latest local Phase 13A audit validation:
 
-- Tests: 248 passed.
+- Tests: 244 passed after removing four stale/redundant phase-boundary tests.
 - Coverage: 95.60%.
 - Coverage gate: 95%.
 - Ruff: passed.
@@ -155,7 +155,9 @@ Latest local Phase 12 validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-Hosted GitHub Actions and hosted CodeQL are configured locally but not verified yet because the repository has not been published.
+The repository has been published at `https://github.com/SeifMoussa/secure-incident-api-lab`. The latest hosted CI run completed its Docs Safety Checks and API Smoke jobs successfully, but its Tests job failed on stale route-inspection tests. Hosted CI has not passed after the local audit fixes yet.
+
+The repository is published publicly. Code scanning is available, and real test-side-effect findings were corrected locally. Hosted CI and hosted CodeQL verification are pending until the next pushed run completes; neither is claimed to have passed after the audit fixes.
 
 ## Documentation
 
@@ -175,12 +177,15 @@ Hosted GitHub Actions and hosted CodeQL are configured locally but not verified 
 - Local SQLite is used for development and tests.
 - In-memory rate limiting is not distributed.
 - Audit logs are append-only through the API, but no external immutable audit store is implemented.
-- GitHub-hosted CI, CodeQL, Dependabot PRs, branch protection, tags, releases, live Issues, and live Projects are pending publishing.
+- Hosted CI re-verification remains pending after the local audit fixes.
+- CodeQL remains configured and is expected to run for the public repository after the next authorized push.
+- Branch protection, tags, releases, live Issues, and a live Project board have not been created.
 
 ## Roadmap
 
 - Phase 12: local Agile and release preparation materials complete.
-- Phase 13: initialize git, publish to GitHub, verify hosted CI/CodeQL, create live Issues/Project, configure branch protection, tag `v0.1.0`, and create the GitHub release.
+- Phase 13A: repository publication complete; local audit fixes and hosted CI re-verification pending.
+- Phase 13B: not started. Live Issues/Project, branch protection, tag, and release work remain pending.
 
 ## License
 

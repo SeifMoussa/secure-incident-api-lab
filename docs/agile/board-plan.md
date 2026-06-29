@@ -25,7 +25,7 @@ This plan describes the future live GitHub Project board. It is not a claim that
 - `ci`
 - `release`
 
-## Setup Steps After Publishing
+## Pending Live Setup Steps
 
 1. Create live GitHub labels from the planned label list.
 2. Create live GitHub Issues from `docs/agile/backlog.md`.

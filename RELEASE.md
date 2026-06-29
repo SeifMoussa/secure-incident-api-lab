@@ -1,6 +1,6 @@
 # Release Preparation
 
-This document prepares the Secure Incident Management API portfolio lab for a future `v0.1.0` GitHub release. It is a local planning artifact only. No tag, release, repository publication, branch protection, live GitHub Issues, or live GitHub Project board has been created yet.
+This document prepares the Secure Incident Management API portfolio lab for a future `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`; no tag, release, branch protection, live GitHub Issues, or live GitHub Project board has been created.
 
 ## Project Summary
 
@@ -30,7 +30,7 @@ Production-pattern FastAPI backend for security incident management with JWT aut
 
 ## Local QA Results
 
-Record final local values before publishing:
+Record final local values before committing or pushing release-readiness changes:
 
 - Tests: `python -m pytest`
 - Coverage gate: `python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=95`
@@ -40,9 +40,9 @@ Record final local values before publishing:
 - OpenAPI export: `python scripts/export_openapi.py`
 - Alembic: `python -m alembic upgrade head` and `python -m alembic current`
 
-Latest known pre-publish status from local validation:
+Latest Phase 13A audit status from local validation:
 
-- Tests: 248 passed.
+- Tests: 244 passed after removing four stale/redundant phase-boundary tests.
 - Coverage: 95.60%.
 - Coverage gate: 95%.
 - Ruff: passed.
@@ -51,34 +51,23 @@ Latest known pre-publish status from local validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-## Pending Hosted Checks After Push
+## Pending Hosted Checks
 
 - Hosted GitHub Actions CI.
-- Hosted CodeQL.
+- Hosted CodeQL verification pending until the next pushed run completes.
 - Dependabot alert and update behavior.
 - Secret scanning review.
 - Code scanning alert review.
 
-## Manual Git Publishing Commands
+## Repository Status
 
-Run only during the publishing phase:
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "Release v0.1.0 portfolio lab"
-git remote add origin https://github.com/SeifMoussa/secure-incident-api-lab.git
-git push -u origin main
-```
-
-## GitHub CLI Publishing Commands
-
-Run only during the publishing phase:
-
-```bash
-gh repo create SeifMoussa/secure-incident-api-lab --public --source=. --remote=origin --push
-```
+- Git initialization: complete.
+- Repository publication: complete.
+- Visibility: public and confirmed.
+- Hosted CI: pending a successful run after the local audit fixes.
+- Hosted CodeQL: expected to run for the public repository; post-audit verification pending.
+- Existing CodeQL alerts: test-side-effect findings corrected locally; standard Alembic metadata and `TYPE_CHECKING` relationship reports require hosted review after the next authorized push.
+- Tag, release, branch protection, live Issues, and live Project board: pending.
 
 ## Suggested Repository Description
 
@@ -111,14 +100,14 @@ Safety:
 - No real credentials, real tokens, customer data, or evidence files.
 ```
 
-## Post-Push Verification Checklist
+## Hosted Verification Checklist
 
 - [ ] Confirm repository URL: `https://github.com/SeifMoussa/secure-incident-api-lab`
 - [ ] Confirm default branch is `main`.
 - [ ] Confirm README renders correctly.
 - [ ] Confirm `docs/threat_model.md`, `docs/api_reference.md`, and `docs/ci-cd.md` render correctly.
 - [ ] Confirm hosted CI starts on push.
-- [ ] Confirm hosted CodeQL starts on push or scheduled run.
+- [ ] Confirm hosted CodeQL completes after the next authorized push.
 - [ ] Confirm Dependabot is recognized.
 
 ## Code Scanning Checklist
@@ -130,13 +119,13 @@ Safety:
 ## Secret Scanning Checklist
 
 - [ ] Confirm no real credentials, tokens, API keys, database passwords, or secrets are present.
-- [ ] Review GitHub secret scanning alerts if available after publishing.
+- [ ] Review GitHub secret scanning alerts if available.
 
 ## Dependabot Checklist
 
 - [ ] Confirm pip ecosystem is enabled.
 - [ ] Confirm GitHub Actions ecosystem is enabled.
-- [ ] Review Dependabot PRs after publishing.
+- [ ] Review Dependabot PRs.
 
 ## Branch Protection Checklist
 

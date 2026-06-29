@@ -26,7 +26,7 @@ PRs should require CI passing before merge after a later branch-protection setup
 
 ## CI Strategy
 
-Phase 11 adds local GitHub Actions workflow configuration. Hosted GitHub Actions are not verified until the repository is published.
+Phase 11 added local GitHub Actions workflow configuration. Hosted Actions have since run; the latest run still requires a successful Tests job after the Phase 13A local fixes.
 
 Configured workflow behavior:
 
@@ -40,7 +40,7 @@ Configured workflow behavior:
 
 ## CodeQL Strategy
 
-CodeQL is configured for Python in Phase 11. Hosted CodeQL has not run yet because the repository is not published. Alerts should be reviewed before release. CodeQL configuration remains scoped to the repository and does not require real credentials.
+CodeQL is configured for Python in Phase 11 and is expected to run for the public repository. Hosted verification after the audit fixes is pending until the next pushed run completes. Alerts should be reviewed before release. CodeQL configuration remains scoped to the repository and does not require real credentials.
 
 ## Dependabot Strategy
 
@@ -51,11 +51,11 @@ Dependabot should monitor:
 
 Dependabot PRs should pass CI and be reviewed before merge.
 
-Dependabot is configured in Phase 11, but PRs will only appear after publishing.
+Dependabot is configured in Phase 11, and GitHub has recognized its pip and GitHub Actions update ecosystems.
 
 ## Agile Board Plan
 
-Phase 12 adds local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Live GitHub Issues and live GitHub Projects are planned but not created until after publishing.
+Phase 12 adds local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. The repository is published, but live GitHub Issues and a live GitHub Project board remain uncreated.
 
 Planned issue categories:
 

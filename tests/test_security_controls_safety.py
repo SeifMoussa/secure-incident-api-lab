@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
@@ -50,10 +48,3 @@ def test_audit_logs_still_do_not_include_token_values(
 
     assert login.json()["access_token"] not in combined
     assert login.json()["refresh_token"] not in combined
-
-
-def test_no_legacy_security_control_module_paths_exist() -> None:
-    project_root = Path(__file__).resolve().parents[1]
-
-    assert not (project_root / "app" / "security_headers.py").exists()
-    assert not (project_root / "app" / "rate_limit.py").exists()

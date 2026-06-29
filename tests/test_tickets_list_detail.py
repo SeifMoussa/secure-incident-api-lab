@@ -51,25 +51,18 @@ def test_ticket_detail_scoping_and_soft_delete(
     other = create_synthetic_incident(db_session, created_by=admin.user_id)
     ticket = _create_ticket(client, test_settings, admin, incident.incident_id)
     header = bearer_header(test_settings, admin)
-    assert (
-        client.get(
-            f"/incidents/{other.incident_id}/tickets/{ticket['ticket_id']}", headers=header
-        ).status_code
-        == 404
+    wrong_parent = client.get(
+        f"/incidents/{other.incident_id}/tickets/{ticket['ticket_id']}", headers=header
     )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=header
-        ).status_code
-        == 200
+    deleted = client.delete(
+        f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=header
     )
-    assert (
-        client.get(
-            f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=header
-        ).status_code
-        == 404
+    deleted_detail = client.get(
+        f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=header
     )
-    assert (
-        client.get(f"/incidents/{incident.incident_id}/tickets/", headers=header).json()["total"]
-        == 0
-    )
+    remaining = client.get(f"/incidents/{incident.incident_id}/tickets/", headers=header)
+
+    assert wrong_parent.status_code == 404
+    assert deleted.status_code == 200
+    assert deleted_detail.status_code == 404
+    assert remaining.json()["total"] == 0

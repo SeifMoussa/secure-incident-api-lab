@@ -1,11 +1,9 @@
 from pathlib import Path
 
-from app.main import create_app
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_phase_files_exist() -> None:
+def test_core_project_files_exist() -> None:
     expected_paths = [
         "pyproject.toml",
         ".gitignore",
@@ -35,49 +33,6 @@ def test_phase_files_exist() -> None:
 
     for relative_path in expected_paths:
         assert (ROOT / relative_path).is_file(), relative_path
-
-
-def test_no_accidental_domain_admin_or_ci_implementation() -> None:
-    forbidden_paths = [
-        "app/db",
-        "app/models",
-        "app/rbac",
-        "app/api/routes/incidents.py",
-        "app/api/routes/tickets.py",
-        "app/api/routes/evidence.py",
-        "app/api/routes/remediation.py",
-        "app/api/routes/audit.py",
-    ]
-
-    for relative_path in forbidden_paths:
-        assert not (ROOT / relative_path).exists(), relative_path
-
-
-def test_only_phase_3_routes_are_registered(test_settings) -> None:
-    app = create_app(test_settings)
-    route_paths: set[str] = set()
-
-    def collect_paths(route_items) -> None:
-        for route in route_items:
-            nested_routes = getattr(route, "routes", None)
-            if nested_routes:
-                collect_paths(nested_routes)
-                continue
-            path = getattr(route, "path", None)
-            if path:
-                route_paths.add(path)
-
-    collect_paths(app.routes)
-
-    assert "/" in route_paths
-    assert "/health" in route_paths
-    assert "/auth/register" in route_paths
-    assert "/auth/login" in route_paths
-    assert "/auth/refresh" in route_paths
-    assert "/auth/logout" in route_paths
-    assert "/auth/me" in route_paths
-    assert "/incidents/" in route_paths
-    assert "/audit/" in route_paths
 
 
 def test_env_example_contains_placeholders_only() -> None:

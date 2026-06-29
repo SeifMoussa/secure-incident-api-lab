@@ -99,8 +99,12 @@ Phase 10 adds documentation only: STRIDE threat model, API reference, OpenAPI ex
 
 ## Phase 11 Safety Status
 
-Phase 11 adds local CI, CodeQL, Dependabot, and documentation safety configuration only. Hosted GitHub CI and hosted CodeQL are not verified until repository publishing. Dependabot pull requests will not appear until publishing. The repository is not published, no release exists, branch protection is not configured, and GitHub Issues/Projects are not created. Workflows use synthetic local/test settings and local SQLite only. No new business/domain workflows are added.
+Phase 11 added local CI, CodeQL, Dependabot, and documentation safety configuration only. At the end of that phase, hosted verification and publication were still deferred. Workflows use synthetic local/test settings and local SQLite only. No new business/domain workflows were added.
 
 ## Phase 12 Safety Status
 
-Phase 12 adds recruiter-ready documentation polish, release preparation material, local Agile planning artifacts, a local issue template, a contributing guide, and a release checklist only. No application business/domain behavior is changed. Hosted GitHub CI and hosted CodeQL are still not verified. The repository is not published, no tag or release exists, branch protection is not configured, and live GitHub Issues/Projects are not created. Documentation continues to require synthetic/demo data only, no real credentials, no real tokens, no API keys, no customer data, and metadata-only evidence attachments with no binary upload.
+Phase 12 added recruiter-ready documentation polish, release preparation material, local Agile planning artifacts, a local issue template, a contributing guide, and a release checklist only. No application business/domain behavior changed. At the end of that phase, publication, hosted verification, tags, releases, branch protection, and live Issues/Projects were still deferred. Documentation continues to require synthetic/demo data only, no real credentials, no real tokens, no API keys, no customer data, and metadata-only evidence attachments with no binary upload.
+
+## Phase 13A Safety Status
+
+Public repository publication is complete. Hosted CI and CodeQL have run historically but have not been verified after the local audit fixes; verification is pending until the next pushed run completes. No tag, release, branch protection, live GitHub Issues, or live GitHub Project board has been created. No application business/domain behavior changed.

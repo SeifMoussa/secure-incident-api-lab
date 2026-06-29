@@ -152,8 +152,9 @@
 
 ## Phase 13: Publishing and Hosted Verification
 
-- [ ] Initialize git.
-- [ ] Publish repository.
+- [x] Initialize git.
+- [x] Publish repository.
+- [x] Confirm public repository visibility.
 - [ ] Verify hosted GitHub Actions.
 - [ ] Verify hosted CodeQL.
 - [ ] Review Dependabot recognition.

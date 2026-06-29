@@ -23,52 +23,41 @@ def test_evidence_update_delete_rules(
     incident = create_synthetic_incident(db_session, created_by=admin.user_id)
     own = _create_note(client, test_settings, analyst, incident.incident_id)
     other = _create_note(client, test_settings, other_analyst, incident.incident_id)
-    assert (
-        client.patch(
-            f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
-            json={"content": "Updated synthetic evidence"},
-            headers=bearer_header(test_settings, analyst),
-        ).status_code
-        == 200
+    own_update = client.patch(
+        f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
+        json={"content": "Updated synthetic evidence"},
+        headers=bearer_header(test_settings, analyst),
     )
-    assert (
-        client.patch(
-            f"/incidents/{incident.incident_id}/evidence/{other['evidence_id']}",
-            json={"content": "Blocked synthetic evidence update"},
-            headers=bearer_header(test_settings, analyst),
-        ).status_code
-        == 403
+    other_update = client.patch(
+        f"/incidents/{incident.incident_id}/evidence/{other['evidence_id']}",
+        json={"content": "Blocked synthetic evidence update"},
+        headers=bearer_header(test_settings, analyst),
     )
+    assert own_update.status_code == 200
+    assert other_update.status_code == 403
     for role in [Role.VIEWER, Role.AUDITOR]:
         user = create_synthetic_user(
             db_session, email=f"evidence-update-{role.value.lower()}@example.com", role=role
         )
-        assert (
-            client.patch(
-                f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
-                json={"content": "Blocked"},
-                headers=bearer_header(test_settings, user),
-            ).status_code
-            == 403
+        response = client.patch(
+            f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
+            json={"content": "Blocked"},
+            headers=bearer_header(test_settings, user),
         )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
-            headers=bearer_header(test_settings, analyst),
-        ).status_code
-        == 403
+        assert response.status_code == 403
+    analyst_delete = client.delete(
+        f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
+        headers=bearer_header(test_settings, analyst),
     )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
-            headers=bearer_header(test_settings, admin),
-        ).status_code
-        == 200
+    admin_delete = client.delete(
+        f"/incidents/{incident.incident_id}/evidence/{own['evidence_id']}",
+        headers=bearer_header(test_settings, admin),
     )
-    assert (
-        client.get(
-            f"/incidents/{incident.incident_id}/evidence/",
-            headers=bearer_header(test_settings, admin),
-        ).json()["total"]
-        == 1
+    remaining = client.get(
+        f"/incidents/{incident.incident_id}/evidence/",
+        headers=bearer_header(test_settings, admin),
     )
+
+    assert analyst_delete.status_code == 403
+    assert admin_delete.status_code == 200
+    assert remaining.json()["total"] == 1

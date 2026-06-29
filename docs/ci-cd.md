@@ -1,6 +1,6 @@
 # CI/CD Configuration
 
-Phase 11 adds local repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is not published yet, so hosted GitHub CI and hosted CodeQL have not run.
+Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published. The latest hosted CI run completed Docs Safety Checks and API Smoke successfully but failed Tests on stale route-inspection assumptions; hosted CI has not passed after the local audit fixes yet.
 
 ## CI Workflow
 
@@ -18,11 +18,11 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## CodeQL
 
-`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL is not verified until the repository is published and GitHub Actions runs.
+`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Code scanning is available because the repository is public. The Phase 13A audit corrected the real side-effect-in-assert test findings locally; reports against Alembic's required revision metadata and imports guarded by `TYPE_CHECKING` were reviewed as non-runtime framework/static-analysis patterns. Hosted CodeQL verification pending until the next pushed run completes.
 
 ## Dependabot
 
-`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. Dependabot pull requests will only appear after publishing.
+`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems.
 
 ## Documentation Safety
 
@@ -30,4 +30,4 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## Limitations
 
-This remains a production-pattern portfolio lab, not a deployed production SOC platform. Phase 12 adds local release and Agile preparation materials only. Branch protection, live GitHub Issues, live GitHub Projects, tags, releases, and publishing are later-phase work.
+This remains a production-pattern portfolio lab, not a deployed production SOC platform. The repository is published publicly. Hosted CI/CodeQL re-verification, branch protection, live GitHub Issues, a live GitHub Project board, tags, and releases remain pending.

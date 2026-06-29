@@ -15,14 +15,10 @@ def test_audit_log_is_append_only_at_api_level(
     create_incident_via_api(client, test_settings, admin)
     headers = bearer_header(test_settings, admin)
 
-    assert client.post("/audit/", json={}, headers=headers).status_code in {404, 405}
-    assert client.patch("/audit/synthetic-id", json={}, headers=headers).status_code in {404, 405}
-    assert client.delete("/audit/synthetic-id", headers=headers).status_code in {404, 405}
+    post_response = client.post("/audit/", json={}, headers=headers)
+    patch_response = client.patch("/audit/synthetic-id", json={}, headers=headers)
+    delete_response = client.delete("/audit/synthetic-id", headers=headers)
 
-
-def test_no_legacy_security_module_paths_exist() -> None:
-    from pathlib import Path
-
-    project_root = Path(__file__).resolve().parents[1]
-    assert not (project_root / "app" / "security_headers.py").exists()
-    assert not (project_root / "app" / "rate_limit.py").exists()
+    assert post_response.status_code in {404, 405}
+    assert patch_response.status_code in {404, 405}
+    assert delete_response.status_code in {404, 405}

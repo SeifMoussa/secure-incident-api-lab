@@ -1,6 +1,6 @@
 # Agile Planning Materials
 
-These Agile materials are local planning artifacts for the Secure Incident Management API portfolio lab. Live GitHub Issues and a live GitHub Project board will be created only after repository publishing.
+These Agile materials are local planning artifacts for the Secure Incident Management API portfolio lab. The repository is published, but no live GitHub Issues or live GitHub Project board have been created.
 
 The project remains defensive-only and uses synthetic/demo data only. Do not add real credentials, real tokens, real customer incident data, or real evidence files. Evidence attachments remain metadata only, with no binary upload, file storage, or disk file reading.
 

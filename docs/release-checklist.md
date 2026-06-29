@@ -1,6 +1,6 @@
 # Release Checklist
 
-This checklist tracks local release readiness and pending hosted/publishing work. Pending hosted items must not be marked complete until after publishing.
+This checklist tracks local release readiness after repository publication. Pending hosted items must not be marked complete until verified.
 
 ## Local QA
 
@@ -12,12 +12,13 @@ This checklist tracks local release readiness and pending hosted/publishing work
 - [x] OpenAPI export passed.
 - [x] Docs safety check passed.
 
-## Publishing Pending
+## Publishing and Hosted Status
 
-- [ ] Git initialization pending.
-- [ ] Repository publishing pending.
+- [x] Git initialization complete.
+- [x] Repository publishing complete.
+- [x] Public repository visibility confirmed.
 - [ ] Hosted CI pending.
-- [ ] Hosted CodeQL pending.
+- [ ] Hosted CodeQL verification pending until the next pushed run completes.
 - [ ] Code scanning review pending.
 - [ ] Secret scanning review pending.
 - [ ] Dependabot PR review pending.

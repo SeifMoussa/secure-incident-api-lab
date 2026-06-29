@@ -11,6 +11,14 @@ DOC_PATHS = [
     *sorted((ROOT / "docs").glob("*.md")),
     *sorted((ROOT / "docs" / "agile").glob("*.md")),
 ]
+CURRENT_STATUS_PATHS = [
+    ROOT / "README.md",
+    ROOT / "RELEASE.md",
+    ROOT / "docs" / "ci-cd.md",
+    ROOT / "docs" / "release-checklist.md",
+    ROOT / "docs" / "agile" / "README.md",
+    ROOT / "docs" / "agile" / "backlog.md",
+]
 
 JWT_PATTERN = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 API_KEY_PATTERN = re.compile(r"\b(?:sk|pk|rk|ghp|github_pat)_[A-Za-z0-9_]{12,}")
@@ -44,13 +52,12 @@ def test_docs_use_placeholders_in_examples() -> None:
         assert placeholder in text
 
 
-def test_docs_do_not_claim_ci_publishing_release_or_branch_protection_complete() -> None:
+def test_docs_reflect_publication_without_claiming_pending_hosted_work_complete() -> None:
     text = combined_docs_text().lower()
 
     forbidden_claims = [
         "ci has passed",
         "github actions passed",
-        "repository is currently published",
         "release is available",
         "release has been created",
         "v0.1.0 release exists",
@@ -62,7 +69,11 @@ def test_docs_do_not_claim_ci_publishing_release_or_branch_protection_complete()
     ]
     for claim in forbidden_claims:
         assert claim not in text
-    assert (
-        "ci, git initialization, github publishing, tags, releases, "
-        "and branch protection remain unimplemented"
-    ) in text
+
+    current_status = "\n".join(
+        path.read_text(encoding="utf-8").lower() for path in CURRENT_STATUS_PATHS
+    )
+    assert "repository publishing complete" in current_status
+    assert "hosted ci has not passed after the local audit fixes" in current_status
+    assert "repository publishing pending" not in current_status
+    assert "repository is not published" not in current_status

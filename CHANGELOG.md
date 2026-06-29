@@ -8,6 +8,8 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 
 ### Added
 
+- Phase 13A repository publication and hosted CI investigation.
+- Phase 13A correction of CodeQL-reported test calls embedded in assertions.
 - Phase 12 recruiter-ready README polish.
 - Phase 12 release preparation guide in `RELEASE.md`.
 - Phase 12 local Agile planning materials, F1-F14 backlog, board plan, and issue template.
@@ -95,8 +97,6 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 
 - No binary upload or evidence file storage.
 - No hosted CI or hosted CodeQL verification yet.
-- No git initialization.
-- No GitHub publication.
 - No GitHub Issues or GitHub Projects.
 - No tags or releases.
 - No new Phase 9 business/domain workflows.

@@ -1,6 +1,6 @@
 # Planned Backlog
 
-The following F1-F14 issues are local planning material only. Live GitHub Issues will be created only after repository publishing.
+The following F1-F14 issues are local planning material only. The repository is published; the planned issues remain local-only artifacts.
 
 ## F1: Project Scaffold and Health API
 
@@ -165,7 +165,7 @@ Acceptance criteria:
 - CodeQL is configured for Python.
 - Dependabot covers pip and GitHub Actions.
 
-Status: Implemented locally. Hosted CI and hosted CodeQL are pending until publishing.
+Status: Implemented. Hosted CI and CodeQL re-verification are pending until the next pushed run completes.
 
 ## F12: Agile and Release Preparation
 
@@ -180,7 +180,7 @@ Acceptance criteria:
 - Agile materials are local only.
 - Final local QA commands pass.
 
-Status: In progress locally for Phase 12.
+Status: Implemented locally in Phase 12.
 
 ## F13: Repository Publishing
 
@@ -195,7 +195,7 @@ Acceptance criteria:
 - No real credentials, tokens, or customer data are present.
 - Publishing evidence is documented.
 
-Status: Pending future publishing phase. Not started locally.
+Status: Repository publication is complete. Hosted CI re-verification and final visibility reconciliation remain pending in Phase 13A.
 
 ## F14: Release, Branch Protection, Issues, and Project Board
 

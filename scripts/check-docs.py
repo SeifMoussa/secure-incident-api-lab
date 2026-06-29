@@ -34,6 +34,15 @@ REQUIRED_WORKFLOWS = [
     ".github/dependabot.yml",
 ]
 
+CURRENT_STATUS_DOCS = [
+    "README.md",
+    "RELEASE.md",
+    "docs/ci-cd.md",
+    "docs/release-checklist.md",
+    "docs/agile/README.md",
+    "docs/agile/backlog.md",
+]
+
 REQUIRED_PHRASES = [
     "defensive",
     "synthetic",
@@ -57,7 +66,6 @@ FORBIDDEN_CLAIMS = [
     "hosted codeql has passed",
     "github actions passed",
     "codeql passed",
-    "repository is currently published",
     "release is available",
     "release has been created",
     "v0.1.0 release exists",
@@ -67,6 +75,20 @@ FORBIDDEN_CLAIMS = [
     "github projects have been created",
     "live github issues exist",
     "live github projects exist",
+]
+
+STALE_PUBLICATION_CLAIMS = [
+    "repository is not published",
+    "repository has not been published",
+    "repository publishing pending",
+    "pending until publishing",
+    "pending future publishing phase",
+]
+
+REQUIRED_CURRENT_STATUS = [
+    "repository publishing complete",
+    "repository is published publicly",
+    "hosted codeql verification pending until the next pushed run completes",
 ]
 
 JWT_PATTERN = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
@@ -105,6 +127,16 @@ def check_forbidden_claims(text: str) -> None:
             fail(f"forbidden completion claim found: {claim}")
 
 
+def check_current_status(text: str) -> None:
+    lower_text = text.lower()
+    for claim in STALE_PUBLICATION_CLAIMS:
+        if claim in lower_text:
+            fail(f"stale publication claim found: {claim}")
+    for phrase in REQUIRED_CURRENT_STATUS:
+        if phrase not in lower_text:
+            fail(f"missing current repository status: {phrase}")
+
+
 def check_sensitive_patterns(text: str) -> None:
     checks = [
         (JWT_PATTERN, "real-looking JWT"),
@@ -138,8 +170,10 @@ def main() -> int:
     docs = read_required_files(REQUIRED_DOCS)
     read_required_files(REQUIRED_WORKFLOWS)
     combined_docs = "\n".join(docs.values())
+    current_status = "\n".join(docs[path] for path in CURRENT_STATUS_DOCS)
     check_required_phrases(combined_docs)
     check_forbidden_claims(combined_docs)
+    check_current_status(current_status)
     check_sensitive_patterns(combined_docs)
     print("Documentation safety checks passed.")
     return 0
