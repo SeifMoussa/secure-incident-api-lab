@@ -62,10 +62,6 @@ REQUIRED_PHRASES = [
 ]
 
 FORBIDDEN_CLAIMS = [
-    "release is available",
-    "release has been created",
-    "v0.1.0 release exists",
-    "v0.1.0 tag exists",
     "github projects have been created",
     "live github projects exist",
     "live github project board exists",
@@ -92,8 +88,8 @@ REQUIRED_CURRENT_STATUS = [
     "branch protection configured and verified",
     "project board creation is pending because the token lacks project scope",
     "dependabot prs remain open and unmerged",
-    "`v0.1.0` tag pending",
-    "github release pending",
+    "`v0.1.0` tag exists",
+    "github release is published",
 ]
 
 JWT_PATTERN = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")

@@ -56,10 +56,6 @@ def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete()
     text = combined_docs_text().lower()
 
     forbidden_claims = [
-        "release is available",
-        "release has been created",
-        "v0.1.0 release exists",
-        "v0.1.0 tag exists",
         "live github projects exist",
         "live github project board exists",
         "dependabot prs were merged",
@@ -81,5 +77,7 @@ def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete()
         "project board creation is pending because the token lacks project scope" in current_status
     )
     assert "dependabot prs remain open and unmerged" in current_status
+    assert "`v0.1.0` tag exists" in current_status
+    assert "github release is published" in current_status
     assert "repository publishing pending" not in current_status
     assert "repository is not published" not in current_status

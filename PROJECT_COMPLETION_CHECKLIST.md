@@ -164,5 +164,5 @@
 - [x] Attempt Project creation; token lacks required project scope.
 - [x] Configure and verify protected `main` with required checks and pull-request review.
 - [ ] Prepare release branch if needed.
-- [ ] Create `v0.1.0` tag.
-- [ ] Create GitHub release.
+- [x] Create annotated `v0.1.0` tag from the verified release-readiness commit.
+- [x] Publish the `v0.1.0` GitHub Release.
