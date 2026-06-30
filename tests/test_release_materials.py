@@ -31,8 +31,8 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
         "- [x] github issues f1-f14 created and left open.",
         "- [x] branch protection configured and verified for `main`.",
         "- [ ] project board creation pending because the token lacks project scope.",
-        "- [ ] `v0.1.0` tag pending.",
-        "- [ ] github release pending.",
+        "- [x] `v0.1.0` tag exists.",
+        "- [x] github release is published.",
     ]:
         assert status in checklist_text
 
@@ -45,9 +45,7 @@ def test_release_materials_do_not_claim_pending_release_or_project_work_done() -
     ).lower()
 
     for forbidden in [
-        "release has been created",
         "github projects have been created",
-        "v0.1.0 tag exists",
         "dependabot prs were merged",
     ]:
         assert forbidden not in text

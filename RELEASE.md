@@ -1,6 +1,6 @@
 # Release Preparation
 
-This document prepares the Secure Incident Management API portfolio lab for a future `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues and verified `main` branch protection now exist. Project board creation is pending because the token lacks project scope. No tag or GitHub Release exists.
+This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues and verified `main` branch protection exist. Project board creation is pending because the token lacks project scope.
 
 ## Project Summary
 
@@ -58,7 +58,7 @@ Latest Phase 13B status from local validation:
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
 - Four Dependabot PRs are open and unmerged pending review.
-- Phase 13C release gates are verified; the tag and GitHub Release are about to be created.
+- Phase 13C release gates were verified before the tag and GitHub Release were published.
 
 ## Repository Status
 
@@ -73,7 +73,8 @@ Latest Phase 13B status from local validation:
 - Branch protection: configured and verified for `main`.
 - Project board: creation pending because the token lacks project scope.
 - Dependabot: four PRs remain open and unmerged.
-- `v0.1.0` tag and GitHub Release: still pending.
+- `v0.1.0` tag: exists and targets the verified release-readiness commit.
+- GitHub Release: published and neither a draft nor a prerelease.
 
 ## Suggested Repository Description
 

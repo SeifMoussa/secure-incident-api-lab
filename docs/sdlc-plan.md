@@ -92,7 +92,7 @@ Planned release sequence:
 9. Create GitHub release.
 10. Configure protected main.
 
-The first planned release is `v0.1.0`. The tag and GitHub Release are still pending for Phase 13C. `RELEASE.md` and `docs/release-checklist.md` remain preparation artifacts, not evidence that a release exists.
+The first release is `v0.1.0`. Its annotated tag and GitHub Release were published in Phase 13C after hosted CI and CodeQL passed. `RELEASE.md` and `docs/release-checklist.md` record the verified release state.
 
 ## Definition of Done
 

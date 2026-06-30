@@ -34,4 +34,4 @@ Protection for `main` is configured and verified. Merges require an up-to-date b
 
 ## Limitations
 
-This remains a production-pattern portfolio lab, not a deployed production SOC platform. Live Issues and branch protection are configured. Project board creation is pending because the token lacks project scope. The `v0.1.0` tag and GitHub Release are still pending, and no Dependabot PR has been merged.
+This remains a production-pattern portfolio lab, not a deployed production SOC platform. Live Issues and branch protection are configured. The `v0.1.0` tag exists and the GitHub Release is published. Project board creation is pending because the token lacks project scope, and no Dependabot PR has been merged.

@@ -157,7 +157,7 @@ Latest local Phase 13B validation:
 
 The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Hosted CI passed its Tests, Docs Safety Checks, and API Smoke jobs at commit `a1f8e729`. Hosted CodeQL also passed, with zero open code-scanning alerts and zero open secret-scanning alerts.
 
-Phase 13B created the F1-F14 live GitHub Issues and configured verified protection for `main`. The four Dependabot PRs remain open and unmerged. Project board creation is pending because the token lacks project scope. The `v0.1.0` tag and GitHub Release are still pending for Phase 13C.
+Phase 13B created the F1-F14 live GitHub Issues and configured verified protection for `main`. Phase 13C published the annotated `v0.1.0` tag and GitHub Release. The four Dependabot PRs remain open and unmerged. Project board creation is pending because the token lacks project scope.
 
 ## Documentation
 
@@ -178,7 +178,7 @@ Phase 13B created the F1-F14 live GitHub Issues and configured verified protecti
 - In-memory rate limiting is not distributed.
 - Audit logs are append-only through the API, but no external immutable audit store is implemented.
 - Hosted CI and CodeQL passed at the latest Phase 13B commit.
-- The `v0.1.0` tag and GitHub Release are still pending.
+- The `v0.1.0` tag exists and the GitHub Release is published.
 - Project board creation is pending because the token lacks project scope.
 - Dependabot PRs remain open and unmerged pending review.
 
@@ -187,7 +187,7 @@ Phase 13B created the F1-F14 live GitHub Issues and configured verified protecti
 - Phase 12: local Agile and release preparation materials complete.
 - Phase 13A: repository publication and hosted verification complete.
 - Phase 13B: live Issues and branch protection complete; Project board creation is blocked by token scope; release preparation is current.
-- Phase 13C: release gates verified; the `v0.1.0` tag and GitHub Release are about to be created.
+- Phase 13C: `v0.1.0` tag and GitHub Release published after verified release gates.
 
 ## License
 

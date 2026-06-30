@@ -28,8 +28,8 @@ This checklist tracks local release readiness after repository publication. Pend
 - [x] Required checks: Tests, Docs Safety Checks, API Smoke, and CodeQL (python).
 - [x] One approving pull-request review required; strict/up-to-date checks enabled.
 - [x] Force pushes and branch deletion disabled.
-- [ ] `v0.1.0` tag pending.
-- [ ] GitHub Release pending.
+- [x] `v0.1.0` tag exists.
+- [x] GitHub Release is published.
 
 ## Safety Review
 

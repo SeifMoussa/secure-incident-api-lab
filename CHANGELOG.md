@@ -8,6 +8,7 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 
 ### Added
 
+- Phase 13C annotated `v0.1.0` tag and published GitHub Release.
 - Phase 13B live F1-F14 GitHub Issues and backlog labels.
 - Phase 13B verified `main` branch protection with strict CI and CodeQL checks, pull-request review, and force-push/deletion restrictions.
 - Phase 13B hosted-state documentation for successful CI/CodeQL and zero open code/secret-scanning alerts.
@@ -100,7 +101,6 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 
 - No binary upload or evidence file storage.
 - No live GitHub Project board because the token lacks project scope.
-- No tags or releases.
 - No Dependabot PR merges.
 - No new Phase 9 business/domain workflows.
 - No new Phase 10 business/domain workflows.
