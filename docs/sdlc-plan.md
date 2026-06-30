@@ -26,7 +26,7 @@ Branch protection now requires pull requests, one approving review, an up-to-dat
 
 ## CI Strategy
 
-Phase 11 added local GitHub Actions workflow configuration. Hosted Actions passed all three CI jobs at the Phase 13B starting commit.
+Phase 11 added local GitHub Actions workflow configuration. Hosted Actions passed all three CI jobs at the latest Phase 13B commit.
 
 Configured workflow behavior:
 
@@ -40,7 +40,7 @@ Configured workflow behavior:
 
 ## CodeQL Strategy
 
-CodeQL is configured for Python and passed at the Phase 13B starting commit. Open code-scanning alerts and open secret-scanning alerts are both 0. CodeQL configuration remains scoped to the repository and does not require real credentials.
+CodeQL is configured for Python and passed at the latest Phase 13B commit. Open code-scanning alerts and open secret-scanning alerts are both 0. CodeQL configuration remains scoped to the repository and does not require real credentials.
 
 ## Dependabot Strategy
 

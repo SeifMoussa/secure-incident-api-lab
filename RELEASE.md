@@ -53,20 +53,20 @@ Latest Phase 13B status from local validation:
 
 ## Hosted Checks
 
-- Hosted GitHub Actions CI passed at commit `b3187ac`.
-- Hosted CodeQL passed at commit `b3187ac`.
+- Hosted GitHub Actions CI passed at commit `a1f8e729`.
+- Hosted CodeQL passed at commit `a1f8e729`.
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
 - Four Dependabot PRs are open and unmerged pending review.
-- Hosted CI and CodeQL must be verified again after the Phase 13B push.
+- Phase 13C release gates are verified; the tag and GitHub Release are about to be created.
 
 ## Repository Status
 
 - Git initialization: complete.
 - Repository publication: complete.
 - Visibility: public and confirmed.
-- Hosted CI: passed at the Phase 13B starting commit.
-- Hosted CodeQL: passed at the Phase 13B starting commit.
+- Hosted CI: passed at the latest Phase 13B commit.
+- Hosted CodeQL: passed at the latest Phase 13B commit.
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
 - Live Issues: F1-F14 created and left open.
@@ -112,8 +112,8 @@ Safety:
 - [x] Confirm default branch is `main`.
 - [ ] Confirm README renders correctly in the final release review.
 - [ ] Confirm `docs/threat_model.md`, `docs/api_reference.md`, and `docs/ci-cd.md` render correctly.
-- [x] Confirm hosted CI starts on push and passed at `b3187ac`.
-- [x] Confirm hosted CodeQL passed at `b3187ac`.
+- [x] Confirm hosted CI starts on push and passed at `a1f8e729`.
+- [x] Confirm hosted CodeQL passed at `a1f8e729`.
 - [x] Confirm Dependabot is recognized; four PRs remain open and unmerged.
 
 ## Code Scanning Checklist
