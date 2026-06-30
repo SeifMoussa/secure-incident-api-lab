@@ -53,11 +53,11 @@ Latest Phase 13B status from local validation:
 
 ## Hosted Checks
 
-- Hosted GitHub Actions CI passed at commit `a1f8e729`.
-- Hosted CodeQL passed at commit `a1f8e729`.
+- Hosted GitHub Actions CI passed at commit `c9f96289`.
+- Hosted CodeQL passed at commit `c9f96289`.
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
-- Four Dependabot PRs are open and unmerged pending review.
+- Dependabot PRs #1-#4 remain open and unmerged after individual risk review.
 - Phase 13C release gates were verified before the tag and GitHub Release were published.
 
 ## Repository Status
@@ -69,10 +69,10 @@ Latest Phase 13B status from local validation:
 - Hosted CodeQL: passed at the latest Phase 13B commit.
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
-- Live Issues: F1-F14 created and left open.
+- Live Issues: F1-F13 closed as completed; F14 remains open for pending governance work.
 - Branch protection: configured and verified for `main`.
 - Project board: creation pending because the token lacks project scope.
-- Dependabot: four PRs remain open and unmerged.
+- Dependabot: PRs #1-#4 remain open; each is a major/version-boundary update with a failing Tests check and was not merged blindly.
 - `v0.1.0` tag: exists and targets the verified release-readiness commit.
 - GitHub Release: published and neither a draft nor a prerelease.
 
@@ -113,9 +113,9 @@ Safety:
 - [x] Confirm default branch is `main`.
 - [ ] Confirm README renders correctly in the final release review.
 - [ ] Confirm `docs/threat_model.md`, `docs/api_reference.md`, and `docs/ci-cd.md` render correctly.
-- [x] Confirm hosted CI starts on push and passed at `a1f8e729`.
-- [x] Confirm hosted CodeQL passed at `a1f8e729`.
-- [x] Confirm Dependabot is recognized; four PRs remain open and unmerged.
+- [x] Confirm hosted CI starts on push and passed at `c9f96289`.
+- [x] Confirm hosted CodeQL passed at `c9f96289`.
+- [x] Confirm Dependabot is recognized; PRs #1-#4 were reviewed individually and remain open and unmerged.
 
 ## Code Scanning Checklist
 
@@ -132,7 +132,7 @@ Safety:
 
 - [x] Confirm pip ecosystem is enabled.
 - [x] Confirm GitHub Actions ecosystem is enabled.
-- [ ] Review Dependabot PRs.
+- [x] Review Dependabot PRs individually; defer all four major/version-boundary updates with failing Tests checks.
 
 ## Branch Protection Checklist
 
@@ -148,6 +148,8 @@ Safety:
 
 - [x] Create planned F1-F14 issues from `docs/agile/backlog.md`.
 - [x] Apply labels.
+- [x] Close F1-F13 as completed with v0.1.0 verification comments.
+- [x] Keep F14 open for Project, screenshot, and dependency follow-up work.
 - [ ] Link issues to project board after board creation.
 
 ## GitHub Projects Checklist

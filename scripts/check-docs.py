@@ -87,7 +87,9 @@ REQUIRED_CURRENT_STATUS = [
     "live f1-f14 github issues",
     "branch protection configured and verified",
     "project board creation is pending because the token lacks project scope",
-    "dependabot prs remain open and unmerged",
+    "dependabot prs #1-#4 remain open",
+    "f1-f13 are closed as completed",
+    "f14 remains open",
     "`v0.1.0` tag exists",
     "github release is published",
 ]

@@ -1,6 +1,6 @@
 # CI/CD Configuration
 
-Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `a1f8e729`.
+Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `c9f96289`.
 
 ## CI Workflow
 
@@ -18,11 +18,11 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## CodeQL
 
-`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL passed at commit `a1f8e729`. GitHub reports zero open code-scanning alerts and zero open secret-scanning alerts.
+`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL passed at commit `c9f96289`. GitHub reports zero open code-scanning alerts and zero open secret-scanning alerts.
 
 ## Dependabot
 
-`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems. PRs #1-#4 remain open and unmerged pending review.
+`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems. PRs #1-#4 were reviewed individually in Phase 14. All remain open and unmerged because they cross major/version boundaries and their current Tests checks fail.
 
 ## Documentation Safety
 

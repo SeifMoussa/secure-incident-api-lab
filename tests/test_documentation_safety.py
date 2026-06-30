@@ -76,7 +76,9 @@ def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete()
     assert (
         "project board creation is pending because the token lacks project scope" in current_status
     )
-    assert "dependabot prs remain open and unmerged" in current_status
+    assert "dependabot prs #1-#4 remain open" in current_status
+    assert "f1-f13 are closed as completed" in current_status
+    assert "f14 remains open" in current_status
     assert "`v0.1.0` tag exists" in current_status
     assert "github release is published" in current_status
     assert "repository publishing pending" not in current_status

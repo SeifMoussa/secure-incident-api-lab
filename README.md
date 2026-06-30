@@ -155,9 +155,9 @@ Latest local Phase 13B validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Hosted CI passed its Tests, Docs Safety Checks, and API Smoke jobs at commit `a1f8e729`. Hosted CodeQL also passed, with zero open code-scanning alerts and zero open secret-scanning alerts.
+The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Hosted CI passed its Tests, Docs Safety Checks, and API Smoke jobs at commit `c9f96289`. Hosted CodeQL also passed, with zero open code-scanning alerts and zero open secret-scanning alerts.
 
-Phase 13B created the F1-F14 live GitHub Issues and configured verified protection for `main`. Phase 13C published the annotated `v0.1.0` tag and GitHub Release. The four Dependabot PRs remain open and unmerged. Project board creation is pending because the token lacks project scope.
+Phase 13B created the live F1-F14 GitHub Issues and configured verified protection for `main`. Phase 13C published the annotated `v0.1.0` tag and GitHub Release. Phase 14 merged the post-release documentation PR and closed F1-F13 as completed; F14 remains open. Dependabot PRs #1-#4 remain open after individual review because they are major/version-boundary updates with failing Tests checks. Project board creation is pending because the token lacks project scope.
 
 ## Documentation
 
@@ -180,7 +180,7 @@ Phase 13B created the F1-F14 live GitHub Issues and configured verified protecti
 - Hosted CI and CodeQL passed at the latest Phase 13B commit.
 - The `v0.1.0` tag exists and the GitHub Release is published.
 - Project board creation is pending because the token lacks project scope.
-- Dependabot PRs remain open and unmerged pending review.
+- Dependabot PRs #1-#4 remain open and unmerged after individual risk review.
 
 ## Roadmap
 
@@ -188,6 +188,7 @@ Phase 13B created the F1-F14 live GitHub Issues and configured verified protecti
 - Phase 13A: repository publication and hosted verification complete.
 - Phase 13B: live Issues and branch protection complete; Project board creation is blocked by token scope; release preparation is current.
 - Phase 13C: `v0.1.0` tag and GitHub Release published after verified release gates.
+- Phase 14: post-release documentation merged; F1-F13 closed; F14, Project setup, screenshot, and dependency updates remain administrative follow-ups.
 
 ## License
 

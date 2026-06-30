@@ -52,6 +52,8 @@ def test_agile_materials_reflect_live_issues_and_no_fake_screenshot_exists() -> 
     combined = "\n".join(path.read_text(encoding="utf-8") for path in AGILE.glob("*.md")).lower()
 
     assert "live f1-f14 github issues" in combined
+    assert "f1-f13 are closed as completed" in combined
+    assert "f14 remains open" in combined
     assert "pending because the token lacks project scope" in combined
     assert "live github project board" in combined
     assert (
