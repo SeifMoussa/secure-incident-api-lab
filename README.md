@@ -144,10 +144,10 @@ python -m alembic current
 
 ## Current Quality Status
 
-Latest local Phase 13A audit validation:
+Latest local Phase 13B validation:
 
 - Tests: 244 passed after removing four stale/redundant phase-boundary tests.
-- Coverage: 95.60%.
+- Coverage: 95.59%.
 - Coverage gate: 95%.
 - Ruff: passed.
 - Format check: passed.
@@ -155,9 +155,9 @@ Latest local Phase 13A audit validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-The repository has been published at `https://github.com/SeifMoussa/secure-incident-api-lab`. The latest hosted CI run completed its Docs Safety Checks and API Smoke jobs successfully, but its Tests job failed on stale route-inspection tests. Hosted CI has not passed after the local audit fixes yet.
+The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Hosted CI passed its Tests, Docs Safety Checks, and API Smoke jobs at commit `b3187ac`. Hosted CodeQL also passed, with zero open code-scanning alerts and zero open secret-scanning alerts.
 
-The repository is published publicly. Code scanning is available, and real test-side-effect findings were corrected locally. Hosted CI and hosted CodeQL verification are pending until the next pushed run completes; neither is claimed to have passed after the audit fixes.
+Phase 13B created the F1-F14 live GitHub Issues and configured verified protection for `main`. The four Dependabot PRs remain open and unmerged. Project board creation is pending because the token lacks project scope. The `v0.1.0` tag and GitHub Release are still pending for Phase 13C.
 
 ## Documentation
 
@@ -177,15 +177,17 @@ The repository is published publicly. Code scanning is available, and real test-
 - Local SQLite is used for development and tests.
 - In-memory rate limiting is not distributed.
 - Audit logs are append-only through the API, but no external immutable audit store is implemented.
-- Hosted CI re-verification remains pending after the local audit fixes.
-- CodeQL remains configured and is expected to run for the public repository after the next authorized push.
-- Branch protection, tags, releases, live Issues, and a live Project board have not been created.
+- Hosted CI and CodeQL passed at the Phase 13B starting commit; they must pass again after the Phase 13B documentation push.
+- The `v0.1.0` tag and GitHub Release are still pending.
+- Project board creation is pending because the token lacks project scope.
+- Dependabot PRs remain open and unmerged pending review.
 
 ## Roadmap
 
 - Phase 12: local Agile and release preparation materials complete.
-- Phase 13A: repository publication complete; local audit fixes and hosted CI re-verification pending.
-- Phase 13B: not started. Live Issues/Project, branch protection, tag, and release work remain pending.
+- Phase 13A: repository publication and hosted verification complete.
+- Phase 13B: live Issues and branch protection complete; Project board creation is blocked by token scope; release preparation is current.
+- Phase 13C: not started. The `v0.1.0` tag and GitHub Release remain pending.
 
 ## License
 

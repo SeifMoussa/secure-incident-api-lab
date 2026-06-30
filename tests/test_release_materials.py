@@ -14,7 +14,7 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
     assert checklist.is_file()
     for phrase in [
         "v0.1.0 - secure incident management api",
-        "pending hosted checks",
+        "hosted checks",
         "repository status",
         "suggested github topics",
         "linkedin post draft",
@@ -22,20 +22,22 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
         "recruiter-facing summary",
     ]:
         assert phrase in release_text
-    for pending in [
+    for status in [
         "- [x] git initialization complete.",
         "- [x] repository publishing complete.",
         "- [x] public repository visibility confirmed.",
-        "- [ ] hosted ci pending.",
-        ("- [ ] hosted codeql verification pending until the next pushed run completes."),
-        "- [ ] branch protection pending.",
+        "- [x] hosted ci passed at the phase 13b starting commit.",
+        "- [x] hosted codeql passed at the phase 13b starting commit.",
+        "- [x] github issues f1-f14 created and left open.",
+        "- [x] branch protection configured and verified for `main`.",
+        "- [ ] project board creation pending because the token lacks project scope.",
         "- [ ] `v0.1.0` tag pending.",
         "- [ ] github release pending.",
     ]:
-        assert pending in checklist_text
+        assert status in checklist_text
 
 
-def test_release_materials_do_not_claim_pending_hosted_or_release_work_done() -> None:
+def test_release_materials_do_not_claim_pending_release_or_project_work_done() -> None:
     text = (
         (ROOT / "RELEASE.md").read_text(encoding="utf-8")
         + "\n"
@@ -43,11 +45,9 @@ def test_release_materials_do_not_claim_pending_hosted_or_release_work_done() ->
     ).lower()
 
     for forbidden in [
-        "hosted ci has passed",
-        "hosted codeql has passed",
         "release has been created",
-        "branch protection is configured",
-        "github issues have been created",
         "github projects have been created",
+        "v0.1.0 tag exists",
+        "dependabot prs were merged",
     ]:
         assert forbidden not in text

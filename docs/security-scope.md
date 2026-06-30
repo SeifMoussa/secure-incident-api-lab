@@ -107,4 +107,8 @@ Phase 12 added recruiter-ready documentation polish, release preparation materia
 
 ## Phase 13A Safety Status
 
-Public repository publication is complete. Hosted CI and CodeQL have run historically but have not been verified after the local audit fixes; verification is pending until the next pushed run completes. No tag, release, branch protection, live GitHub Issues, or live GitHub Project board has been created. No application business/domain behavior changed.
+Public repository publication is complete. Hosted CI and CodeQL passed at commit `b3187ac`, with zero open code-scanning alerts and zero open secret-scanning alerts. No application business/domain behavior changed.
+
+## Phase 13B Safety Status
+
+Live F1-F14 GitHub Issues and their labels were created. Protection for `main` is configured and verified with strict required checks, one approving review, and force-push/deletion restrictions. Project board creation is pending because the token lacks project scope. Four Dependabot PRs remain open and unmerged. The `v0.1.0` tag and GitHub Release are still pending; no fake screenshot was added. No application, database-schema, or API behavior changed.

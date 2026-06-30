@@ -17,14 +17,17 @@ This checklist tracks local release readiness after repository publication. Pend
 - [x] Git initialization complete.
 - [x] Repository publishing complete.
 - [x] Public repository visibility confirmed.
-- [ ] Hosted CI pending.
-- [ ] Hosted CodeQL verification pending until the next pushed run completes.
-- [ ] Code scanning review pending.
-- [ ] Secret scanning review pending.
+- [x] Hosted CI passed at the Phase 13B starting commit.
+- [x] Hosted CodeQL passed at the Phase 13B starting commit.
+- [x] Open code-scanning alerts confirmed at 0.
+- [x] Open secret-scanning alerts confirmed at 0.
 - [ ] Dependabot PR review pending.
-- [ ] GitHub Issues creation pending.
-- [ ] GitHub Project board creation pending.
-- [ ] Branch protection pending.
+- [x] GitHub Issues F1-F14 created and left open.
+- [ ] Project board creation pending because the token lacks project scope.
+- [x] Branch protection configured and verified for `main`.
+- [x] Required checks: Tests, Docs Safety Checks, API Smoke, and CodeQL (python).
+- [x] One approving pull-request review required; strict/up-to-date checks enabled.
+- [x] Force pushes and branch deletion disabled.
 - [ ] `v0.1.0` tag pending.
 - [ ] GitHub Release pending.
 

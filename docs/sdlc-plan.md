@@ -22,11 +22,11 @@ Pull requests should include:
 - Any migration impact.
 - Documentation updates.
 
-PRs should require CI passing before merge after a later branch-protection setup is complete.
+Branch protection now requires pull requests, one approving review, an up-to-date branch, and successful Tests, Docs Safety Checks, API Smoke, and CodeQL (python) checks before merge.
 
 ## CI Strategy
 
-Phase 11 added local GitHub Actions workflow configuration. Hosted Actions have since run; the latest run still requires a successful Tests job after the Phase 13A local fixes.
+Phase 11 added local GitHub Actions workflow configuration. Hosted Actions passed all three CI jobs at the Phase 13B starting commit.
 
 Configured workflow behavior:
 
@@ -40,7 +40,7 @@ Configured workflow behavior:
 
 ## CodeQL Strategy
 
-CodeQL is configured for Python in Phase 11 and is expected to run for the public repository. Hosted verification after the audit fixes is pending until the next pushed run completes. Alerts should be reviewed before release. CodeQL configuration remains scoped to the repository and does not require real credentials.
+CodeQL is configured for Python and passed at the Phase 13B starting commit. Open code-scanning alerts and open secret-scanning alerts are both 0. CodeQL configuration remains scoped to the repository and does not require real credentials.
 
 ## Dependabot Strategy
 
@@ -51,11 +51,11 @@ Dependabot should monitor:
 
 Dependabot PRs should pass CI and be reviewed before merge.
 
-Dependabot is configured in Phase 11, and GitHub has recognized its pip and GitHub Actions update ecosystems.
+Dependabot is configured in Phase 11, and GitHub has recognized its pip and GitHub Actions update ecosystems. Four Dependabot PRs remain open and unmerged pending review.
 
 ## Agile Board Plan
 
-Phase 12 adds local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. The repository is published, but live GitHub Issues and a live GitHub Project board remain uncreated.
+Phase 12 added local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Phase 13B created live F1-F14 Issues and the planned labels. Project board creation is pending because the token lacks project scope.
 
 Planned issue categories:
 
@@ -92,8 +92,7 @@ Planned release sequence:
 9. Create GitHub release.
 10. Configure protected main.
 
-The first planned release is `v0.1.0`, but no tag or release is created in Phase 0.
-No tag or release exists after Phase 12. `RELEASE.md` and `docs/release-checklist.md` are local preparation artifacts only.
+The first planned release is `v0.1.0`. The tag and GitHub Release are still pending for Phase 13C. `RELEASE.md` and `docs/release-checklist.md` remain preparation artifacts, not evidence that a release exists.
 
 ## Definition of Done
 

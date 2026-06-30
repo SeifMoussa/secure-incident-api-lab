@@ -1,6 +1,6 @@
 # CI/CD Configuration
 
-Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published. The latest hosted CI run completed Docs Safety Checks and API Smoke successfully but failed Tests on stale route-inspection assumptions; hosted CI has not passed after the local audit fixes yet.
+Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `b3187ac`.
 
 ## CI Workflow
 
@@ -18,16 +18,20 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## CodeQL
 
-`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Code scanning is available because the repository is public. The Phase 13A audit corrected the real side-effect-in-assert test findings locally; reports against Alembic's required revision metadata and imports guarded by `TYPE_CHECKING` were reviewed as non-runtime framework/static-analysis patterns. Hosted CodeQL verification pending until the next pushed run completes.
+`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL passed at commit `b3187ac`. GitHub reports zero open code-scanning alerts and zero open secret-scanning alerts.
 
 ## Dependabot
 
-`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems.
+`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems. PRs #1-#4 remain open and unmerged pending review.
 
 ## Documentation Safety
 
-`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, and premature hosted CI/release/branch-protection claims.
+`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, accurate Phase 13B hosted/governance status, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, premature release/tag/Project claims, and premature Dependabot merge claims.
+
+## Branch Protection
+
+Protection for `main` is configured and verified. Merges require an up-to-date branch, one approving pull-request review, and successful Tests, Docs Safety Checks, API Smoke, and CodeQL (python) checks. Force pushes and branch deletion are disabled. Administrators retain GitHub's default unenforced setting.
 
 ## Limitations
 
-This remains a production-pattern portfolio lab, not a deployed production SOC platform. The repository is published publicly. Hosted CI/CodeQL re-verification, branch protection, live GitHub Issues, a live GitHub Project board, tags, and releases remain pending.
+This remains a production-pattern portfolio lab, not a deployed production SOC platform. Live Issues and branch protection are configured. Project board creation is pending because the token lacks project scope. The `v0.1.0` tag and GitHub Release are still pending, and no Dependabot PR has been merged.

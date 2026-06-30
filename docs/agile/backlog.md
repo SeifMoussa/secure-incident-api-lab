@@ -1,6 +1,6 @@
 # Planned Backlog
 
-The following F1-F14 issues are local planning material only. The repository is published; the planned issues remain local-only artifacts.
+The following backlog is the source of truth for the live F1-F14 GitHub Issues created in Phase 13B. The issues remain open pending Project organization and release governance.
 
 ## F1: Project Scaffold and Health API
 
@@ -15,7 +15,7 @@ Acceptance criteria:
 - Production docs behavior is configurable.
 - Synthetic/demo safety wording exists.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F2: Database Foundation
 
@@ -30,7 +30,7 @@ Acceptance criteria:
 - Evidence attachment records are metadata only.
 - Tests verify models and migration metadata.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F3: Authentication
 
@@ -45,7 +45,7 @@ Acceptance criteria:
 - Logout blocks refresh-token JTI values.
 - Responses never expose password hashes.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F4: RBAC and Admin User Management
 
@@ -60,7 +60,7 @@ Acceptance criteria:
 - Self role-change and self-deactivation protections exist.
 - Admin responses exclude secrets and password hashes.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F5: Incident CRUD
 
@@ -75,7 +75,7 @@ Acceptance criteria:
 - Pagination and filters are bounded and validated.
 - Soft-deleted incidents are hidden from normal reads.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F6: Tickets, Evidence, and Remediation
 
@@ -90,7 +90,7 @@ Acceptance criteria:
 - No binary upload, file storage, or disk file reading exists.
 - Remediation completion timestamps are controlled by the server.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F7: Audit Logging and Timeline
 
@@ -105,7 +105,7 @@ Acceptance criteria:
 - Audit API is append-only.
 - Sensitive fields are redacted from audit entries.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F8: Security Controls
 
@@ -120,7 +120,7 @@ Acceptance criteria:
 - CORS does not use wildcard defaults.
 - Production docs are disabled.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F9: Validation Hardening and Security Regression Tests
 
@@ -135,7 +135,7 @@ Acceptance criteria:
 - SQLAlchemy ORM/query-builder patterns are used.
 - Security regression tests are meaningful.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F10: Threat Model and API Reference
 
@@ -150,7 +150,7 @@ Acceptance criteria:
 - Examples use placeholders only.
 - OpenAPI export works without a running server.
 
-Status: Already implemented locally.
+Status: Implemented locally and verified before publishing.
 
 ## F11: CI, CodeQL, Dependabot, and Docs Safety
 
@@ -165,7 +165,7 @@ Acceptance criteria:
 - CodeQL is configured for Python.
 - Dependabot covers pip and GitHub Actions.
 
-Status: Implemented. Hosted CI and CodeQL re-verification are pending until the next pushed run completes.
+Status: Implemented locally and verified before publishing.
 
 ## F12: Agile and Release Preparation
 
@@ -180,7 +180,7 @@ Acceptance criteria:
 - Agile materials are local only.
 - Final local QA commands pass.
 
-Status: Implemented locally in Phase 12.
+Status: Implemented locally and verified before publishing.
 
 ## F13: Repository Publishing
 
@@ -195,7 +195,7 @@ Acceptance criteria:
 - No real credentials, tokens, or customer data are present.
 - Publishing evidence is documented.
 
-Status: Repository publication is complete. Hosted CI re-verification and final visibility reconciliation remain pending in Phase 13A.
+Status: Publishing and hosted verification completed in Phase 13A. Release/tag/branch protection remain separate until Phase 13B/13C.
 
 ## F14: Release, Branch Protection, Issues, and Project Board
 
@@ -210,4 +210,4 @@ Acceptance criteria:
 - Branch protection requires appropriate checks.
 - Release notes match the release draft after hosted checks are verified.
 
-Status: Pending future phase. Not started locally.
+Status: Pending release governance, branch protection, tag/release, and final screenshots.

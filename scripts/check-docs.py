@@ -62,19 +62,15 @@ REQUIRED_PHRASES = [
 ]
 
 FORBIDDEN_CLAIMS = [
-    "hosted ci has passed",
-    "hosted codeql has passed",
-    "github actions passed",
-    "codeql passed",
     "release is available",
     "release has been created",
     "v0.1.0 release exists",
-    "branch protection is configured",
-    "branch protection exists",
-    "github issues have been created",
+    "v0.1.0 tag exists",
     "github projects have been created",
-    "live github issues exist",
     "live github projects exist",
+    "live github project board exists",
+    "dependabot prs were merged",
+    "dependabot prs have been merged",
 ]
 
 STALE_PUBLICATION_CLAIMS = [
@@ -88,7 +84,16 @@ STALE_PUBLICATION_CLAIMS = [
 REQUIRED_CURRENT_STATUS = [
     "repository publishing complete",
     "repository is published publicly",
-    "hosted codeql verification pending until the next pushed run completes",
+    "hosted ci passed",
+    "hosted codeql passed",
+    "open code-scanning alerts: 0",
+    "open secret-scanning alerts: 0",
+    "live f1-f14 github issues",
+    "branch protection configured and verified",
+    "project board creation is pending because the token lacks project scope",
+    "dependabot prs remain open and unmerged",
+    "`v0.1.0` tag pending",
+    "github release pending",
 ]
 
 JWT_PATTERN = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")

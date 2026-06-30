@@ -48,10 +48,11 @@ def test_agile_backlog_documents_f1_through_f14() -> None:
         assert phrase in text
 
 
-def test_agile_materials_are_local_only_and_no_fake_screenshot_exists() -> None:
+def test_agile_materials_reflect_live_issues_and_no_fake_screenshot_exists() -> None:
     combined = "\n".join(path.read_text(encoding="utf-8") for path in AGILE.glob("*.md")).lower()
 
-    assert "planned issues remain local-only artifacts" in combined
+    assert "live f1-f14 github issues" in combined
+    assert "pending because the token lacks project scope" in combined
     assert "live github project board" in combined
     assert (
         "no fake screenshot" in combined or "do not add placeholder or fake screenshots" in combined

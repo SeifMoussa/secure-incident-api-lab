@@ -38,11 +38,16 @@ def test_docs_safety_script_rejects_unsafe_content() -> None:
     with pytest.raises(SystemExit):
         module.check_sensitive_patterns('{"access_token":"eyJaaaa.bbbbbbbb.cccccccc"}')
     with pytest.raises(SystemExit):
-        module.check_forbidden_claims("Hosted CI has passed.")
+        module.check_forbidden_claims("The v0.1.0 release exists.")
+    with pytest.raises(SystemExit):
+        module.check_forbidden_claims("Live GitHub Projects exist.")
     with pytest.raises(SystemExit):
         module.check_current_status("Repository publishing pending.")
 
     module.check_forbidden_claims("The repository is published publicly.")
+    module.check_forbidden_claims("Hosted CI has passed.")
+    module.check_forbidden_claims("Branch protection is configured.")
+    module.check_forbidden_claims("Live GitHub Issues exist.")
 
 
 def test_docs_safety_script_checks_required_files() -> None:

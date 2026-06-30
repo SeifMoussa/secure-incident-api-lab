@@ -155,12 +155,14 @@
 - [x] Initialize git.
 - [x] Publish repository.
 - [x] Confirm public repository visibility.
-- [ ] Verify hosted GitHub Actions.
-- [ ] Verify hosted CodeQL.
-- [ ] Review Dependabot recognition.
-- [ ] Create planned live GitHub Issues.
+- [x] Verify hosted GitHub Actions.
+- [x] Verify hosted CodeQL.
+- [x] Confirm zero open code-scanning and secret-scanning alerts.
+- [x] Review Dependabot recognition; PRs #1-#4 remain open and unmerged.
+- [x] Create planned live GitHub Issues F1-F14.
 - [ ] Create planned live GitHub Project.
-- [ ] Configure protected main.
+- [x] Attempt Project creation; token lacks required project scope.
+- [x] Configure and verify protected `main` with required checks and pull-request review.
 - [ ] Prepare release branch if needed.
 - [ ] Create `v0.1.0` tag.
 - [ ] Create GitHub release.

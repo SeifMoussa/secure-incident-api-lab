@@ -52,20 +52,17 @@ def test_docs_use_placeholders_in_examples() -> None:
         assert placeholder in text
 
 
-def test_docs_reflect_publication_without_claiming_pending_hosted_work_complete() -> None:
+def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete() -> None:
     text = combined_docs_text().lower()
 
     forbidden_claims = [
-        "ci has passed",
-        "github actions passed",
         "release is available",
         "release has been created",
         "v0.1.0 release exists",
-        "branch protection is currently configured",
-        "branch protection exists",
-        "codeql is enabled",
-        "live github issues exist",
+        "v0.1.0 tag exists",
         "live github projects exist",
+        "live github project board exists",
+        "dependabot prs were merged",
     ]
     for claim in forbidden_claims:
         assert claim not in text
@@ -74,6 +71,15 @@ def test_docs_reflect_publication_without_claiming_pending_hosted_work_complete(
         path.read_text(encoding="utf-8").lower() for path in CURRENT_STATUS_PATHS
     )
     assert "repository publishing complete" in current_status
-    assert "hosted ci has not passed after the local audit fixes" in current_status
+    assert "hosted ci passed" in current_status
+    assert "hosted codeql passed" in current_status
+    assert "open code-scanning alerts: 0" in current_status
+    assert "open secret-scanning alerts: 0" in current_status
+    assert "live f1-f14 github issues" in current_status
+    assert "branch protection configured and verified" in current_status
+    assert (
+        "project board creation is pending because the token lacks project scope" in current_status
+    )
+    assert "dependabot prs remain open and unmerged" in current_status
     assert "repository publishing pending" not in current_status
     assert "repository is not published" not in current_status

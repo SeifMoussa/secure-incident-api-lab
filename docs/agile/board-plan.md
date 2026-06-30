@@ -1,6 +1,6 @@
-# Future GitHub Project Board Plan
+# GitHub Project Board Plan
 
-This plan describes the future live GitHub Project board. It is not a claim that a live board exists.
+Live labels and F1-F14 Issues now exist. Project board creation was attempted in Phase 13B and is pending because the token lacks project scope. This file does not claim that a live board exists.
 
 ## Board Columns
 
@@ -25,16 +25,14 @@ This plan describes the future live GitHub Project board. It is not a claim that
 - `ci`
 - `release`
 
-## Pending Live Setup Steps
+## Setup Status
 
-1. Create live GitHub labels from the planned label list.
-2. Create live GitHub Issues from `docs/agile/backlog.md`.
-3. Create the live GitHub Project board.
-4. Add the planned board columns.
-5. Add issues F1-F14 to the board.
-6. Move already implemented local work to Done after validating repository state.
-7. Keep future publishing and release work in Backlog until started.
-8. Capture a real screenshot only after the live board exists.
+1. Live GitHub labels: complete.
+2. Live F1-F14 Issues from `docs/agile/backlog.md`: complete and left open.
+3. Live GitHub Project board: pending because the token lacks project scope.
+4. After project access is granted, create Backlog, In Progress, Review, and Done status options.
+5. Add F1-F14 to the board; move F1-F13 to Done and F14 to In Progress.
+6. Capture a real screenshot only after the live board exists.
 
 ## Screenshot Plan
 

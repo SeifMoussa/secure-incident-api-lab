@@ -1,6 +1,6 @@
 # Agile Planning Materials
 
-These Agile materials are local planning artifacts for the Secure Incident Management API portfolio lab. The repository is published, but no live GitHub Issues or live GitHub Project board have been created.
+These Agile materials are the source for the Secure Incident Management API portfolio backlog. The repository is published publicly, and live F1-F14 GitHub Issues have been created. Project board creation is pending because the token lacks project scope.
 
 The project remains defensive-only and uses synthetic/demo data only. Do not add real credentials, real tokens, real customer incident data, or real evidence files. Evidence attachments remain metadata only, with no binary upload, file storage, or disk file reading.
 
@@ -11,7 +11,7 @@ The project remains defensive-only and uses synthetic/demo data only. Do not add
 - Review
 - Done
 
-## Planned Labels
+## Live Labels
 
 - auth
 - rbac
@@ -29,10 +29,10 @@ The project remains defensive-only and uses synthetic/demo data only. Do not add
 
 ## Local Artifacts
 
-- `docs/agile/backlog.md`: planned F1-F14 issue content.
-- `docs/agile/board-plan.md`: future project-board setup plan.
-- `.github/ISSUE_TEMPLATE/feature.md`: local issue template for future GitHub Issues.
+- `docs/agile/backlog.md`: source content for the live F1-F14 Issues.
+- `docs/agile/board-plan.md`: pending project-board setup plan and confirmed scope limitation.
+- `.github/ISSUE_TEMPLATE/feature.md`: issue template for future feature work.
 
 ## Screenshot Placeholder Plan
 
-`docs/agile/board_sprint1.png` will be added later after the live GitHub Project board exists. No fake screenshot is included in this repository.
+`docs/agile/board_sprint1.png` will be added later after successful live board creation. No fake screenshot is included in this repository.
