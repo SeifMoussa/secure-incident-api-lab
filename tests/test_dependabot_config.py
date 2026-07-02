@@ -19,3 +19,10 @@ def test_dependabot_config_has_no_unrelated_ecosystems() -> None:
 
     for ecosystem in ["docker", "npm", "gomod", "cargo", "maven"]:
         assert f"package-ecosystem: {ecosystem}" not in text
+
+
+def test_dependabot_ignores_incompatible_bcrypt_major_updates() -> None:
+    text = DEPENDABOT_CONFIG.read_text(encoding="utf-8")
+
+    assert "dependency-name: bcrypt" in text
+    assert "version-update:semver-major" in text
