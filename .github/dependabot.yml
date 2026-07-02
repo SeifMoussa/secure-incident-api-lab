@@ -4,6 +4,11 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    ignore:
+      # Passlib 1.7.4 is incompatible with bcrypt 5.x; keep pyproject.toml's bcrypt<5 pin.
+      - dependency-name: bcrypt
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
