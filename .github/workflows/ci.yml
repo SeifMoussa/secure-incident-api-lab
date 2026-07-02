@@ -18,7 +18,7 @@ jobs:
       DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
@@ -48,7 +48,7 @@ jobs:
       DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
@@ -80,7 +80,7 @@ jobs:
       DATABASE_URL: sqlite:///./dev-placeholder.sqlite3
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
