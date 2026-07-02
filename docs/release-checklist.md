@@ -21,8 +21,8 @@ This checklist tracks local release readiness after repository publication. Pend
 - [x] Hosted CodeQL passed at the latest Phase 13B commit.
 - [x] Open code-scanning alerts confirmed at 0.
 - [x] Open secret-scanning alerts confirmed at 0.
-- [ ] Dependabot PR review pending.
-- [x] GitHub Issues F1-F14 created and left open.
+- [x] Dependabot PRs #1-#4 reviewed individually and left open due major/version-boundary risk and failing Tests checks.
+- [x] GitHub Issues F1-F13 closed as completed; F14 remains open.
 - [ ] Project board creation pending because the token lacks project scope.
 - [x] Branch protection configured and verified for `main`.
 - [x] Required checks: Tests, Docs Safety Checks, API Smoke, and CodeQL (python).
@@ -39,4 +39,4 @@ This checklist tracks local release readiness after repository publication. Pend
 - [ ] No database passwords.
 - [ ] No real customer incident data.
 - [ ] No real evidence files.
-- [ ] No fake Agile board screenshots.
+- [x] No fake Agile board screenshots.

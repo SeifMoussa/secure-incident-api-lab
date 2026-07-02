@@ -28,7 +28,7 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
         "- [x] public repository visibility confirmed.",
         "- [x] hosted ci passed at the latest phase 13b commit.",
         "- [x] hosted codeql passed at the latest phase 13b commit.",
-        "- [x] github issues f1-f14 created and left open.",
+        "- [x] github issues f1-f13 closed as completed; f14 remains open.",
         "- [x] branch protection configured and verified for `main`.",
         "- [ ] project board creation pending because the token lacks project scope.",
         "- [x] `v0.1.0` tag exists.",

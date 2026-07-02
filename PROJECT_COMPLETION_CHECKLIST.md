@@ -166,3 +166,12 @@
 - [ ] Prepare release branch if needed.
 - [x] Create annotated `v0.1.0` tag from the verified release-readiness commit.
 - [x] Publish the `v0.1.0` GitHub Release.
+
+## Phase 14: Post-Release Governance
+
+- [x] Merge post-release documentation PR #19 through the protected workflow.
+- [x] Close completed issues F1-F13 with release-verification comments.
+- [x] Keep F14 open for remaining Project, screenshot, and dependency administration.
+- [x] Review Dependabot PRs #1-#4 individually; leave major/version-boundary updates with failing Tests checks unmerged.
+- [ ] Create the GitHub Project board after granting project scope.
+- [ ] Capture and provide a real Project board screenshot after board creation.
