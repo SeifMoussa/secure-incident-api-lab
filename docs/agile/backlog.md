@@ -210,4 +210,4 @@ Acceptance criteria:
 - Branch protection requires appropriate checks.
 - Release notes match the release draft after hosted checks are verified.
 
-Status: Project board created and organized; pending a real board screenshot and dependency administration. F14 remains open.
+Status: Complete. The Project board was created and organized, a real screenshot was added at `docs/agile/board_sprint1.png`, and F14 was closed after verification. Dependabot PRs #1-#4 remain open and unmerged as separate follow-up work.

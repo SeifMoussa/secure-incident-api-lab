@@ -1,6 +1,6 @@
 # Release Preparation
 
-This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues, [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1), and verified `main` branch protection exist. A real board screenshot remains pending.
+This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues, [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1), a real board screenshot at `docs/agile/board_sprint1.png`, and verified `main` branch protection exist. F1-F14 are closed after verification.
 
 ## Project Summary
 
@@ -69,7 +69,7 @@ Latest Phase 13B status from local validation:
 - Hosted CodeQL: passed at the latest Phase 13B commit.
 - Open code-scanning alerts: 0.
 - Open secret-scanning alerts: 0.
-- Live Issues: F1-F13 closed as completed; F14 remains open for pending governance work.
+- Live Issues: F1-F14 closed as completed and verified.
 - Branch protection: configured and verified for `main`.
 - Project board: creation pending because the token lacks project scope.
 - Dependabot: PRs #1-#4 remain open; each is a major/version-boundary update with a failing Tests check and was not merged blindly.
@@ -149,7 +149,7 @@ Safety:
 - [x] Create planned F1-F14 issues from `docs/agile/backlog.md`.
 - [x] Apply labels.
 - [x] Close F1-F13 as completed with v0.1.0 verification comments.
-- [x] Keep F14 open for screenshot and dependency follow-up work.
+- [x] Close F14 after the real board screenshot is verified.
 - [x] Link issues F1-F14 to GitHub Project #1.
 
 ## GitHub Projects Checklist
@@ -157,7 +157,7 @@ Safety:
 - [x] Create GitHub Project #1.
 - [x] Use the board's `Todo`, `In Progress`, and `Done` status options.
 - [x] Add F1-F14; set F1-F13 to `Done` and F14 to `In Progress`.
-- [ ] Capture and add a real screenshot of the live board.
+- [x] Capture and add a real screenshot of the live board at `docs/agile/board_sprint1.png`.
 
 ## Screenshot Plan
 
