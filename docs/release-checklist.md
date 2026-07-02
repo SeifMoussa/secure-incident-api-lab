@@ -22,9 +22,9 @@ This checklist tracks local release readiness after repository publication. Pend
 - [x] Open code-scanning alerts confirmed at 0.
 - [x] Open secret-scanning alerts confirmed at 0.
 - [x] Dependabot PRs #1-#4 reviewed individually and left open due major/version-boundary risk and failing Tests checks.
-- [x] GitHub Issues F1-F13 closed as completed; F14 remains open.
-- [x] GitHub Project #1 created; issues F1-F13 are `Done` and F14 is `In Progress`.
-- [ ] Capture and add a real GitHub Project board screenshot.
+- [x] GitHub Issues F1-F14 closed as completed and verified.
+- [x] GitHub Project #1 created; issues F1-F14 are closed and `Done`.
+- [x] Real GitHub Project board screenshot added at `docs/agile/board_sprint1.png`.
 - [x] Branch protection configured and verified for `main`.
 - [x] Required checks: Tests, Docs Safety Checks, API Smoke, and CodeQL (python).
 - [x] One approving pull-request review required; strict/up-to-date checks enabled.

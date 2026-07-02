@@ -85,10 +85,10 @@ REQUIRED_CURRENT_STATUS = [
     "live f1-f14 github issues",
     "branch protection configured and verified",
     "github project #1",
-    "a real board screenshot remains pending",
+    "a real board screenshot exists at `docs/agile/board_sprint1.png`",
     "dependabot prs #1-#4 remain open",
     "f1-f13 are closed as completed",
-    "f14 remains open",
+    "f14 is closed",
     "`v0.1.0` tag exists",
     "github release is published",
 ]

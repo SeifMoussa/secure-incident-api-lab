@@ -72,10 +72,10 @@ def test_docs_reflect_current_repository_and_project_status() -> None:
     assert "live f1-f14 github issues" in current_status
     assert "branch protection configured and verified" in current_status
     assert "github project #1" in current_status
-    assert "a real board screenshot remains pending" in current_status
+    assert "a real board screenshot exists at `docs/agile/board_sprint1.png`" in current_status
     assert "dependabot prs #1-#4 remain open" in current_status
     assert "f1-f13 are closed as completed" in current_status
-    assert "f14 remains open" in current_status
+    assert "f14 is closed" in current_status
     assert "`v0.1.0` tag exists" in current_status
     assert "github release is published" in current_status
     assert "repository publishing pending" not in current_status

@@ -28,10 +28,10 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
         "- [x] public repository visibility confirmed.",
         "- [x] hosted ci passed at the latest phase 13b commit.",
         "- [x] hosted codeql passed at the latest phase 13b commit.",
-        "- [x] github issues f1-f13 closed as completed; f14 remains open.",
+        "- [x] github issues f1-f14 closed as completed and verified.",
         "- [x] branch protection configured and verified for `main`.",
-        "- [x] github project #1 created; issues f1-f13 are `done` and f14 is `in progress`.",
-        "- [ ] capture and add a real github project board screenshot.",
+        "- [x] github project #1 created; issues f1-f14 are closed and `done`.",
+        "- [x] real github project board screenshot added at `docs/agile/board_sprint1.png`.",
         "- [x] `v0.1.0` tag exists.",
         "- [x] github release is published.",
     ]:
