@@ -31,23 +31,16 @@ def test_incident_permission_matrix(
         header = bearer_header(test_settings, user)
         target = create_synthetic_incident(db_session, created_by=creator.user_id)
 
-        assert (
-            client.post("/incidents/", json=valid_payload(), headers=header).status_code
-            == statuses["create"]
+        create_response = client.post("/incidents/", json=valid_payload(), headers=header)
+        read_response = client.get(f"/incidents/{incident.incident_id}", headers=header)
+        update_response = client.patch(
+            f"/incidents/{incident.incident_id}",
+            json={"title": "Matrix update title"},
+            headers=header,
         )
-        assert (
-            client.get(f"/incidents/{incident.incident_id}", headers=header).status_code
-            == statuses["read"]
-        )
-        assert (
-            client.patch(
-                f"/incidents/{incident.incident_id}",
-                json={"title": "Matrix update title"},
-                headers=header,
-            ).status_code
-            == statuses["update"]
-        )
-        assert (
-            client.delete(f"/incidents/{target.incident_id}", headers=header).status_code
-            == statuses["delete"]
-        )
+        delete_response = client.delete(f"/incidents/{target.incident_id}", headers=header)
+
+        assert create_response.status_code == statuses["create"]
+        assert read_response.status_code == statuses["read"]
+        assert update_response.status_code == statuses["update"]
+        assert delete_response.status_code == statuses["delete"]

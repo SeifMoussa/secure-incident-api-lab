@@ -142,12 +142,12 @@ python -m alembic upgrade head
 python -m alembic current
 ```
 
-## Current Local Quality Status
+## Current Quality Status
 
-Latest local Phase 12 validation:
+Latest local Phase 13B validation:
 
-- Tests: 248 passed.
-- Coverage: 95.60%.
+- Tests: 244 passed after removing four stale/redundant phase-boundary tests.
+- Coverage: 95.59%.
 - Coverage gate: 95%.
 - Ruff: passed.
 - Format check: passed.
@@ -155,7 +155,11 @@ Latest local Phase 12 validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-Hosted GitHub Actions and hosted CodeQL are configured locally but not verified yet because the repository has not been published.
+The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Hosted CI passed its Tests, Docs Safety Checks, and API Smoke jobs at commit `c9f96289`. Hosted CodeQL also passed, with zero open code-scanning alerts and zero open secret-scanning alerts.
+
+Phase 13B created the live F1-F14 GitHub Issues and configured verified protection for `main`. Phase 13C published the annotated `v0.1.0` tag and GitHub Release. Phase 14 created [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1) and added a real board screenshot. F1-F13 are closed as completed and `Done`; F14 is closed and `Done` after screenshot verification. Dependabot PRs #1-#4 remain open and unmerged after individual review because they are major/version-boundary updates with failing Tests checks.
+
+![Secure Incident API Roadmap Project board](docs/agile/board_sprint1.png)
 
 ## Documentation
 
@@ -175,12 +179,18 @@ Hosted GitHub Actions and hosted CodeQL are configured locally but not verified 
 - Local SQLite is used for development and tests.
 - In-memory rate limiting is not distributed.
 - Audit logs are append-only through the API, but no external immutable audit store is implemented.
-- GitHub-hosted CI, CodeQL, Dependabot PRs, branch protection, tags, releases, live Issues, and live Projects are pending publishing.
+- Hosted CI and CodeQL passed at the latest Phase 13B commit.
+- The `v0.1.0` tag exists and the GitHub Release is published.
+- GitHub Project #1 exists with F1-F14 closed and `Done` after screenshot verification.
+- Dependabot PRs #1-#4 remain open and unmerged after individual risk review.
 
 ## Roadmap
 
 - Phase 12: local Agile and release preparation materials complete.
-- Phase 13: initialize git, publish to GitHub, verify hosted CI/CodeQL, create live Issues/Project, configure branch protection, tag `v0.1.0`, and create the GitHub release.
+- Phase 13A: repository publication and hosted verification complete.
+- Phase 13B: live Issues and branch protection complete; release preparation is current.
+- Phase 13C: `v0.1.0` tag and GitHub Release published after verified release gates.
+- Phase 14: Project #1 created and organized, real board screenshot added, and F1-F14 closed; dependency updates remain separate follow-up work.
 
 ## License
 

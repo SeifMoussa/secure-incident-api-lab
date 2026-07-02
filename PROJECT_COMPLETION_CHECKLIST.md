@@ -152,14 +152,26 @@
 
 ## Phase 13: Publishing and Hosted Verification
 
-- [ ] Initialize git.
-- [ ] Publish repository.
-- [ ] Verify hosted GitHub Actions.
-- [ ] Verify hosted CodeQL.
-- [ ] Review Dependabot recognition.
-- [ ] Create planned live GitHub Issues.
+- [x] Initialize git.
+- [x] Publish repository.
+- [x] Confirm public repository visibility.
+- [x] Verify hosted GitHub Actions.
+- [x] Verify hosted CodeQL.
+- [x] Confirm zero open code-scanning and secret-scanning alerts.
+- [x] Review Dependabot recognition; PRs #1-#4 remain open and unmerged.
+- [x] Create planned live GitHub Issues F1-F14.
 - [ ] Create planned live GitHub Project.
-- [ ] Configure protected main.
+- [x] Attempt Project creation; token lacks required project scope.
+- [x] Configure and verify protected `main` with required checks and pull-request review.
 - [ ] Prepare release branch if needed.
-- [ ] Create `v0.1.0` tag.
-- [ ] Create GitHub release.
+- [x] Create annotated `v0.1.0` tag from the verified release-readiness commit.
+- [x] Publish the `v0.1.0` GitHub Release.
+
+## Phase 14: Post-Release Governance
+
+- [x] Merge post-release documentation PR #19 through the protected workflow.
+- [x] Close completed issues F1-F13 with release-verification comments.
+- [x] Keep F14 open for remaining Project, screenshot, and dependency administration.
+- [x] Review Dependabot PRs #1-#4 individually; leave major/version-boundary updates with failing Tests checks unmerged.
+- [ ] Create the GitHub Project board after granting project scope.
+- [ ] Capture and provide a real Project board screenshot after board creation.

@@ -1,6 +1,6 @@
 # Release Checklist
 
-This checklist tracks local release readiness and pending hosted/publishing work. Pending hosted items must not be marked complete until after publishing.
+This checklist tracks local release readiness after repository publication. Pending hosted items must not be marked complete until verified.
 
 ## Local QA
 
@@ -12,20 +12,25 @@ This checklist tracks local release readiness and pending hosted/publishing work
 - [x] OpenAPI export passed.
 - [x] Docs safety check passed.
 
-## Publishing Pending
+## Publishing and Hosted Status
 
-- [ ] Git initialization pending.
-- [ ] Repository publishing pending.
-- [ ] Hosted CI pending.
-- [ ] Hosted CodeQL pending.
-- [ ] Code scanning review pending.
-- [ ] Secret scanning review pending.
-- [ ] Dependabot PR review pending.
-- [ ] GitHub Issues creation pending.
-- [ ] GitHub Project board creation pending.
-- [ ] Branch protection pending.
-- [ ] `v0.1.0` tag pending.
-- [ ] GitHub Release pending.
+- [x] Git initialization complete.
+- [x] Repository publishing complete.
+- [x] Public repository visibility confirmed.
+- [x] Hosted CI passed at the latest Phase 13B commit.
+- [x] Hosted CodeQL passed at the latest Phase 13B commit.
+- [x] Open code-scanning alerts confirmed at 0.
+- [x] Open secret-scanning alerts confirmed at 0.
+- [x] Dependabot PRs #1-#4 reviewed individually and left open due major/version-boundary risk and failing Tests checks.
+- [x] GitHub Issues F1-F14 closed as completed and verified.
+- [x] GitHub Project #1 created; issues F1-F14 are closed and `Done`.
+- [x] Real GitHub Project board screenshot added at `docs/agile/board_sprint1.png`.
+- [x] Branch protection configured and verified for `main`.
+- [x] Required checks: Tests, Docs Safety Checks, API Smoke, and CodeQL (python).
+- [x] One approving pull-request review required; strict/up-to-date checks enabled.
+- [x] Force pushes and branch deletion disabled.
+- [x] `v0.1.0` tag exists.
+- [x] GitHub Release is published.
 
 ## Safety Review
 
@@ -35,4 +40,4 @@ This checklist tracks local release readiness and pending hosted/publishing work
 - [ ] No database passwords.
 - [ ] No real customer incident data.
 - [ ] No real evidence files.
-- [ ] No fake Agile board screenshots.
+- [x] No fake Agile board screenshots.

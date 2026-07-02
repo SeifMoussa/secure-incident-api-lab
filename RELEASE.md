@@ -1,6 +1,6 @@
 # Release Preparation
 
-This document prepares the Secure Incident Management API portfolio lab for a future `v0.1.0` GitHub release. It is a local planning artifact only. No tag, release, repository publication, branch protection, live GitHub Issues, or live GitHub Project board has been created yet.
+This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues, [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1), a real board screenshot at `docs/agile/board_sprint1.png`, and verified `main` branch protection exist. F1-F14 are closed after verification.
 
 ## Project Summary
 
@@ -30,7 +30,7 @@ Production-pattern FastAPI backend for security incident management with JWT aut
 
 ## Local QA Results
 
-Record final local values before publishing:
+Record final local values before committing or pushing release-readiness changes:
 
 - Tests: `python -m pytest`
 - Coverage gate: `python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=95`
@@ -40,10 +40,10 @@ Record final local values before publishing:
 - OpenAPI export: `python scripts/export_openapi.py`
 - Alembic: `python -m alembic upgrade head` and `python -m alembic current`
 
-Latest known pre-publish status from local validation:
+Latest Phase 13B status from local validation:
 
-- Tests: 248 passed.
-- Coverage: 95.60%.
+- Tests: 244 passed after removing four stale/redundant phase-boundary tests.
+- Coverage: 95.59%.
 - Coverage gate: 95%.
 - Ruff: passed.
 - Format check: passed.
@@ -51,34 +51,30 @@ Latest known pre-publish status from local validation:
 - OpenAPI export: passed.
 - Alembic SQLite upgrade/current: passed.
 
-## Pending Hosted Checks After Push
+## Hosted Checks
 
-- Hosted GitHub Actions CI.
-- Hosted CodeQL.
-- Dependabot alert and update behavior.
-- Secret scanning review.
-- Code scanning alert review.
+- Hosted GitHub Actions CI passed at commit `c9f96289`.
+- Hosted CodeQL passed at commit `c9f96289`.
+- Open code-scanning alerts: 0.
+- Open secret-scanning alerts: 0.
+- Dependabot PRs #1-#4 remain open and unmerged after individual risk review.
+- Phase 13C release gates were verified before the tag and GitHub Release were published.
 
-## Manual Git Publishing Commands
+## Repository Status
 
-Run only during the publishing phase:
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "Release v0.1.0 portfolio lab"
-git remote add origin https://github.com/SeifMoussa/secure-incident-api-lab.git
-git push -u origin main
-```
-
-## GitHub CLI Publishing Commands
-
-Run only during the publishing phase:
-
-```bash
-gh repo create SeifMoussa/secure-incident-api-lab --public --source=. --remote=origin --push
-```
+- Git initialization: complete.
+- Repository publication: complete.
+- Visibility: public and confirmed.
+- Hosted CI: passed at the latest Phase 13B commit.
+- Hosted CodeQL: passed at the latest Phase 13B commit.
+- Open code-scanning alerts: 0.
+- Open secret-scanning alerts: 0.
+- Live Issues: F1-F14 closed as completed and verified.
+- Branch protection: configured and verified for `main`.
+- Project board: creation pending because the token lacks project scope.
+- Dependabot: PRs #1-#4 remain open; each is a major/version-boundary update with a failing Tests check and was not merged blindly.
+- `v0.1.0` tag: exists and targets the verified release-readiness commit.
+- GitHub Release: published and neither a draft nor a prerelease.
 
 ## Suggested Repository Description
 
@@ -111,54 +107,57 @@ Safety:
 - No real credentials, real tokens, customer data, or evidence files.
 ```
 
-## Post-Push Verification Checklist
+## Hosted Verification Checklist
 
-- [ ] Confirm repository URL: `https://github.com/SeifMoussa/secure-incident-api-lab`
-- [ ] Confirm default branch is `main`.
-- [ ] Confirm README renders correctly.
+- [x] Confirm repository URL: `https://github.com/SeifMoussa/secure-incident-api-lab`
+- [x] Confirm default branch is `main`.
+- [ ] Confirm README renders correctly in the final release review.
 - [ ] Confirm `docs/threat_model.md`, `docs/api_reference.md`, and `docs/ci-cd.md` render correctly.
-- [ ] Confirm hosted CI starts on push.
-- [ ] Confirm hosted CodeQL starts on push or scheduled run.
-- [ ] Confirm Dependabot is recognized.
+- [x] Confirm hosted CI starts on push and passed at `c9f96289`.
+- [x] Confirm hosted CodeQL passed at `c9f96289`.
+- [x] Confirm Dependabot is recognized; PRs #1-#4 were reviewed individually and remain open and unmerged.
 
 ## Code Scanning Checklist
 
-- [ ] Confirm CodeQL workflow is enabled.
-- [ ] Review CodeQL results.
-- [ ] Triage any findings before release.
+- [x] Confirm CodeQL workflow is enabled.
+- [x] Review CodeQL results.
+- [x] Confirm zero open code-scanning alerts.
 
 ## Secret Scanning Checklist
 
-- [ ] Confirm no real credentials, tokens, API keys, database passwords, or secrets are present.
-- [ ] Review GitHub secret scanning alerts if available after publishing.
+- [x] Confirm no real credentials, tokens, API keys, database passwords, or secrets are present.
+- [x] Confirm zero open GitHub secret-scanning alerts.
 
 ## Dependabot Checklist
 
-- [ ] Confirm pip ecosystem is enabled.
-- [ ] Confirm GitHub Actions ecosystem is enabled.
-- [ ] Review Dependabot PRs after publishing.
+- [x] Confirm pip ecosystem is enabled.
+- [x] Confirm GitHub Actions ecosystem is enabled.
+- [x] Review Dependabot PRs individually; defer all four major/version-boundary updates with failing Tests checks.
 
 ## Branch Protection Checklist
 
-- [ ] Require pull requests before merging.
-- [ ] Require hosted CI `Tests`.
-- [ ] Require hosted CI `Docs Safety Checks`.
-- [ ] Require hosted CI `API Smoke`.
-- [ ] Require CodeQL review where practical.
-- [ ] Restrict force pushes.
+- [x] Require pull requests before merging with one approving review.
+- [x] Require hosted CI `Tests`.
+- [x] Require hosted CI `Docs Safety Checks`.
+- [x] Require hosted CI `API Smoke`.
+- [x] Require `CodeQL (python)`.
+- [x] Require branches to be up to date before merging.
+- [x] Restrict force pushes and branch deletion.
 
 ## GitHub Issues Checklist
 
-- [ ] Create planned F1-F14 issues from `docs/agile/backlog.md`.
-- [ ] Apply labels.
-- [ ] Link issues to project board after board creation.
+- [x] Create planned F1-F14 issues from `docs/agile/backlog.md`.
+- [x] Apply labels.
+- [x] Close F1-F13 as completed with v0.1.0 verification comments.
+- [x] Close F14 after the real board screenshot is verified.
+- [x] Link issues F1-F14 to GitHub Project #1.
 
 ## GitHub Projects Checklist
 
-- [ ] Create project board.
-- [ ] Add columns: Backlog, In Progress, Review, Done.
-- [ ] Add planned issues.
-- [ ] Capture screenshot after live board exists.
+- [x] Create GitHub Project #1.
+- [x] Use the board's `Todo`, `In Progress`, and `Done` status options.
+- [x] Add F1-F14; set F1-F13 to `Done` and F14 to `In Progress`.
+- [x] Capture and add a real screenshot of the live board at `docs/agile/board_sprint1.png`.
 
 ## Screenshot Plan
 

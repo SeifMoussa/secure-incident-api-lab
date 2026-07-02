@@ -188,4 +188,4 @@ Phase 10 documents the implemented API surface in `docs/api_reference.md`, creat
 
 ## Phase 12 Release Documentation
 
-Phase 12 keeps the implemented endpoint set unchanged. It adds recruiter-ready documentation, release preparation material, local Agile planning docs, contributing guidance, and release checklist tracking. Publishing, hosted CI/CodeQL verification, live Issues/Projects, branch protection, tags, and releases remain pending.
+Phase 12 keeps the implemented endpoint set unchanged. It adds recruiter-ready documentation, release preparation material, local Agile planning docs, contributing guidance, and release checklist tracking. Public repository publication is now complete; hosted CI/CodeQL re-verification, live Issues/Projects, branch protection, tags, and releases remain pending.

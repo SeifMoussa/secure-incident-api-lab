@@ -33,13 +33,11 @@ def test_remediation_list_update_delete_and_status_transitions(
         user = create_synthetic_user(
             db_session, email=f"rem-read-{role.value.lower()}@example.com", role=role
         )
-        assert (
-            client.get(
-                f"/incidents/{incident.incident_id}/remediation/",
-                headers=bearer_header(test_settings, user),
-            ).status_code
-            == 200
+        response = client.get(
+            f"/incidents/{incident.incident_id}/remediation/",
+            headers=bearer_header(test_settings, user),
         )
+        assert response.status_code == 200
     complete = client.patch(
         f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
         json={"status": "COMPLETE"},
@@ -54,20 +52,16 @@ def test_remediation_list_update_delete_and_status_transitions(
     )
     assert reopened.status_code == 200
     assert reopened.json()["completed_at"] is None
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
-            headers=bearer_header(test_settings, analyst),
-        ).status_code
-        == 200
+    deleted = client.delete(
+        f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
+        headers=bearer_header(test_settings, analyst),
     )
-    assert (
-        client.get(
-            f"/incidents/{incident.incident_id}/remediation/",
-            headers=bearer_header(test_settings, admin),
-        ).json()["total"]
-        == 0
+    remaining = client.get(
+        f"/incidents/{incident.incident_id}/remediation/",
+        headers=bearer_header(test_settings, admin),
     )
+    assert deleted.status_code == 200
+    assert remaining.json()["total"] == 0
 
 
 def test_remediation_update_delete_rbac(
@@ -91,18 +85,14 @@ def test_remediation_update_delete_rbac(
                 role=role,
             )
         )
-        assert (
-            client.patch(
-                f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
-                json={"action": "Updated synthetic action."},
-                headers=bearer_header(test_settings, user),
-            ).status_code
-            == expected
+        update_response = client.patch(
+            f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
+            json={"action": "Updated synthetic action."},
+            headers=bearer_header(test_settings, user),
         )
-        assert (
-            client.delete(
-                f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
-                headers=bearer_header(test_settings, user),
-            ).status_code
-            == expected
+        delete_response = client.delete(
+            f"/incidents/{incident.incident_id}/remediation/{task['task_id']}",
+            headers=bearer_header(test_settings, user),
         )
+        assert update_response.status_code == expected
+        assert delete_response.status_code == expected

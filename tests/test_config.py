@@ -4,7 +4,15 @@ from pydantic import ValidationError
 from app.config import LOCAL_SECRET_PLACEHOLDER, Settings
 
 
-def test_settings_load_with_safe_defaults() -> None:
+def test_settings_load_with_safe_defaults(monkeypatch: pytest.MonkeyPatch) -> None:
+    for key in [
+        "ENVIRONMENT",
+        "JWT_SECRET_KEY",
+        "RATE_LIMIT_ENABLED",
+        "DATABASE_URL",
+    ]:
+        monkeypatch.delenv(key, raising=False)
+
     settings = Settings()
 
     assert settings.app_name == "Secure Incident Management API"
@@ -38,7 +46,7 @@ def test_token_durations_must_be_positive() -> None:
 
 def test_production_rejects_missing_jwt_secret() -> None:
     with pytest.raises(ValidationError, match="production requires JWT_SECRET_KEY"):
-        Settings(environment="production")
+        Settings(environment="production", jwt_secret_key=None)
 
 
 def test_production_rejects_placeholder_jwt_secret() -> None:

@@ -207,8 +207,8 @@ Phase 11 adds tests for:
 
 Phase 12 adds tests for:
 
-- Release material existence, pending hosted checks, publishing-command documentation, release draft, LinkedIn/CV drafts, and recruiter-facing summary.
-- Release checklist tracking local QA and pending publishing, hosted CI, hosted CodeQL, code scanning, secret scanning, Dependabot, live Issues/Projects, branch protection, tag, and release work.
+- Release material existence, pending hosted checks, repository status, release draft, LinkedIn/CV drafts, and recruiter-facing summary.
+- Release checklist tracking local QA, completed public publication, pending hosted CI/CodeQL verification, code scanning, secret scanning, Dependabot, live Issues/Projects, branch protection, tag, and release work.
 - Local Agile material existence, F1-F14 backlog coverage, planned board columns, planned labels, and no fake board screenshot.
 - `CONTRIBUTING.md` defensive-only policy, branch strategy, docs safety command, and quality commands.
 - Documentation safety script coverage for `RELEASE.md`, `CONTRIBUTING.md`, Agile docs, and the release checklist.

@@ -48,12 +48,18 @@ def test_agile_backlog_documents_f1_through_f14() -> None:
         assert phrase in text
 
 
-def test_agile_materials_are_local_only_and_no_fake_screenshot_exists() -> None:
+def test_agile_materials_reflect_completed_board_and_real_screenshot() -> None:
     combined = "\n".join(path.read_text(encoding="utf-8") for path in AGILE.glob("*.md")).lower()
 
-    assert "live github issues will be created only after repository publishing" in combined
-    assert "live github project board" in combined
+    assert "live f1-f14 github issues" in combined
+    assert "f1-f13 are closed" in combined
+    assert "f14 is closed" in combined
+    assert "github project #1" in combined
+    assert "real board screenshot" in combined
     assert (
         "no fake screenshot" in combined or "do not add placeholder or fake screenshots" in combined
     )
-    assert not (AGILE / "board_sprint1.png").exists()
+    screenshot = AGILE / "board_sprint1.png"
+    assert screenshot.is_file()
+    assert screenshot.stat().st_size > 10_000
+    assert screenshot.read_bytes().startswith(b"\x89PNG\r\n\x1a\n")

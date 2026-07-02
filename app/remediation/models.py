@@ -1,7 +1,6 @@
 """Remediation task ORM models."""
 
 from datetime import datetime
-from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, DateTime, ForeignKey, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -10,9 +9,6 @@ from app.common.enums import RemediationStatus
 from app.common.models import TimestampMixin
 from app.common.types import enum_column, new_uuid, uuid_string
 from app.database import Base
-
-if TYPE_CHECKING:
-    from app.incidents.models import Incident
 
 
 class RemediationTask(TimestampMixin, Base):
@@ -34,4 +30,7 @@ class RemediationTask(TimestampMixin, Base):
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     is_deleted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    incident: Mapped["Incident"] = relationship(back_populates="remediation_tasks")
+    # String annotations let SQLAlchemy resolve related models from its registry without imports.
+    incident: Mapped["Incident"] = relationship(  # noqa: F821
+        back_populates="remediation_tasks"
+    )

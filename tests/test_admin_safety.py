@@ -28,7 +28,7 @@ def test_admin_responses_do_not_include_sensitive_fields(
     assert test_settings.jwt_secret_key not in combined_text
 
 
-def test_no_legacy_routes_phase8_ci_or_git_files_started() -> None:
+def test_no_legacy_route_or_security_module_paths_exist() -> None:
     root = Path(__file__).resolve().parents[1]
     forbidden_paths = [
         "app/api/routes/incidents.py",
@@ -38,7 +38,6 @@ def test_no_legacy_routes_phase8_ci_or_git_files_started() -> None:
         "app/api/routes/audit.py",
         "app/security_headers.py",
         "app/rate_limit.py",
-        ".git/HEAD",
     ]
 
     for relative_path in forbidden_paths:

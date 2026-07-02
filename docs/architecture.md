@@ -228,8 +228,8 @@ Audit entries are append-only. ADMIN and AUDITOR can read audit logs. Audit logs
 - Added Dependabot configuration for pip and GitHub Actions.
 - Added `scripts/check-docs.py` for documentation safety checks.
 - Added `docs/ci-cd.md` documenting local configuration and hosted verification limitations.
-- Hosted GitHub CI and CodeQL are not verified yet because the repository is not published.
-- Git initialization, GitHub publishing, GitHub Issues, GitHub Projects, tags, releases, and branch protection remain unimplemented.
+- At the end of Phase 11, hosted GitHub CI/CodeQL and repository publication had not yet been verified.
+- GitHub Issues, GitHub Projects, tags, releases, and branch protection were deferred to later phases.
 
 ## Phase 12 Implementation Status
 
@@ -238,4 +238,13 @@ Audit entries are append-only. ADMIN and AUDITOR can read audit logs. Audit logs
 - Added local Agile planning docs under `docs/agile/` and a local issue template for future GitHub Issues.
 - Expanded documentation safety checks and tests for release, contributing, Agile, and release checklist materials.
 - No application runtime architecture, API behavior, database schema, or business/domain workflow changed.
-- Git initialization, GitHub publishing, hosted CI/CodeQL verification, live GitHub Issues, live GitHub Projects, tags, releases, and branch protection remain unimplemented.
+- At the end of Phase 12, publication and hosted verification were still deferred, along with live Issues/Projects, tags, releases, and branch protection.
+
+## Phase 13A Audit Status
+
+- Git initialization and repository publication are complete.
+- Hosted CI ran, but its latest Tests job failed on stale route-discovery assumptions; Docs Safety Checks and API Smoke passed.
+- CodeQL remains configured and is expected to run for the public repository after the next authorized push.
+- Public repository visibility is confirmed.
+- No application architecture or domain behavior changed during the audit.
+- Live Issues, a live Project board, branch protection, tags, and releases remain pending.
