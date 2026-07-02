@@ -1,6 +1,6 @@
 # Release Preparation
 
-This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues and verified `main` branch protection exist. Project board creation is pending because the token lacks project scope.
+This document records the Secure Incident Management API portfolio lab's published `v0.1.0` GitHub release. The repository is published publicly at `https://github.com/SeifMoussa/secure-incident-api-lab`. Live F1-F14 Issues, [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1), and verified `main` branch protection exist. A real board screenshot remains pending.
 
 ## Project Summary
 
@@ -149,15 +149,15 @@ Safety:
 - [x] Create planned F1-F14 issues from `docs/agile/backlog.md`.
 - [x] Apply labels.
 - [x] Close F1-F13 as completed with v0.1.0 verification comments.
-- [x] Keep F14 open for Project, screenshot, and dependency follow-up work.
-- [ ] Link issues to project board after board creation.
+- [x] Keep F14 open for screenshot and dependency follow-up work.
+- [x] Link issues F1-F14 to GitHub Project #1.
 
 ## GitHub Projects Checklist
 
-- [ ] Create project board after granting the token `project` scope. Project board creation pending because the token lacks project scope.
-- [ ] Add columns: Backlog, In Progress, Review, Done.
-- [ ] Add planned issues.
-- [ ] Capture screenshot after live board exists.
+- [x] Create GitHub Project #1.
+- [x] Use the board's `Todo`, `In Progress`, and `Done` status options.
+- [x] Add F1-F14; set F1-F13 to `Done` and F14 to `In Progress`.
+- [ ] Capture and add a real screenshot of the live board.
 
 ## Screenshot Plan
 

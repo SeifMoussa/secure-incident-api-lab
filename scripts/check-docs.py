@@ -62,9 +62,6 @@ REQUIRED_PHRASES = [
 ]
 
 FORBIDDEN_CLAIMS = [
-    "github projects have been created",
-    "live github projects exist",
-    "live github project board exists",
     "dependabot prs were merged",
     "dependabot prs have been merged",
 ]
@@ -75,6 +72,7 @@ STALE_PUBLICATION_CLAIMS = [
     "repository publishing pending",
     "pending until publishing",
     "pending future publishing phase",
+    "project board creation is pending because the token lacks project scope",
 ]
 
 REQUIRED_CURRENT_STATUS = [
@@ -86,7 +84,8 @@ REQUIRED_CURRENT_STATUS = [
     "open secret-scanning alerts: 0",
     "live f1-f14 github issues",
     "branch protection configured and verified",
-    "project board creation is pending because the token lacks project scope",
+    "github project #1",
+    "a real board screenshot remains pending",
     "dependabot prs #1-#4 remain open",
     "f1-f13 are closed as completed",
     "f14 remains open",
