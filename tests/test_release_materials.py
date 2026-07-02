@@ -30,14 +30,15 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
         "- [x] hosted codeql passed at the latest phase 13b commit.",
         "- [x] github issues f1-f13 closed as completed; f14 remains open.",
         "- [x] branch protection configured and verified for `main`.",
-        "- [ ] project board creation pending because the token lacks project scope.",
+        "- [x] github project #1 created; issues f1-f13 are `done` and f14 is `in progress`.",
+        "- [ ] capture and add a real github project board screenshot.",
         "- [x] `v0.1.0` tag exists.",
         "- [x] github release is published.",
     ]:
         assert status in checklist_text
 
 
-def test_release_materials_do_not_claim_pending_release_or_project_work_done() -> None:
+def test_release_materials_do_not_claim_pending_release_or_dependency_work_done() -> None:
     text = (
         (ROOT / "RELEASE.md").read_text(encoding="utf-8")
         + "\n"
@@ -45,7 +46,6 @@ def test_release_materials_do_not_claim_pending_release_or_project_work_done() -
     ).lower()
 
     for forbidden in [
-        "github projects have been created",
         "dependabot prs were merged",
     ]:
         assert forbidden not in text

@@ -210,4 +210,4 @@ Acceptance criteria:
 - Branch protection requires appropriate checks.
 - Release notes match the release draft after hosted checks are verified.
 
-Status: Pending release governance, branch protection, tag/release, and final screenshots.
+Status: Project board created and organized; pending a real board screenshot and dependency administration. F14 remains open.

@@ -52,12 +52,10 @@ def test_docs_use_placeholders_in_examples() -> None:
         assert placeholder in text
 
 
-def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete() -> None:
+def test_docs_reflect_current_repository_and_project_status() -> None:
     text = combined_docs_text().lower()
 
     forbidden_claims = [
-        "live github projects exist",
-        "live github project board exists",
         "dependabot prs were merged",
     ]
     for claim in forbidden_claims:
@@ -73,9 +71,8 @@ def test_docs_reflect_phase_13b_without_claiming_pending_release_work_complete()
     assert "open secret-scanning alerts: 0" in current_status
     assert "live f1-f14 github issues" in current_status
     assert "branch protection configured and verified" in current_status
-    assert (
-        "project board creation is pending because the token lacks project scope" in current_status
-    )
+    assert "github project #1" in current_status
+    assert "a real board screenshot remains pending" in current_status
     assert "dependabot prs #1-#4 remain open" in current_status
     assert "f1-f13 are closed as completed" in current_status
     assert "f14 remains open" in current_status

@@ -55,7 +55,7 @@ Dependabot is configured in Phase 11, and GitHub has recognized its pip and GitH
 
 ## Agile Board Plan
 
-Phase 12 added local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Phase 13B created live F1-F14 Issues and the planned labels. Phase 14 closed F1-F13 as completed and kept F14 open. Project board creation is pending because the token lacks project scope.
+Phase 12 added local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Phase 13B created live F1-F14 Issues and the planned labels. Phase 14 closed F1-F13 as completed, kept F14 open, and created GitHub Project #1 with F1-F13 in `Done` and F14 in `In Progress`. A real board screenshot remains pending.
 
 Planned issue categories:
 
