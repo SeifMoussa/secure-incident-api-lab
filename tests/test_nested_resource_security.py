@@ -31,26 +31,20 @@ def test_nested_resources_under_wrong_incident_return_404(
         f"/incidents/{first.incident_id}/remediation/", json=remediation_payload(), headers=headers
     ).json()
 
-    assert (
-        client.get(
-            f"/incidents/{second.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
-        ).status_code
-        == 404
+    wrong_ticket = client.get(
+        f"/incidents/{second.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
     )
-    assert (
-        client.get(
-            f"/incidents/{second.incident_id}/evidence/{evidence['evidence_id']}", headers=headers
-        ).status_code
-        == 404
+    wrong_evidence = client.get(
+        f"/incidents/{second.incident_id}/evidence/{evidence['evidence_id']}", headers=headers
     )
-    assert (
-        client.patch(
-            f"/incidents/{second.incident_id}/remediation/{remediation['task_id']}",
-            json={"status": "COMPLETE"},
-            headers=headers,
-        ).status_code
-        == 404
+    wrong_remediation = client.patch(
+        f"/incidents/{second.incident_id}/remediation/{remediation['task_id']}",
+        json={"status": "COMPLETE"},
+        headers=headers,
     )
+    assert wrong_ticket.status_code == 404
+    assert wrong_evidence.status_code == 404
+    assert wrong_remediation.status_code == 404
 
 
 def test_soft_deleted_parent_and_nested_resources_block_access(
@@ -75,61 +69,47 @@ def test_soft_deleted_parent_and_nested_resources_block_access(
         headers=headers,
     ).json()
 
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
-        ).status_code
-        == 200
+    ticket_delete = client.delete(
+        f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
     )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}", headers=headers
-        ).status_code
-        == 200
+    evidence_delete = client.delete(
+        f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}", headers=headers
     )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/remediation/{remediation['task_id']}",
-            headers=headers,
-        ).status_code
-        == 200
+    remediation_delete = client.delete(
+        f"/incidents/{incident.incident_id}/remediation/{remediation['task_id']}",
+        headers=headers,
     )
+    assert ticket_delete.status_code == 200
+    assert evidence_delete.status_code == 200
+    assert remediation_delete.status_code == 200
 
-    assert (
-        client.get(
-            f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
-        ).status_code
-        == 404
+    deleted_ticket = client.get(
+        f"/incidents/{incident.incident_id}/tickets/{ticket['ticket_id']}", headers=headers
     )
-    assert (
-        client.patch(
-            f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}",
-            json={"source": "synthetic"},
-            headers=headers,
-        ).status_code
-        == 404
+    deleted_evidence = client.patch(
+        f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}",
+        json={"source": "synthetic"},
+        headers=headers,
     )
-    assert (
-        client.delete(
-            f"/incidents/{incident.incident_id}/remediation/{remediation['task_id']}",
-            headers=headers,
-        ).status_code
-        == 404
+    deleted_remediation = client.delete(
+        f"/incidents/{incident.incident_id}/remediation/{remediation['task_id']}",
+        headers=headers,
     )
+    assert deleted_ticket.status_code == 404
+    assert deleted_evidence.status_code == 404
+    assert deleted_remediation.status_code == 404
 
     parent = create_synthetic_incident(db_session, created_by=admin.user_id)
     parent.is_deleted = True
     db_session.commit()
-    assert (
-        client.get(f"/incidents/{parent.incident_id}/tickets/", headers=headers).status_code == 404
+    parent_tickets = client.get(f"/incidents/{parent.incident_id}/tickets/", headers=headers)
+    parent_evidence = client.get(f"/incidents/{parent.incident_id}/evidence/", headers=headers)
+    parent_remediation = client.get(
+        f"/incidents/{parent.incident_id}/remediation/", headers=headers
     )
-    assert (
-        client.get(f"/incidents/{parent.incident_id}/evidence/", headers=headers).status_code == 404
-    )
-    assert (
-        client.get(f"/incidents/{parent.incident_id}/remediation/", headers=headers).status_code
-        == 404
-    )
+    assert parent_tickets.status_code == 404
+    assert parent_evidence.status_code == 404
+    assert parent_remediation.status_code == 404
 
 
 def test_nested_resource_role_and_owner_security_regressions(
@@ -165,36 +145,28 @@ def test_nested_resource_role_and_owner_security_regressions(
         headers=owner_headers,
     ).json()
 
-    assert (
-        client.post(
-            f"/incidents/{incident.incident_id}/tickets/",
-            json=ticket_payload(assigned_to=inactive.user_id),
-            headers=admin_headers,
-        ).status_code
-        == 404
+    inactive_ticket = client.post(
+        f"/incidents/{incident.incident_id}/tickets/",
+        json=ticket_payload(assigned_to=inactive.user_id),
+        headers=admin_headers,
     )
-    assert (
-        client.post(
-            f"/incidents/{incident.incident_id}/remediation/",
-            json=remediation_payload(owner=inactive.user_id),
-            headers=admin_headers,
-        ).status_code
-        == 404
+    inactive_remediation = client.post(
+        f"/incidents/{incident.incident_id}/remediation/",
+        json=remediation_payload(owner=inactive.user_id),
+        headers=admin_headers,
     )
-    assert (
-        client.patch(
-            f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}",
-            json={"source": "synthetic-other"},
-            headers=other_headers,
-        ).status_code
-        == 403
+    other_analyst_update = client.patch(
+        f"/incidents/{incident.incident_id}/evidence/{evidence['evidence_id']}",
+        json={"source": "synthetic-other"},
+        headers=other_headers,
     )
+    assert inactive_ticket.status_code == 404
+    assert inactive_remediation.status_code == 404
+    assert other_analyst_update.status_code == 403
     for user in [viewer, auditor]:
-        assert (
-            client.post(
-                f"/incidents/{incident.incident_id}/tickets/",
-                json=ticket_payload(),
-                headers=bearer_header(test_settings, user),
-            ).status_code
-            == 403
+        response = client.post(
+            f"/incidents/{incident.incident_id}/tickets/",
+            json=ticket_payload(),
+            headers=bearer_header(test_settings, user),
         )
+        assert response.status_code == 403

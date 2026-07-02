@@ -1,7 +1,5 @@
 """Incident ORM models."""
 
-from typing import TYPE_CHECKING
-
 from sqlalchemy import JSON, Boolean, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -9,12 +7,6 @@ from app.common.enums import IncidentSeverity, IncidentStatus
 from app.common.models import TimestampMixin
 from app.common.types import enum_column, new_uuid, uuid_string
 from app.database import Base
-
-if TYPE_CHECKING:
-    from app.auth.models import User
-    from app.evidence.models import EvidenceNote
-    from app.remediation.models import RemediationTask
-    from app.tickets.models import Ticket
 
 
 class Incident(TimestampMixin, Base):
@@ -42,10 +34,15 @@ class Incident(TimestampMixin, Base):
     tags: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=list)
     is_deleted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    creator: Mapped["User"] = relationship(
+    # String annotations let SQLAlchemy resolve related models from its registry without imports.
+    creator: Mapped["User"] = relationship(  # noqa: F821
         back_populates="created_incidents",
         foreign_keys=[created_by],
     )
-    tickets: Mapped[list["Ticket"]] = relationship(back_populates="incident")
-    evidence_notes: Mapped[list["EvidenceNote"]] = relationship(back_populates="incident")
-    remediation_tasks: Mapped[list["RemediationTask"]] = relationship(back_populates="incident")
+    tickets: Mapped[list["Ticket"]] = relationship(back_populates="incident")  # noqa: F821
+    evidence_notes: Mapped[list["EvidenceNote"]] = relationship(  # noqa: F821
+        back_populates="incident"
+    )
+    remediation_tasks: Mapped[list["RemediationTask"]] = relationship(  # noqa: F821
+        back_populates="incident"
+    )

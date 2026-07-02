@@ -210,7 +210,7 @@ Residual risk: Adding real file handling would require a separate design and thr
 - In-memory rate limiting is not suitable for multi-process or distributed production environments.
 - Audit logs are append-only at the API level but not protected by an external immutable log store.
 - No request correlation IDs, centralized logging, monitoring, alerting, backup, or disaster recovery are implemented.
-- Hosted CI/CodeQL verification, live Dependabot PR review, branch protection, and release governance remain future publishing/release work.
+- Hosted CI/CodeQL re-verification, live Dependabot PR review, branch protection, and release governance remain pending.
 
 ## Future Hardening Ideas
 

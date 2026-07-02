@@ -16,6 +16,11 @@ down_revision: str | None = None
 branch_labels: str | Sequence[str] | None = None
 depends_on: str | Sequence[str] | None = None
 
+# Alembic discovers these required revision identifiers by module-level name.
+# This internal read documents that contract for static analysis without changing
+# migration behavior.
+_unused_alembic_revision_identifiers = (revision, down_revision, branch_labels, depends_on)
+
 
 def upgrade() -> None:
     op.create_table(

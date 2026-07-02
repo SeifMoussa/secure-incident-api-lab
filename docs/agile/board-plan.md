@@ -1,6 +1,6 @@
-# Future GitHub Project Board Plan
+# GitHub Project Board Plan
 
-This plan describes the future live GitHub Project board. It is not a claim that a live board exists.
+Live labels and F1-F14 Issues exist. [GitHub Project #1](https://github.com/users/SeifMoussa/projects/1) contains all 14 issues. F1-F13 are closed and `Done`; F14 is closed and `Done` after the real board screenshot was verified.
 
 ## Board Columns
 
@@ -25,17 +25,15 @@ This plan describes the future live GitHub Project board. It is not a claim that
 - `ci`
 - `release`
 
-## Setup Steps After Publishing
+## Setup Status
 
-1. Create live GitHub labels from the planned label list.
-2. Create live GitHub Issues from `docs/agile/backlog.md`.
-3. Create the live GitHub Project board.
-4. Add the planned board columns.
-5. Add issues F1-F14 to the board.
-6. Move already implemented local work to Done after validating repository state.
-7. Keep future publishing and release work in Backlog until started.
-8. Capture a real screenshot only after the live board exists.
+1. Live GitHub labels: complete.
+2. Live F1-F14 Issues from `docs/agile/backlog.md`: created and closed after completion.
+3. Live GitHub Project board: complete at Project #1.
+4. Board status options: GitHub defaults `Todo`, `In Progress`, and `Done` are available.
+5. F1-F14 added: complete; all are closed and `Done` after verification.
+6. Real board screenshot: complete at `docs/agile/board_sprint1.png`.
 
 ## Screenshot Plan
 
-Save the future board screenshot as `docs/agile/board_sprint1.png` after the live board exists. Do not add placeholder or fake screenshots.
+The real live-board screenshot is saved as `docs/agile/board_sprint1.png`. Do not replace it with a placeholder or fake screenshot.

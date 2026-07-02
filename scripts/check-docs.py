@@ -34,6 +34,15 @@ REQUIRED_WORKFLOWS = [
     ".github/dependabot.yml",
 ]
 
+CURRENT_STATUS_DOCS = [
+    "README.md",
+    "RELEASE.md",
+    "docs/ci-cd.md",
+    "docs/release-checklist.md",
+    "docs/agile/README.md",
+    "docs/agile/backlog.md",
+]
+
 REQUIRED_PHRASES = [
     "defensive",
     "synthetic",
@@ -53,20 +62,35 @@ REQUIRED_PHRASES = [
 ]
 
 FORBIDDEN_CLAIMS = [
-    "hosted ci has passed",
-    "hosted codeql has passed",
-    "github actions passed",
-    "codeql passed",
-    "repository is currently published",
-    "release is available",
-    "release has been created",
-    "v0.1.0 release exists",
-    "branch protection is configured",
-    "branch protection exists",
-    "github issues have been created",
-    "github projects have been created",
-    "live github issues exist",
-    "live github projects exist",
+    "dependabot prs were merged",
+    "dependabot prs have been merged",
+]
+
+STALE_PUBLICATION_CLAIMS = [
+    "repository is not published",
+    "repository has not been published",
+    "repository publishing pending",
+    "pending until publishing",
+    "pending future publishing phase",
+    "project board creation is pending because the token lacks project scope",
+]
+
+REQUIRED_CURRENT_STATUS = [
+    "repository publishing complete",
+    "repository is published publicly",
+    "hosted ci passed",
+    "hosted codeql passed",
+    "open code-scanning alerts: 0",
+    "open secret-scanning alerts: 0",
+    "live f1-f14 github issues",
+    "branch protection configured and verified",
+    "github project #1",
+    "a real board screenshot exists at `docs/agile/board_sprint1.png`",
+    "dependabot prs #1-#4 remain open",
+    "f1-f13 are closed as completed",
+    "f14 is closed",
+    "`v0.1.0` tag exists",
+    "github release is published",
 ]
 
 JWT_PATTERN = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
@@ -105,6 +129,16 @@ def check_forbidden_claims(text: str) -> None:
             fail(f"forbidden completion claim found: {claim}")
 
 
+def check_current_status(text: str) -> None:
+    lower_text = text.lower()
+    for claim in STALE_PUBLICATION_CLAIMS:
+        if claim in lower_text:
+            fail(f"stale publication claim found: {claim}")
+    for phrase in REQUIRED_CURRENT_STATUS:
+        if phrase not in lower_text:
+            fail(f"missing current repository status: {phrase}")
+
+
 def check_sensitive_patterns(text: str) -> None:
     checks = [
         (JWT_PATTERN, "real-looking JWT"),
@@ -138,8 +172,10 @@ def main() -> int:
     docs = read_required_files(REQUIRED_DOCS)
     read_required_files(REQUIRED_WORKFLOWS)
     combined_docs = "\n".join(docs.values())
+    current_status = "\n".join(docs[path] for path in CURRENT_STATUS_DOCS)
     check_required_phrases(combined_docs)
     check_forbidden_claims(combined_docs)
+    check_current_status(current_status)
     check_sensitive_patterns(combined_docs)
     print("Documentation safety checks passed.")
     return 0

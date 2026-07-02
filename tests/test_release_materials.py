@@ -3,7 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_release_materials_exist_and_document_pending_hosted_work() -> None:
+def test_release_materials_exist_and_document_current_repository_status() -> None:
     release = ROOT / "RELEASE.md"
     checklist = ROOT / "docs" / "release-checklist.md"
 
@@ -14,28 +14,31 @@ def test_release_materials_exist_and_document_pending_hosted_work() -> None:
     assert checklist.is_file()
     for phrase in [
         "v0.1.0 - secure incident management api",
-        "pending hosted checks",
-        "manual git publishing commands",
-        "github cli publishing commands",
+        "hosted checks",
+        "repository status",
         "suggested github topics",
         "linkedin post draft",
         "cv bullets",
         "recruiter-facing summary",
     ]:
         assert phrase in release_text
-    for pending in [
-        "- [ ] git initialization pending.",
-        "- [ ] repository publishing pending.",
-        "- [ ] hosted ci pending.",
-        "- [ ] hosted codeql pending.",
-        "- [ ] branch protection pending.",
-        "- [ ] `v0.1.0` tag pending.",
-        "- [ ] github release pending.",
+    for status in [
+        "- [x] git initialization complete.",
+        "- [x] repository publishing complete.",
+        "- [x] public repository visibility confirmed.",
+        "- [x] hosted ci passed at the latest phase 13b commit.",
+        "- [x] hosted codeql passed at the latest phase 13b commit.",
+        "- [x] github issues f1-f14 closed as completed and verified.",
+        "- [x] branch protection configured and verified for `main`.",
+        "- [x] github project #1 created; issues f1-f14 are closed and `done`.",
+        "- [x] real github project board screenshot added at `docs/agile/board_sprint1.png`.",
+        "- [x] `v0.1.0` tag exists.",
+        "- [x] github release is published.",
     ]:
-        assert pending in checklist_text
+        assert status in checklist_text
 
 
-def test_release_materials_do_not_claim_publishing_done() -> None:
+def test_release_materials_do_not_claim_pending_release_or_dependency_work_done() -> None:
     text = (
         (ROOT / "RELEASE.md").read_text(encoding="utf-8")
         + "\n"
@@ -43,12 +46,6 @@ def test_release_materials_do_not_claim_publishing_done() -> None:
     ).lower()
 
     for forbidden in [
-        "hosted ci has passed",
-        "hosted codeql has passed",
-        "repository is currently published",
-        "release has been created",
-        "branch protection is configured",
-        "github issues have been created",
-        "github projects have been created",
+        "dependabot prs were merged",
     ]:
         assert forbidden not in text

@@ -1,5 +1,3 @@
-from fastapi.routing import APIRoute
-
 from app.config import Settings
 from app.main import create_app
 
@@ -11,15 +9,9 @@ def normalized_path(path: str) -> str:
 def implemented_http_routes() -> set[str]:
     app = create_app(Settings(environment="test", rate_limit_enabled=False))
     routes: set[str] = set()
-    for route in app.routes:
-        if not isinstance(route, APIRoute):
-            continue
-        if route.path in {"/docs", "/redoc", "/openapi.json"}:
-            continue
-        for method in sorted(route.methods or []):
-            if method in {"HEAD", "OPTIONS"}:
-                continue
-            routes.add(f"{method} {normalized_path(route.path)}")
+    for path, operations in app.openapi()["paths"].items():
+        for method in sorted(operations):
+            routes.add(f"{method.upper()} {normalized_path(path)}")
     return routes
 
 

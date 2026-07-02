@@ -1,6 +1,6 @@
 # CI/CD Configuration
 
-Phase 11 adds local repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is not published yet, so hosted GitHub CI and hosted CodeQL have not run.
+Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `c9f96289`.
 
 ## CI Workflow
 
@@ -18,16 +18,20 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## CodeQL
 
-`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL is not verified until the repository is published and GitHub Actions runs.
+`.github/workflows/codeql.yml` configures CodeQL for Python using security-and-quality queries. Hosted CodeQL passed at commit `c9f96289`. GitHub reports zero open code-scanning alerts and zero open secret-scanning alerts.
 
 ## Dependabot
 
-`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. Dependabot pull requests will only appear after publishing.
+`.github/dependabot.yml` configures weekly updates for Python packages and GitHub Actions only. GitHub has recognized both configured ecosystems. PRs #1-#4 were reviewed individually in Phase 14. All remain open and unmerged because they cross major/version boundaries and their current Tests checks fail.
 
 ## Documentation Safety
 
-`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, and premature hosted CI/release/branch-protection claims.
+`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, accurate Phase 13B hosted/governance status, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, premature release/tag/Project claims, and premature Dependabot merge claims.
+
+## Branch Protection
+
+Protection for `main` is configured and verified. Merges require an up-to-date branch, one approving pull-request review, and successful Tests, Docs Safety Checks, API Smoke, and CodeQL (python) checks. Force pushes and branch deletion are disabled. Administrators retain GitHub's default unenforced setting.
 
 ## Limitations
 
-This remains a production-pattern portfolio lab, not a deployed production SOC platform. Phase 12 adds local release and Agile preparation materials only. Branch protection, live GitHub Issues, live GitHub Projects, tags, releases, and publishing are later-phase work.
+This remains a production-pattern portfolio lab, not a deployed production SOC platform. Live Issues, GitHub Project #1, and branch protection are configured. The `v0.1.0` tag exists and the GitHub Release is published. A real board screenshot exists at `docs/agile/board_sprint1.png`, F14 is closed, and no Dependabot PR has been merged.
