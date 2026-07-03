@@ -59,7 +59,7 @@ def test_docs_safety_script_checks_required_files() -> None:
     workflows = module.read_required_files(module.REQUIRED_WORKFLOWS)
 
     assert "README.md" in docs
-    assert "RELEASE.md" in docs
+    assert "docs/release-notes.md" in docs
     assert "CONTRIBUTING.md" in docs
     assert "docs/agile/backlog.md" in docs
     assert "docs/release-checklist.md" in docs

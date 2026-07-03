@@ -141,7 +141,7 @@
 ## Phase 12: Agile and Release Preparation
 
 - [x] Polish recruiter-ready `README.md`.
-- [x] Create `RELEASE.md` release preparation material.
+- [x] Publish concise v0.1.0 history in `docs/release-notes.md`.
 - [x] Create `CONTRIBUTING.md`.
 - [x] Create local Agile planning docs and F1-F14 backlog.
 - [x] Create local GitHub issue template for future use.

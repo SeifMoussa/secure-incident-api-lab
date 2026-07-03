@@ -3,8 +3,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_release_materials_exist_and_document_current_repository_status() -> None:
-    release = ROOT / "RELEASE.md"
+def test_release_materials_exist_and_document_public_release() -> None:
+    release = ROOT / "docs" / "release-notes.md"
     checklist = ROOT / "docs" / "release-checklist.md"
 
     release_text = release.read_text(encoding="utf-8").lower()
@@ -14,12 +14,10 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
     assert checklist.is_file()
     for phrase in [
         "v0.1.0 - secure incident management api",
-        "hosted checks",
-        "repository status",
-        "suggested github topics",
-        "linkedin post draft",
-        "cv bullets",
-        "recruiter-facing summary",
+        "highlights",
+        "safety scope",
+        "jwt authentication",
+        "metadata-only evidence attachments",
     ]:
         assert phrase in release_text
     for status in [
@@ -40,7 +38,7 @@ def test_release_materials_exist_and_document_current_repository_status() -> Non
 
 def test_release_materials_do_not_claim_pending_release_or_dependency_work_done() -> None:
     text = (
-        (ROOT / "RELEASE.md").read_text(encoding="utf-8")
+        (ROOT / "docs" / "release-notes.md").read_text(encoding="utf-8")
         + "\n"
         + (ROOT / "docs" / "release-checklist.md").read_text(encoding="utf-8")
     ).lower()

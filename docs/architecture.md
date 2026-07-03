@@ -234,7 +234,7 @@ Audit entries are append-only. ADMIN and AUDITOR can read audit logs. Audit logs
 ## Phase 12 Implementation Status
 
 - Polished `README.md` for recruiter review while preserving production-pattern portfolio wording.
-- Added `RELEASE.md`, `CONTRIBUTING.md`, and `docs/release-checklist.md`.
+- Added public release notes, `CONTRIBUTING.md`, and `docs/release-checklist.md`.
 - Added local Agile planning docs under `docs/agile/` and a local issue template for future GitHub Issues.
 - Expanded documentation safety checks and tests for release, contributing, Agile, and release checklist materials.
 - No application runtime architecture, API behavior, database schema, or business/domain workflow changed.
