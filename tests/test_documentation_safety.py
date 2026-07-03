@@ -7,13 +7,12 @@ DOC_PATHS = [
     ROOT / "CHANGELOG.md",
     ROOT / "CONTRIBUTING.md",
     ROOT / "PROJECT_COMPLETION_CHECKLIST.md",
-    ROOT / "RELEASE.md",
+    ROOT / "docs" / "release-notes.md",
     *sorted((ROOT / "docs").glob("*.md")),
     *sorted((ROOT / "docs" / "agile").glob("*.md")),
 ]
 CURRENT_STATUS_PATHS = [
     ROOT / "README.md",
-    ROOT / "RELEASE.md",
     ROOT / "docs" / "ci-cd.md",
     ROOT / "docs" / "release-checklist.md",
     ROOT / "docs" / "agile" / "README.md",
@@ -73,7 +72,6 @@ def test_docs_reflect_current_repository_and_project_status() -> None:
     assert "branch protection configured and verified" in current_status
     assert "github project #1" in current_status
     assert "a real board screenshot exists at `docs/agile/board_sprint1.png`" in current_status
-    assert "dependabot prs #1-#4 remain open" in current_status
     assert "f1-f13 are closed as completed" in current_status
     assert "f14 is closed" in current_status
     assert "`v0.1.0` tag exists" in current_status

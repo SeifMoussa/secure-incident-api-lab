@@ -16,7 +16,7 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 - Phase 13A repository publication and hosted CI investigation.
 - Phase 13A correction of CodeQL-reported test calls embedded in assertions.
 - Phase 12 recruiter-ready README polish.
-- Phase 12 release preparation guide in `RELEASE.md`.
+- Public v0.1.0 history in `docs/release-notes.md`.
 - Phase 12 local Agile planning materials, F1-F14 backlog, board plan, and issue template.
 - Phase 12 `CONTRIBUTING.md` with defensive-only contribution policy and quality commands.
 - Phase 12 release checklist for local QA and pending hosted/publishing work.

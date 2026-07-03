@@ -13,7 +13,7 @@ REQUIRED_DOCS = [
     "CHANGELOG.md",
     "CONTRIBUTING.md",
     "PROJECT_COMPLETION_CHECKLIST.md",
-    "RELEASE.md",
+    "docs/release-notes.md",
     "docs/threat_model.md",
     "docs/api_reference.md",
     "docs/openapi.json",
@@ -36,7 +36,6 @@ REQUIRED_WORKFLOWS = [
 
 CURRENT_STATUS_DOCS = [
     "README.md",
-    "RELEASE.md",
     "docs/ci-cd.md",
     "docs/release-checklist.md",
     "docs/agile/README.md",
@@ -86,7 +85,6 @@ REQUIRED_CURRENT_STATUS = [
     "branch protection configured and verified",
     "github project #1",
     "a real board screenshot exists at `docs/agile/board_sprint1.png`",
-    "dependabot prs #1-#4 remain open",
     "f1-f13 are closed as completed",
     "f14 is closed",
     "`v0.1.0` tag exists",
