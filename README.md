@@ -4,6 +4,14 @@ Production-pattern FastAPI backend for defensive security incident management.
 
 This is a defensive portfolio lab, not a deployed production SOC platform. It uses synthetic/demo data only. Do not use real credentials, real tokens, real customer incident data, or real evidence files.
 
+## Why I Built This
+
+I built this as a concrete way to work through the backend decisions behind an incident-management API, rather than stopping at CRUD endpoints. FastAPI kept the HTTP layer small enough that I could focus on role permissions, incident state, audit logging, and the boundary between operational data and sensitive evidence. The GitHub Issues F1-F14 and Project board are the record of how I broke that work down; they are not a claim that the lab is a finished SOC product.
+
+## What Was Harder Than Expected
+
+RBAC was more involved than adding a role check to each route. Role changes and user deactivation need to affect existing sessions, ownership rules differ across evidence and incident actions, and audit readers have different permissions from incident writers. Keeping middleware audit logs useful while excluding tokens and secret-looking values also took careful tests. Alembic migrations added another boundary to verify: the schema had to build from an empty database instead of only working with a developer's existing SQLite file.
+
 ## What This Demonstrates
 
 Secure Incident Management API demonstrates backend and application-security engineering patterns for a security operations workflow:
@@ -146,7 +154,7 @@ python -m alembic current
 
 Latest validation:
 
-- Tests: 244 passed.
+- Tests: 245 passed (the previously documented baseline was 244).
 - Coverage: 95.6%.
 - Coverage gate: 95%.
 - Ruff: passed.
@@ -172,21 +180,38 @@ I tracked the build through GitHub Issues F1-F14 and closed each item as its rel
 - [Security scope](docs/security-scope.md)
 - [Testing plan](docs/testing-plan.md)
 
-## Limitations
+## Known Limitations
 
 - This is a portfolio lab, not a deployed production SOC platform.
+- All incidents, users, evidence notes, and attachments are synthetic demo data within the lab scope.
+- There is no full enterprise SSO integration; authentication is the API's local JWT-based implementation.
+- There is no live SIEM, alert-ingestion, or case-orchestration integration yet.
 - No real production deployment, monitoring, backup, disaster recovery, or compliance review is included.
 - Local SQLite is used for development and tests.
 - In-memory rate limiting is not distributed.
 - Audit logs are append-only through the API, but no external immutable audit store is implemented.
-- Hosted CI and CodeQL are green on `main`.
-- The `v0.1.0` tag exists and the GitHub Release is published.
-- GitHub Project #1 exists with F1-F14 closed and `Done` after screenshot verification.
-- Dependabot major-version pull requests receive individual compatibility review.
 
-## Ongoing Maintenance
+## What I Would Improve Next
 
-Future improvements are tracked through GitHub Issues and the Project board. Dependency updates remain separate review work, especially when a major-version change crosses a known compatibility boundary.
+I would add an external identity-provider path, then connect incident creation and status changes to a small SIEM adapter so the integration boundaries are exercised rather than hypothetical. I would also move rate limiting and audit retention to shared services before considering multi-instance deployment. Future work belongs in GitHub Issues and the Project board. Dependabot major-version PRs will stay separate and receive compatibility review rather than being merged automatically just to clear the queue.
+
+## How to Verify It Works
+
+Install the development dependencies, then run the repository's checks:
+
+```bash
+python -m pip install -e ".[dev]"
+python scripts/export_openapi.py
+python scripts/check-docs.py
+python -m pytest
+python -m pytest --cov=app --cov-report=term-missing --cov-fail-under=95
+python -m ruff check .
+python -m ruff format --check .
+python -m alembic upgrade head
+python -m alembic current
+```
+
+The earlier documented baseline was 244 passing tests; the current verification run collects 245 and reports 95.6% coverage. Those numbers describe this repository's test run; they do not establish production readiness.
 
 ## License
 
