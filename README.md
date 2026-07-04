@@ -10,7 +10,7 @@ I built this as a concrete way to work through the backend decisions behind an i
 
 ## What Was Harder Than Expected
 
-RBAC was more involved than adding a role check to each route. Role changes and user deactivation need to affect existing sessions, ownership rules differ across evidence and incident actions, and audit readers have different permissions from incident writers. Keeping middleware audit logs useful while excluding tokens and secret-looking values also took careful tests. Alembic migrations added another boundary to verify: the schema had to build from an empty database instead of only working with a developer's existing SQLite file.
+RBAC was more involved than adding a role check to each route. Role changes and user deactivation need to affect existing sessions. Ownership rules differ across evidence and incident actions, and audit readers have different permissions from incident writers. Keeping middleware audit logs useful while excluding tokens and secret-looking values also took careful tests. Alembic migrations added another boundary to verify: the schema had to build from an empty database instead of only working with a developer's existing SQLite file.
 
 ## What This Demonstrates
 
