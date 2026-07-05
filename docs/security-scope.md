@@ -57,58 +57,58 @@ Audit logging must apply an allowlist or redaction strategy. Middleware must not
 
 This project may be described as production-pattern or production-style. It should not be described as production-ready unless documentation clearly explains limitations, including lack of real deployment hardening, operational monitoring, disaster recovery, and organization-specific compliance review.
 
-## Phase 1 Safety Status
+## Scaffold Safety Status
 
-Phase 1 includes only scaffold code, configuration, `/`, and `/health`. It does not implement authentication, authorization, database access, domain workflows, audit logging, external calls, scanning, exploitation, packet capture, malware behavior, or production deployment.
+The scaffold includes only project setup, configuration, `/`, and `/health`. It does not implement authentication, authorization, database access, domain workflows, audit logging, external calls, scanning, exploitation, packet capture, malware behavior, or production deployment.
 
-## Phase 2 Safety Status
+## Database Safety Status
 
-Phase 2 adds local ORM models and an Alembic baseline only. It does not add real users, seed data, real credentials, real tokens, real incident data, API routes for domain workflows, audit middleware, external calls, scanning, exploitation, packet capture, malware behavior, or production deployment. Evidence attachments remain metadata only.
+The database foundation adds local ORM models and an Alembic baseline only. It does not add real users, seed data, real credentials, real tokens, real incident data, API routes for domain workflows, audit middleware, external calls, scanning, exploitation, packet capture, malware behavior, or production deployment. Evidence attachments remain metadata only.
 
-## Phase 3 Safety Status
+## Authentication Safety Status
 
-Phase 3 adds authentication using synthetic/demo users only. Passwords are accepted only in request schemas, stored as hashes, and excluded from response schemas. Access tokens and refresh tokens are returned only by token-issuing endpoints and are not stored. Logout stores refresh-token JTI values in the blocklist and never stores raw refresh tokens. No real credentials, real tokens, real users, seed users, real incident data, domain endpoints, audit middleware, offensive behavior, or production deployment behavior are added.
+Authentication uses synthetic/demo users only. Passwords are accepted only in request schemas, stored as hashes, and excluded from response schemas. Access tokens and refresh tokens are returned only by token-issuing endpoints and are not stored. Logout stores refresh-token JTI values in the blocklist and never stores raw refresh tokens. No real credentials, real tokens, real users, seed users, real incident data, domain endpoints, audit middleware, offensive behavior, or production deployment behavior are added.
 
-## Phase 4 Safety Status
+## RBAC Safety Status
 
-Phase 4 adds RBAC primitives and ADMIN-only user management. Admin responses expose safe profile fields only and never include password hashes, raw passwords, token values, authorization headers, API keys, or secrets. Authorization checks use the current database user state so role changes and deactivation take effect even if an old access token still carries stale claims. No real users, real credentials, real tokens, real incident data, domain endpoints, audit middleware, offensive behavior, rate limiting/security headers, CI, git, or production deployment behavior are added.
+RBAC provides permission primitives and ADMIN-only user management. Admin responses expose safe profile fields only and never include password hashes, raw passwords, token values, authorization headers, API keys, or secrets. Authorization checks use the current database user state so role changes and deactivation take effect even if an old access token still carries stale claims. No real users, real credentials, real tokens, real incident data, domain endpoints, audit middleware, offensive behavior, rate limiting/security headers, CI, git, or production deployment behavior are added.
 
-## Phase 5 Safety Status
+## Incident Workflow Safety Status
 
-Phase 5 adds incident CRUD for synthetic/demo incident records only. Incident responses never include password hashes, raw passwords, token values, authorization headers, API keys, or secrets. Incident data must remain synthetic. No ticket, evidence, remediation, incident timeline, audit middleware, offensive behavior, live scanning, malware behavior, rate limiting/security headers, CI, git, publishing, or production deployment behavior is added.
+Incident CRUD operates on synthetic/demo incident records only. Incident responses never include password hashes, raw passwords, token values, authorization headers, API keys, or secrets. Incident data must remain synthetic. No ticket, evidence, remediation, incident timeline, audit middleware, offensive behavior, live scanning, malware behavior, rate limiting/security headers, CI, git, publishing, or production deployment behavior is added at this milestone.
 
-## Phase 6 Safety Status
+## Nested Workflow Safety Status
 
-Phase 6 adds nested ticket, evidence note, attachment metadata, and remediation task workflows for synthetic/demo data only. Evidence attachments are metadata only. There is no binary upload, no disk file reading, and no file storage behavior. API responses must not include password hashes, raw passwords, access tokens, refresh tokens, authorization headers, API keys, or secrets. Audit middleware, incident timeline, rate limiting/security headers, CI, git, publishing, and production deployment behavior remain unimplemented.
+Nested ticket, evidence note, attachment metadata, and remediation task workflows use synthetic/demo data only. Evidence attachments are metadata only. There is no binary upload, no disk file reading, and no file storage behavior. API responses must not include password hashes, raw passwords, access tokens, refresh tokens, authorization headers, API keys, or secrets. At this milestone, audit middleware, incident timeline, rate limiting/security headers, CI, git, publishing, and production deployment behavior remained unimplemented.
 
-## Phase 7 Safety Status
+## Audit and Timeline Safety Status
 
-Phase 7 adds middleware-driven audit logging, ADMIN/AUDITOR audit reads, and incident timeline for synthetic/demo data only. Audit entries store sanitized changed-field summaries and safe metadata, not raw request bodies, passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, JWT secrets, cookies, or sensitive secret values. Audit logs are append-only at the API level. Evidence attachments remain metadata only; no binary upload, disk file reading, or file storage behavior is added. Rate limiting/security headers, CI, git, publishing, and production deployment behavior remain unimplemented.
+Middleware-driven audit logging, ADMIN/AUDITOR audit reads, and incident timeline use synthetic/demo data only. Audit entries store sanitized changed-field summaries and safe metadata, not raw request bodies, passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, JWT secrets, cookies, or sensitive secret values. Audit logs are append-only at the API level. Evidence attachments remain metadata only; no binary upload, disk file reading, or file storage behavior is added. At this milestone, rate limiting/security headers, CI, git, publishing, and production deployment behavior remained unimplemented.
 
-## Phase 8 Safety Status
+## Security Controls Safety Status
 
-Phase 8 adds security headers, local in-memory rate limiting, explicit CORS allowlist behavior, production-only HTTPS redirect behavior, and production docs disable behavior. Audit logging still sanitizes sensitive data. Evidence attachments remain metadata only; no binary upload, disk file reading, or file storage behavior is added. The project remains a production-pattern portfolio lab, not a deployed production SOC platform. CI, git initialization, GitHub publishing, tags, releases, and branch protection remain unimplemented.
+Security controls include headers, local in-memory rate limiting, explicit CORS allowlist behavior, production-only HTTPS redirect behavior, and production docs disable behavior. Audit logging still sanitizes sensitive data. Evidence attachments remain metadata only; no binary upload, disk file reading, or file storage behavior is added. The project remains a production-pattern portfolio lab, not a deployed production SOC platform. At this milestone, CI, git initialization, GitHub publishing, tags, releases, and branch protection remained unimplemented.
 
-## Phase 9 Safety Status
+## Validation Hardening Safety Status
 
-Phase 9 adds validation hardening and security regression tests only. It verifies mass-assignment protections, sensitive response safety, audit redaction, SQLAlchemy ORM/no raw SQL safety, nested-resource access controls, pagination/filter validation, and OpenAPI security metadata. A safe request validation error handler avoids echoing submitted request bodies or protected field names. No new business/domain workflows are added. Data remains synthetic/demo only. CI, git initialization, GitHub publishing, tags, releases, and branch protection remain unimplemented.
+Validation hardening adds security regression tests only. It verifies mass-assignment protections, sensitive response safety, audit redaction, SQLAlchemy ORM/no raw SQL safety, nested-resource access controls, pagination/filter validation, and OpenAPI security metadata. A safe request validation error handler avoids echoing submitted request bodies or protected field names. No new business/domain workflows are added. Data remains synthetic/demo only. At this milestone, CI, git initialization, GitHub publishing, tags, releases, and branch protection remained unimplemented.
 
-## Phase 10 Safety Status
+## Documentation Safety Status
 
-Phase 10 adds documentation only: STRIDE threat model, API reference, OpenAPI export, and documentation safety/consistency tests. Examples use placeholders such as `<ACCESS_TOKEN>`, `<REFRESH_TOKEN>`, `<USER_ID>`, and `<INCIDENT_ID>`. No real credentials, real tokens, API keys, secrets, customer data, or evidence files are documented. No new business/domain workflows are added. The project remains a production-pattern portfolio lab, not a deployed production SOC platform. CI, git initialization, GitHub publishing, GitHub Issues, GitHub Projects, tags, releases, and branch protection remain unimplemented.
+The documentation set adds a STRIDE threat model, API reference, OpenAPI export, and documentation safety/consistency tests. Examples use placeholders such as `<ACCESS_TOKEN>`, `<REFRESH_TOKEN>`, `<USER_ID>`, and `<INCIDENT_ID>`. No real credentials, real tokens, API keys, secrets, customer data, or evidence files are documented. No new business/domain workflows are added. The project remains a production-pattern portfolio lab, not a deployed production SOC platform. At this milestone, CI, git initialization, GitHub publishing, GitHub Issues, GitHub Projects, tags, releases, and branch protection remained unimplemented.
 
-## Phase 11 Safety Status
+## Automation Configuration Safety Status
 
-Phase 11 added local CI, CodeQL, Dependabot, and documentation safety configuration only. At the end of that phase, hosted verification and publication were still deferred. Workflows use synthetic local/test settings and local SQLite only. No new business/domain workflows were added.
+The repository added local CI, CodeQL, Dependabot, and documentation safety configuration only. At the end of that milestone, hosted verification and publication were still deferred. Workflows use synthetic local/test settings and local SQLite only. No new business/domain workflows were added.
 
-## Phase 12 Safety Status
+## Release Documentation Safety Status
 
-Phase 12 added recruiter-ready documentation polish, release preparation material, local Agile planning artifacts, a local issue template, a contributing guide, and a release checklist only. No application business/domain behavior changed. At the end of that phase, publication, hosted verification, tags, releases, branch protection, and live Issues/Projects were still deferred. Documentation continues to require synthetic/demo data only, no real credentials, no real tokens, no API keys, no customer data, and metadata-only evidence attachments with no binary upload.
+The repository added recruiter-ready documentation polish, release preparation material, local Agile planning artifacts, a local issue template, a contributing guide, and a release checklist only. No application business/domain behavior changed. At the end of that milestone, publication, hosted verification, tags, releases, branch protection, and live Issues/Projects were still deferred. Documentation continues to require synthetic/demo data only, no real credentials, no real tokens, no API keys, no customer data, and metadata-only evidence attachments with no binary upload.
 
-## Phase 13A Safety Status
+## Publication Safety Status
 
 Public repository publication is complete. Hosted CI and CodeQL passed at commit `b3187ac`, with zero open code-scanning alerts and zero open secret-scanning alerts. No application business/domain behavior changed.
 
-## Phase 13B Safety Status
+## Hosted Governance Safety Status
 
 Live F1-F14 GitHub Issues and their labels were created. Protection for `main` is configured and verified with strict required checks, one approving review, and force-push/deletion restrictions. Project board creation is pending because the token lacks project scope. Four Dependabot PRs remain open and unmerged. The `v0.1.0` tag and GitHub Release are still pending; no fake screenshot was added. No application, database-schema, or API behavior changed.

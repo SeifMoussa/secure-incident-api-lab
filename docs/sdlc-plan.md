@@ -2,7 +2,7 @@
 
 ## Workflow Overview
 
-The planned workflow uses feature branches, pull requests, automated CI, CodeQL, Dependabot, a release branch, protected main, and documented releases. Phase 0 does not initialize git, publish to GitHub, create issues, create projects, configure branch protection, create tags, or create releases.
+The planned workflow uses feature branches, pull requests, automated CI, CodeQL, Dependabot, a release branch, protected main, and documented releases. The initial planning milestone did not initialize git, publish to GitHub, create issues, create projects, configure branch protection, create tags, or create releases.
 
 ## Branching Strategy
 
@@ -26,7 +26,7 @@ Branch protection now requires pull requests, one approving review, an up-to-dat
 
 ## CI Strategy
 
-Phase 11 added local GitHub Actions workflow configuration. Hosted Actions passed all three CI jobs at the latest Phase 13B commit.
+The repository includes local GitHub Actions workflow configuration. Hosted Actions passed all three CI jobs at the latest hosted-verification commit.
 
 Configured workflow behavior:
 
@@ -40,7 +40,7 @@ Configured workflow behavior:
 
 ## CodeQL Strategy
 
-CodeQL is configured for Python and passed at the latest Phase 13B commit. Open code-scanning alerts and open secret-scanning alerts are both 0. CodeQL configuration remains scoped to the repository and does not require real credentials.
+CodeQL is configured for Python and passed at the latest hosted-verification commit. Open code-scanning alerts and open secret-scanning alerts are both 0. CodeQL configuration remains scoped to the repository and does not require real credentials.
 
 ## Dependabot Strategy
 
@@ -51,11 +51,11 @@ Dependabot should monitor:
 
 Dependabot PRs should pass CI and be reviewed before merge.
 
-Dependabot is configured in Phase 11, and GitHub has recognized its pip and GitHub Actions update ecosystems. PRs #1-#4 were reviewed individually in Phase 14 and remain open and unmerged because they cross major/version boundaries and their current Tests checks fail.
+Dependabot is configured, and GitHub has recognized its pip and GitHub Actions update ecosystems. PRs #1-#4 were reviewed individually during post-release governance and remain open and unmerged because they cross major/version boundaries and their current Tests checks fail.
 
 ## Agile Board Plan
 
-Phase 12 added local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Phase 13B created live F1-F14 Issues and the planned labels. Phase 14 created GitHub Project #1, organized F1-F13 as closed and `Done`, added a real screenshot at `docs/agile/board_sprint1.png`, and closed F14 after verification. Dependabot PRs #1-#4 remain open and unmerged.
+The repository includes local Agile planning materials in `docs/agile/` and a local issue template under `.github/ISSUE_TEMPLATE/`. Hosted governance setup created live F1-F14 Issues and the planned labels. Post-release governance created GitHub Project #1, organized F1-F13 as closed and `Done`, added a real screenshot at `docs/agile/board_sprint1.png`, and closed F14 after verification. Dependabot PRs #1-#4 remain open and unmerged.
 
 Planned issue categories:
 

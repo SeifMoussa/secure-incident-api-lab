@@ -40,9 +40,9 @@ Coverage should be meaningful rather than line-count only. Security behavior, au
 - Pagination and filtering.
 - Soft delete behavior.
 
-## Phase 1 Tests
+## Scaffold Tests
 
-Phase 1 adds tests for:
+The scaffold test set covers:
 
 - App factory creation.
 - Health endpoint status and response shape.
@@ -52,12 +52,12 @@ Phase 1 adds tests for:
 - Settings safe defaults.
 - Production secret validation guard.
 - Placeholder-only `.env.example`.
-- Required Phase 1 files.
+- Required scaffold files.
 - Absence of auth, RBAC, database, migrations, domain workflow, audit, and CI implementation.
 
-## Phase 2 Tests
+## Database Tests
 
-Phase 2 adds tests for:
+The database test set covers:
 
 - In-memory SQLite table creation.
 - Expected table names.
@@ -73,9 +73,9 @@ Phase 2 adds tests for:
 - Alembic env and baseline migration files.
 - Absence of auth/domain API routes and CI files.
 
-## Phase 3 Tests
+## Authentication Tests
 
-Phase 3 adds tests for:
+The authentication test set covers:
 
 - Password policy failures and valid synthetic test passwords.
 - Bcrypt password hashing and verification.
@@ -89,9 +89,9 @@ Phase 3 adds tests for:
 - Response body safety for passwords, password hashes, and JWT secrets.
 - Continued absence of RBAC, admin, domain, CI, git, and publishing work.
 
-## Phase 4 Tests
+## RBAC and User Management Tests
 
-Phase 4 adds tests for:
+The RBAC and user-management test set covers:
 
 - `require_admin` allowing ADMIN and blocking ANALYST, VIEWER, and AUDITOR.
 - Missing, invalid, expired, wrong-type, and inactive-user token failures.
@@ -105,9 +105,9 @@ Phase 4 adds tests for:
 - Pagination defaults and maximum page size enforcement.
 - Continued absence of incident, ticket, evidence, remediation, audit middleware, rate limiting/security headers, CI, git, and publishing work.
 
-## Phase 5 Tests
+## Incident Workflow Tests
 
-Phase 5 adds tests for:
+The incident workflow test set covers:
 
 - ADMIN and ANALYST incident creation.
 - VIEWER and AUDITOR create/update/delete rejection where applicable.
@@ -124,9 +124,9 @@ Phase 5 adds tests for:
 - Response safety for password hashes, passwords, tokens, and secrets.
 - Continued absence of ticket, evidence, remediation, audit middleware, rate limiting/security headers, CI, git, and publishing work.
 
-## Phase 6 Tests
+## Nested Workflow Tests
 
-Phase 6 adds tests for:
+The nested workflow test set covers:
 
 - Ticket create/list/detail/update/soft-delete paths.
 - Ticket RBAC, validation, active assignee checks, parent incident scoping, and soft-delete exclusion.
@@ -138,9 +138,9 @@ Phase 6 adds tests for:
 - Response safety for passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, and secrets.
 - Continued absence of audit middleware, incident timeline, rate limiting/security headers, CI, git, and publishing work.
 
-## Phase 7 Tests
+## Audit and Timeline Tests
 
-Phase 7 adds tests for:
+The audit and timeline test set covers:
 
 - Audit sanitizer redaction for passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, JWT secrets, cookies, token-like/API-key-like strings, and nested sensitive values.
 - Middleware audit creation for register, login, logout, incident writes, ticket writes, evidence writes, remediation writes, and failed unauthorized writes.
@@ -154,9 +154,9 @@ Phase 7 adds tests for:
 - Audit and timeline response safety for passwords, password hashes, token values, authorization headers, API keys, and secrets.
 - Continued absence of rate limiting/security headers, CI, git, and publishing work.
 
-## Phase 8 Tests
+## Security Control Tests
 
-Phase 8 adds tests for:
+The security-control test set covers:
 
 - Security headers on normal, auth, unauthorized, forbidden, and production responses.
 - Docs remaining usable in development/test and disabled in production.
@@ -169,9 +169,9 @@ Phase 8 adds tests for:
 - Middleware compatibility for auth, admin, incidents, nested resources, audit logging, and incident timeline.
 - Continued absence of CI, git, publishing, tags, releases, and branch protection work.
 
-## Phase 9 Tests
+## Validation Hardening Tests
 
-Phase 9 adds tests for:
+The validation-hardening test set covers:
 
 - Validation hardening for MITRE fields, tags, evidence attachment metadata, pagination, enum filters, UUID-like filters, and datetime filters.
 - Mass-assignment rejection for registration, admin role updates, incidents, tickets, evidence notes, and remediation tasks.
@@ -182,9 +182,9 @@ Phase 9 adds tests for:
 - OpenAPI security metadata, expected endpoint presence, production docs disablement, and absence of password hashes or secret settings in generated schemas.
 - Continued absence of new business/domain workflows, CI, git, publishing, tags, releases, and branch protection work.
 
-## Phase 10 Tests
+## Documentation and OpenAPI Tests
 
-Phase 10 adds tests for:
+The documentation and OpenAPI test set covers:
 
 - STRIDE threat model existence, categories, assets, trust boundaries, mitigations, residual risks, and limitations.
 - API reference existence, implemented endpoint coverage, RBAC/authentication documentation, audit behavior, and metadata-only attachment documentation.
@@ -193,9 +193,9 @@ Phase 10 adds tests for:
 - Endpoint consistency between implemented FastAPI routes and `docs/api_reference.md`.
 - Continued absence of new business/domain workflows, CI, git, GitHub Issues, GitHub Projects, publishing, tags, releases, and branch protection work.
 
-## Phase 11 Tests
+## Automation Configuration Tests
 
-Phase 11 adds tests for:
+The automation-configuration test set covers:
 
 - GitHub Actions CI workflow existence, triggers, Python 3.11 usage, stable job names, coverage gate at 95, pytest coverage command, Ruff checks, OpenAPI export, docs safety script, API smoke commands, Alembic smoke commands, and absence of external services.
 - CodeQL workflow existence, Python language configuration, stable job name, security-and-quality queries, workflow dispatch, and weekly schedule.
@@ -203,9 +203,9 @@ Phase 11 adds tests for:
 - Documentation safety script execution and rejection of unsafe temporary content through script helpers.
 - Workflow files avoiding hosted-success, publishing, release, tag, and branch-protection claims.
 
-## Phase 12 Tests
+## Release Documentation Tests
 
-Phase 12 adds tests for:
+The release-documentation test set covers:
 
 - Public release-note existence, technical highlights, and safety scope.
 - Release checklist tracking local QA, completed public publication, pending hosted CI/CodeQL verification, code scanning, secret scanning, Dependabot, live Issues/Projects, branch protection, tag, and release work.

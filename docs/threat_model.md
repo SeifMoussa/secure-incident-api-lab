@@ -119,7 +119,7 @@ Residual risk: Administrative actions still require careful operational controls
 
 Threat: A client sends server-managed fields such as `created_by`, `is_deleted`, IDs, or audit fields.
 
-Mitigations: Strict schemas forbid extra fields. Phase 9 tests cover registration, admin role updates, incidents, tickets, evidence notes, and remediation tasks.
+Mitigations: Strict schemas forbid extra fields. Validation-hardening tests cover registration, admin role updates, incidents, tickets, evidence notes, and remediation tasks.
 
 Residual risk: Future schemas must preserve strict extra-field rejection.
 

@@ -1,6 +1,6 @@
 # CI/CD Configuration
 
-Phase 11 added repository configuration for GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `c9f96289`.
+The repository includes GitHub Actions CI, CodeQL, Dependabot, and documentation safety checks. The repository is published publicly. Hosted CI passed Tests, Docs Safety Checks, and API Smoke at commit `c9f96289`.
 
 ## CI Workflow
 
@@ -29,7 +29,7 @@ The API Smoke job runs safe local commands only: Uvicorn factory help, OpenAPI e
 
 ## Documentation Safety
 
-`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, accurate Phase 13B hosted/governance status, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, premature release/tag/Project claims, and premature Dependabot merge claims.
+`scripts/check-docs.py` validates required documentation and workflow files, required safety wording, accurate hosted/governance status, and absence of real-looking secrets, tokens, database password URLs, non-placeholder bearer tokens, premature release/tag/Project claims, and premature Dependabot merge claims.
 
 ## Branch Protection
 

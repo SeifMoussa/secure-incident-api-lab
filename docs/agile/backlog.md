@@ -1,6 +1,6 @@
 # Planned Backlog
 
-The following backlog is the source of truth for the live F1-F14 GitHub Issues created in Phase 13B. The issues remain open pending Project organization and release governance.
+The following backlog is the source of truth for the live F1-F14 GitHub Issues created during hosted governance setup. The issues remain open pending Project organization and release governance.
 
 ## F1: Project Scaffold and Health API
 
@@ -195,7 +195,7 @@ Acceptance criteria:
 - No real credentials, tokens, or customer data are present.
 - Publishing evidence is documented.
 
-Status: Publishing and hosted verification completed in Phase 13A. Release/tag/branch protection remain separate until Phase 13B/13C.
+Status: Publishing and hosted verification are complete. Release, tag, and branch-protection work remained separate until the subsequent governance milestones.
 
 ## F14: Release, Branch Protection, Issues, and Project Board
 
