@@ -1,6 +1,6 @@
 # API Reference
 
-This reference documents the implemented Secure Incident Management API endpoints as of Phase 10. All examples use placeholders only. Do not use real credentials, real tokens, real customer incident data, or real evidence files.
+This reference documents the implemented Secure Incident Management API endpoints. All examples use placeholders only. Do not use real credentials, real tokens, real customer incident data, or real evidence files.
 
 Use bearer authentication for protected endpoints:
 
@@ -750,4 +750,4 @@ Example response:
 - This is a production-pattern portfolio lab, not a deployed production SOC platform.
 - No real credentials, tokens, customer incidents, or evidence files should be used.
 - Evidence attachments remain metadata only.
-- CI, CodeQL, publishing, releases, branch protection, and GitHub project management are not implemented in Phase 10.
+- CI, CodeQL, publishing, releases, branch protection, and GitHub project management were outside the scope of this API-reference milestone.

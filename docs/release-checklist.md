@@ -17,8 +17,8 @@ This checklist tracks local release readiness after repository publication. Pend
 - [x] Git initialization complete.
 - [x] Repository publishing complete.
 - [x] Public repository visibility confirmed.
-- [x] Hosted CI passed at the latest Phase 13B commit.
-- [x] Hosted CodeQL passed at the latest Phase 13B commit.
+- [x] Hosted CI passed at the latest hosted-verification commit.
+- [x] Hosted CodeQL passed at the latest hosted-verification commit.
 - [x] Open code-scanning alerts confirmed at 0.
 - [x] Open secret-scanning alerts confirmed at 0.
 - [x] Dependabot PRs #1-#4 reviewed individually and left open due major/version-boundary risk and failing Tests checks.

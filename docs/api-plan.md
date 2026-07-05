@@ -4,13 +4,13 @@
 
 The planned API is REST-oriented and grouped by domain. All data is synthetic. Responses must exclude sensitive fields. Authentication uses JWT access tokens and refresh tokens.
 
-No endpoints are implemented in Phase 0.
+The initial planning milestone implements no endpoints.
 
-Phase 1 implements only `GET /` and `GET /health`. Phase 2 adds database models and Alembic migration files only. Phase 3 implements authentication endpoints only: register, login, refresh, logout, and me. Phase 4 implements generic RBAC primitives and ADMIN-only user management. Phase 5 implements incident CRUD, filtering, pagination, soft delete, and incident RBAC. Phase 6 implements nested tickets, evidence notes with metadata-only attachments, and remediation tasks. Phase 7 implements middleware-driven audit logging, ADMIN/AUDITOR audit reads, and incident timeline. Phase 8 implements security headers, rate limiting, CORS allowlist, production-only HTTPS redirect behavior, and production docs disable behavior.
-Phase 9 hardens validation and adds security regression tests without adding new endpoints or business workflows.
-Phase 10 adds documentation artifacts only: STRIDE threat model, API reference, OpenAPI export, and documentation safety/consistency tests.
-Phase 11 adds local CI, CodeQL, Dependabot, and docs safety configuration only. It does not change the API surface.
-Phase 12 adds release, Agile, contributing, README polish, and docs safety material only. It does not change the API surface.
+The initial scaffold implements only `GET /` and `GET /health`. The database foundation adds models and Alembic migration files only. Authentication provides register, login, refresh, logout, and me endpoints. RBAC provides generic permission primitives and ADMIN-only user management. Incident workflows provide CRUD, filtering, pagination, soft delete, and incident RBAC. Nested workflows provide tickets, evidence notes with metadata-only attachments, and remediation tasks. Audit and timeline support provides middleware-driven audit logging, ADMIN/AUDITOR audit reads, and incident timeline. Security controls provide headers, rate limiting, a CORS allowlist, production-only HTTPS redirects, and production docs disable behavior.
+Validation hardening adds security regression tests without adding new endpoints or business workflows.
+The documentation milestone adds only a STRIDE threat model, API reference, OpenAPI export, and documentation safety/consistency tests.
+CI, CodeQL, Dependabot, and docs safety configuration do not change the API surface.
+Release, Agile, contributing, README, and docs safety material do not change the API surface.
 
 ## Endpoint Groups
 
@@ -51,14 +51,14 @@ Planned controls:
 - No password hash or token data in responses.
 - Audit entries for role changes and deactivation.
 
-Phase 4 implements these ADMIN-only user management capabilities under `/admin/users`:
+The API implements these ADMIN-only user management capabilities under `/admin/users`:
 
 - `GET /admin/users/`
 - `GET /admin/users/{uid}`
 - `PATCH /admin/users/{uid}/role`
 - `DELETE /admin/users/{uid}`
 
-Role changes and deactivation create sanitized audit entries through Phase 7 middleware.
+Role changes and deactivation create sanitized audit entries through the audit middleware.
 
 ### Incidents
 
@@ -71,7 +71,7 @@ Role changes and deactivation create sanitized audit entries through Phase 7 mid
 
 Delete is planned as soft delete.
 
-Phase 5 implements incident CRUD under trailing-slash routes:
+The API implements incident CRUD under trailing-slash routes:
 
 - `POST /incidents/`
 - `GET /incidents/`
@@ -79,7 +79,7 @@ Phase 5 implements incident CRUD under trailing-slash routes:
 - `PATCH /incidents/{incident_id}`
 - `DELETE /incidents/{incident_id}`
 
-Phase 7 implements `GET /incidents/{incident_id}/timeline` for non-deleted incidents.
+The API implements `GET /incidents/{incident_id}/timeline` for non-deleted incidents.
 
 ### Tickets
 
@@ -91,7 +91,7 @@ Phase 7 implements `GET /incidents/{incident_id}/timeline` for non-deleted incid
 
 Delete is planned as soft delete.
 
-Phase 6 implements ticket create/list/detail/update/soft-delete nested under incidents.
+Ticket create/list/detail/update/soft-delete operations are nested under incidents.
 
 ### Evidence Notes
 
@@ -103,7 +103,7 @@ Phase 6 implements ticket create/list/detail/update/soft-delete nested under inc
 
 Markdown content is allowed. Attachments are metadata only; no binary upload endpoints are planned.
 
-Phase 6 implements evidence note create/list/detail/update/soft-delete. Attachments are metadata only; no binary upload or file storage endpoint exists.
+Evidence notes support create/list/detail/update/soft-delete operations. Attachments are metadata only; no binary upload or file storage endpoint exists.
 
 ### Remediation Tasks
 
@@ -114,13 +114,13 @@ Phase 6 implements evidence note create/list/detail/update/soft-delete. Attachme
 
 When status becomes `COMPLETE`, `completed_at` should be set.
 
-Phase 6 implements remediation create/list/update/soft-delete. `completed_at` is set when status becomes `COMPLETE` and cleared when status changes away from `COMPLETE`.
+Remediation tasks support create/list/update/soft-delete operations. `completed_at` is set when status becomes `COMPLETE` and cleared when status changes away from `COMPLETE`.
 
 ### Audit Log
 
 - `GET /audit/`
 
-Phase 7 implements paginated audit log reads for ADMIN and AUDITOR. No POST, PATCH, or DELETE endpoints exist for audit logs.
+The API implements paginated audit log reads for ADMIN and AUDITOR. No POST, PATCH, or DELETE endpoints exist for audit logs.
 
 ## RBAC Permission Matrix
 
@@ -174,18 +174,18 @@ Responses must exclude:
 - Secret configuration values.
 - Sensitive audit-redacted fields.
 
-## Phase 8 Security Controls
+## Security Controls
 
 Security headers are applied to API responses. Rate limiting protects `/auth/login` and general endpoints using local in-memory counters. CORS uses an explicit allowlist with local development/test defaults and safe empty production defaults unless origins are configured. HTTPS redirect behavior is production-only. API docs are disabled in production settings.
 
-## Phase 9 Validation Hardening
+## Validation Hardening
 
-Phase 9 keeps the API surface unchanged. Client-provided UUID-like fields are validated more strictly, validation error responses avoid echoing request bodies, and regression tests cover mass assignment, sensitive responses, audit redaction, nested-resource access, pagination/filter validation, OpenAPI security metadata, and SQLAlchemy ORM/no raw SQL safety.
+Validation hardening keeps the API surface unchanged. Client-provided UUID-like fields are validated more strictly, validation error responses avoid echoing request bodies, and regression tests cover mass assignment, sensitive responses, audit redaction, nested-resource access, pagination/filter validation, OpenAPI security metadata, and SQLAlchemy ORM/no raw SQL safety.
 
-## Phase 10 Documentation
+## API Documentation
 
-Phase 10 documents the implemented API surface in `docs/api_reference.md`, creates `docs/threat_model.md`, and exports the current OpenAPI schema to `docs/openapi.json`. Documentation examples use placeholders only and do not introduce new endpoints or workflows.
+The implemented API surface is documented in `docs/api_reference.md`, the threat model is in `docs/threat_model.md`, and the current OpenAPI schema is exported to `docs/openapi.json`. Documentation examples use placeholders only and do not introduce new endpoints or workflows.
 
-## Phase 12 Release Documentation
+## Release Documentation
 
-Phase 12 keeps the implemented endpoint set unchanged. It adds recruiter-ready documentation, release preparation material, local Agile planning docs, contributing guidance, and release checklist tracking. Public repository publication is now complete; hosted CI/CodeQL re-verification, live Issues/Projects, branch protection, tags, and releases remain pending.
+Release documentation keeps the implemented endpoint set unchanged. It adds recruiter-ready documentation, release preparation material, local Agile planning docs, contributing guidance, and release checklist tracking. Public repository publication is now complete; hosted CI/CodeQL re-verification, live Issues/Projects, branch protection, tags, and releases remain pending.

@@ -2,7 +2,7 @@
 
 ## Planned Document
 
-Phase 10 should create `docs/threat_model.md` using STRIDE. This Phase 0 file defines the planned structure and scope.
+The implemented threat-model documentation is `docs/threat_model.md` and uses STRIDE. This initial planning file defines its planned structure and scope.
 
 ## Scope
 

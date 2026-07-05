@@ -6,25 +6,25 @@ The database layer uses SQLAlchemy ORM with Alembic migrations. Development and 
 
 Raw SQL strings are out of scope. Query behavior should use SQLAlchemy ORM expressions.
 
-Phase 2 implements the database foundation, ORM models, database-safe enums, and baseline migration. It does not implement service-layer business behavior or API endpoints for these models.
+The database foundation includes ORM models, database-safe enums, and a baseline migration. This layer does not implement service-layer business behavior or API endpoints for these models.
 
-Phase 3 uses the `users` and `token_blocklist` tables for authentication. It does not add seed users, real credentials, or domain service behavior.
+Authentication uses the `users` and `token_blocklist` tables. It does not add seed users, real credentials, or domain service behavior.
 
-Phase 4 uses the existing `users` table for ADMIN-only user management. Deactivation is represented by `is_active=false`; no hard-delete user behavior is implemented.
+ADMIN-only user management uses the existing `users` table. Deactivation is represented by `is_active=false`; no hard-delete user behavior is implemented.
 
-Phase 5 uses the existing `incidents` table for incident CRUD. Deletion is represented by `is_deleted=true`; hard delete is not implemented. Incident timeline remains deferred.
+Incident CRUD uses the existing `incidents` table. Deletion is represented by `is_deleted=true`; hard delete is not implemented. Incident timeline was deferred at this design milestone.
 
-Phase 6 uses the existing `tickets`, `evidence_notes`, `evidence_attachments`, and `remediation_tasks` tables. Ticket, evidence note, and remediation deletes are soft deletes. Evidence attachments are metadata records only; no binary file content is stored.
+Ticket, evidence, and remediation workflows use the existing `tickets`, `evidence_notes`, `evidence_attachments`, and `remediation_tasks` tables. Ticket, evidence note, and remediation deletes are soft deletes. Evidence attachments are metadata records only; no binary file content is stored.
 
-Phase 7 uses the existing `audit_log` table for middleware-driven write audit entries and incident timeline reads. Audit entries store sanitized summaries and safe metadata only.
+Middleware-driven write audit entries and incident timeline reads use the existing `audit_log` table. Audit entries store sanitized summaries and safe metadata only.
 
-Phase 8 adds security middleware and settings only. It does not add or change database tables.
+Security middleware and settings do not add or change database tables.
 
-Phase 9 adds validation hardening and security regression tests only. It does not add or change database tables.
+Validation hardening and security regression tests do not add or change database tables.
 
-Phase 10 adds documentation and OpenAPI export artifacts only. It does not add or change database tables.
+Documentation and OpenAPI export artifacts do not add or change database tables.
 
-Phase 11 adds workflow and documentation safety configuration only. It does not add or change database tables.
+Workflow and documentation safety configuration do not add or change database tables.
 
 ## Planned Entities
 
@@ -162,7 +162,7 @@ Implemented fields:
 - `changes`
 - `outcome`
 
-Audit logs must exclude passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, JWT secrets, cookies, raw tokens, and sensitive secret values. Phase 7 stores conservative changed-field summaries rather than raw request/response bodies.
+Audit logs must exclude passwords, password hashes, access tokens, refresh tokens, authorization headers, API keys, JWT secrets, cookies, raw tokens, and sensitive secret values. The audit implementation stores conservative changed-field summaries rather than raw request/response bodies.
 
 ## Entity Relationship Overview
 
@@ -185,7 +185,7 @@ Audit logs must exclude passwords, password hashes, access tokens, refresh token
 - Audit logs should be append-only at the API and service layers.
 - Models must not rely on database features unavailable in SQLite unless fallback behavior is planned.
 
-## Phase 2 Tables
+## Database Tables
 
 - `users`
 - `token_blocklist`
