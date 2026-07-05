@@ -95,7 +95,6 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 - Testing plan.
 - Threat model plan.
 - SDLC plan.
-- Project completion checklist.
 - README draft.
 
 ### Not Added

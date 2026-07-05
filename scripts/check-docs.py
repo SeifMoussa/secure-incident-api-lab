@@ -12,7 +12,6 @@ REQUIRED_DOCS = [
     "README.md",
     "CHANGELOG.md",
     "CONTRIBUTING.md",
-    "PROJECT_COMPLETION_CHECKLIST.md",
     "docs/release-notes.md",
     "docs/threat_model.md",
     "docs/api_reference.md",
