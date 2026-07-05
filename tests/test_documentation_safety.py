@@ -6,7 +6,6 @@ DOC_PATHS = [
     ROOT / "README.md",
     ROOT / "CHANGELOG.md",
     ROOT / "CONTRIBUTING.md",
-    ROOT / "PROJECT_COMPLETION_CHECKLIST.md",
     ROOT / "docs" / "release-notes.md",
     *sorted((ROOT / "docs").glob("*.md")),
     *sorted((ROOT / "docs" / "agile").glob("*.md")),
