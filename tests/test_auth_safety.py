@@ -34,7 +34,7 @@ def test_docs_do_not_contain_raw_auth_examples() -> None:
 
     assert "SyntheticSafety!123" not in docs_text
     assert "Bearer ey" not in docs_text
-    assert "synthetic-test-secret-for-phase-3-only" not in docs_text
+    assert "synthetic-test-secret-for-jwt-tests-only" not in docs_text
 
 
 def test_no_legacy_rbac_or_route_paths_exist() -> None:

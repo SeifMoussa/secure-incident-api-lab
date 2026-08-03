@@ -6,7 +6,7 @@ from app.config import Settings
 from tests.auth_test_helpers import bearer_header, create_synthetic_user
 
 
-def test_phase_4_admin_user_management_permission_matrix(
+def test_admin_user_management_permission_matrix(
     client: TestClient,
     db_session: Session,
     test_settings: Settings,

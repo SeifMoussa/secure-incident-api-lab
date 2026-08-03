@@ -32,12 +32,12 @@ def test_audit_api_never_exposes_sensitive_auth_material(
         "Authorization",
         "api_key",
         "jwt_secret",
-        "secret-for-phase",
+        "secret-for-jwt-tests",
     ]
     assert all(value not in text for value in forbidden)
 
 
-def test_phase_7_did_not_add_rate_limit_security_headers_or_ci_files() -> None:
+def test_security_controls_are_consolidated_under_security_module() -> None:
     from pathlib import Path
 
     project_root = Path(__file__).resolve().parents[1]
