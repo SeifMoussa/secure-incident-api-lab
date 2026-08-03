@@ -14,8 +14,8 @@ from app.database import Base
 class User(TimestampMixin, Base):
     """User account record.
 
-    Endpoint behavior, password verification, and JWT handling are intentionally out of scope
-    for Phase 2.
+    Endpoint behavior, password verification, and JWT handling live in the auth service and
+    router modules, not on this model.
     """
 
     __tablename__ = "users"

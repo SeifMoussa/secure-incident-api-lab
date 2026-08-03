@@ -26,7 +26,7 @@ def test_baseline_migration_mentions_expected_tables() -> None:
         assert f'"{table_name}"' in migration
 
 
-def test_no_phase_3_or_domain_api_routes_were_added() -> None:
+def test_no_legacy_api_routes_layout_was_added() -> None:
     forbidden_paths = [
         "app/api/routes/auth.py",
         "app/api/routes/users.py",

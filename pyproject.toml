@@ -3,6 +3,7 @@ name = "secure-incident-api-lab"
 version = "0.1.0"
 description = "Production-pattern FastAPI backend lab for defensive incident management."
 readme = "README.md"
+authors = [{ name = "Seif Hegazy", email = "seifmansour53@gmail.com" }]
 requires-python = ">=3.11"
 license = "MIT"
 dependencies = [

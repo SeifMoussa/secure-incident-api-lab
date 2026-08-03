@@ -16,7 +16,7 @@ def test_settings() -> Settings:
     return Settings(
         environment="test",
         debug=True,
-        jwt_secret_key="synthetic-test-secret-for-phase-3-only",
+        jwt_secret_key="synthetic-test-secret-for-jwt-tests-only",
         rate_limit_enabled=False,
     )
 

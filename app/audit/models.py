@@ -14,7 +14,7 @@ from app.database import Base
 class AuditLog(Base):
     """Append-only audit log model.
 
-    Phase 2 defines the table only. Audit middleware and write services are later phases.
+    This model defines the table only; audit middleware and write services live elsewhere.
     """
 
     __tablename__ = "audit_log"
