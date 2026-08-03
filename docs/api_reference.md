@@ -339,7 +339,7 @@ Content-Type: application/json
 Example response:
 
 ```json
-{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":"<USER_ID>","mitre_tactic":"initial-access","mitre_technique":"T0000","tags":["<TAG>"],"is_deleted":false,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>"}
+{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":"<USER_ID>","mitre_tactic":"initial-access","mitre_technique":"T0000","tags":["<TAG>"],"is_deleted":false,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>","status_changed_at":"<ISO_DATETIME>","acknowledged_at":null,"resolved_at":null,"time_to_acknowledge_seconds":null,"time_to_resolve_seconds":null,"age_in_status_seconds":0.0}
 ```
 
 ### GET /incidents/
@@ -360,7 +360,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 Example response:
 
 ```json
-{"items":[{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":null,"mitre_tactic":null,"mitre_technique":null,"tags":[],"is_deleted":false,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>"}],"page":1,"page_size":20,"total":1}
+{"items":[{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":null,"mitre_tactic":null,"mitre_technique":null,"tags":[],"is_deleted":false,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>","status_changed_at":"<ISO_DATETIME>","acknowledged_at":null,"resolved_at":null,"time_to_acknowledge_seconds":null,"time_to_resolve_seconds":null,"age_in_status_seconds":0.0}],"page":1,"page_size":20,"total":1}
 ```
 
 ### GET /incidents/{incident_id}
@@ -418,7 +418,7 @@ Authorization: Bearer <ACCESS_TOKEN>
 Example response:
 
 ```json
-{"message":"Incident deleted.","incident":{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":null,"mitre_tactic":null,"mitre_technique":null,"tags":[],"is_deleted":true,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>"}}
+{"message":"Incident deleted.","incident":{"incident_id":"<INCIDENT_ID>","title":"<INCIDENT_TITLE>","description":"<INCIDENT_DESCRIPTION>","severity":"HIGH","status":"OPEN","created_by":"<USER_ID>","assigned_to":null,"mitre_tactic":null,"mitre_technique":null,"tags":[],"is_deleted":true,"created_at":"<ISO_DATETIME>","updated_at":"<ISO_DATETIME>","status_changed_at":"<ISO_DATETIME>","acknowledged_at":null,"resolved_at":null,"time_to_acknowledge_seconds":null,"time_to_resolve_seconds":null,"age_in_status_seconds":0.0}}
 ```
 
 ### GET /incidents/{incident_id}/timeline
@@ -743,6 +743,46 @@ Example response:
 
 ```json
 {"items":[{"audit_id":"<AUDIT_ID>","actor_id":"<USER_ID>","action":"CREATE","resource_type":"incident","resource_id":"<INCIDENT_ID>","timestamp":"<ISO_DATETIME>","ip_address":"<IP_ADDRESS>","changes":{"fields_changed":["title"]},"outcome":"SUCCESS"}],"page":1,"page_size":20,"total":1}
+```
+
+## Metrics
+
+Purpose: Prometheus-style scrape target for incident volume and SLA metrics.
+
+Authentication requirement: Bearer token required.
+
+Allowed roles: ADMIN and AUDITOR.
+
+Security notes: Gated behind RBAC rather than left open like a typical Prometheus target, since incident volume and severity counts are still information about the (synthetic) incident data. A real deployment scraping this would need to put a bearer token in its scrape config.
+
+### GET /metrics
+
+Request summary: No body.
+
+Response summary: Prometheus text-exposition format. Gauges for incident counts by status and severity, counts of acknowledged/resolved incidents, average time-to-acknowledge and time-to-resolve in seconds, and counts of incidents breaching the illustrative acknowledgement/resolution thresholds defined in `app/metrics/service.py`. Those thresholds are lab defaults, not a real SLA policy.
+
+Validation notes: None.
+
+Audit behavior: Not audited because it is a read.
+
+Example request:
+
+```http
+GET /metrics
+Authorization: Bearer <ACCESS_TOKEN>
+```
+
+Example response:
+
+```text
+# HELP incidents_by_status_total Current non-deleted incidents by status.
+# TYPE incidents_by_status_total gauge
+incidents_by_status_total{status="OPEN"} 3
+incidents_by_status_total{status="IN_PROGRESS"} 1
+...
+# HELP incident_sla_time_to_acknowledge_seconds_avg Average seconds from creation to first acknowledgement.
+# TYPE incident_sla_time_to_acknowledge_seconds_avg gauge
+incident_sla_time_to_acknowledge_seconds_avg 1800.0
 ```
 
 ## Limitations

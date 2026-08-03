@@ -1,10 +1,12 @@
 """Incident ORM models."""
 
-from sqlalchemy import JSON, Boolean, ForeignKey, String, Text
+from datetime import datetime
+
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.common.enums import IncidentSeverity, IncidentStatus
-from app.common.models import TimestampMixin
+from app.common.models import TimestampMixin, utc_now
 from app.common.types import enum_column, new_uuid, uuid_string
 from app.database import Base
 
@@ -33,6 +35,15 @@ class Incident(TimestampMixin, Base):
     mitre_technique: Mapped[str | None] = mapped_column(String(120), nullable=True)
     tags: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=list)
     is_deleted: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+
+    # SLA tracking: status_changed_at moves on every status transition; acknowledged_at is set
+    # once an incident first leaves OPEN and is never cleared; resolved_at reflects the current
+    # RESOLVED/CLOSED state and clears if the incident is reopened.
+    status_changed_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=utc_now
+    )
+    acknowledged_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    resolved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     # String annotations let SQLAlchemy resolve related models from its registry without imports.
     creator: Mapped["User"] = relationship(  # noqa: F821

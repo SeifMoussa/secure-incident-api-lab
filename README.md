@@ -28,6 +28,7 @@ Secure Incident Management API demonstrates backend and application-security eng
 - Middleware-driven audit logging and incident timeline.
 - Rate limiting, security headers, CORS allowlist, and production docs toggle.
 - Strict validation, mass-assignment protection, and safe validation errors.
+- Incident SLA tracking (time-to-acknowledge, time-to-resolve, age-in-status) and an ADMIN/AUDITOR-gated Prometheus-style metrics endpoint.
 - STRIDE threat model and API reference.
 - OpenAPI export.
 - Pytest coverage, Ruff lint/format checks, GitHub Actions configuration, CodeQL configuration, and Dependabot configuration.
@@ -55,6 +56,7 @@ Implemented endpoint groups:
 - Evidence notes: `/incidents/{incident_id}/evidence/`
 - Remediation tasks: `/incidents/{incident_id}/remediation/`
 - Audit reads: `/audit/`
+- Metrics: `/metrics` (ADMIN/AUDITOR only)
 
 Evidence attachments are metadata only. There is no binary upload, no file storage, and no disk file reading for evidence.
 
@@ -67,7 +69,8 @@ app/
   auth/           registration, login, refresh, logout, JWT helpers
   common/         shared enums, pagination, dependencies, validation, errors
   evidence/       evidence notes and metadata-only attachment workflows
-  incidents/      incident CRUD and timeline
+  incidents/      incident CRUD, timeline, and SLA calculation
+  metrics/        Prometheus-style incident volume and SLA metrics
   remediation/    remediation task workflows
   security/       headers, CORS, rate limiting, middleware registration
   tickets/        ticket workflows
@@ -113,6 +116,7 @@ The application uses strict Pydantic schemas at the API boundary, service-layer 
 | Create/update/delete remediation tasks | Yes | Yes | No | No |
 | Read remediation tasks | Yes | Yes | Yes | Yes |
 | Read audit logs | Yes | No | No | Yes |
+| Read metrics | Yes | No | No | Yes |
 
 ## Audit Logging
 

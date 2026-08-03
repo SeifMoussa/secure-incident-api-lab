@@ -10,6 +10,7 @@ from app.common.health import build_health_response
 from app.config import Settings, get_settings
 from app.evidence.router import router as evidence_router
 from app.incidents.router import router as incidents_router
+from app.metrics.router import router as metrics_router
 from app.remediation.router import router as remediation_router
 from app.security.middleware import add_security_middleware
 from app.tickets.router import router as tickets_router
@@ -40,6 +41,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(tickets_router)
     app.include_router(evidence_router)
     app.include_router(remediation_router)
+    app.include_router(metrics_router)
 
     @app.get("/", tags=["service"])
     def root() -> dict[str, str]:

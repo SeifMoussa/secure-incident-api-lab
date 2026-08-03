@@ -248,3 +248,10 @@ Audit entries are append-only. ADMIN and AUDITOR can read audit logs. Audit logs
 - Public repository visibility is confirmed.
 - No application architecture or domain behavior changed during the audit.
 - Live Issues, a live Project board, branch protection, tags, and releases remain pending.
+
+## Metrics and SLA Status
+
+- Added `status_changed_at`, `acknowledged_at`, and `resolved_at` to the incident model via an Alembic migration. `acknowledged_at` is set once, the first time an incident leaves `OPEN`, and is never cleared. `resolved_at` reflects current resolution state and clears if a resolved incident is reopened.
+- Added `app/incidents/sla.py` with pure functions for time-to-acknowledge, time-to-resolve, and age-in-status, reused by both the incident response schema and the metrics endpoint.
+- Added an ADMIN/AUDITOR-gated `GET /metrics` route returning Prometheus text-exposition format: incident counts by status/severity, acknowledged/resolved counts, average time-to-acknowledge/resolve, and counts breaching illustrative SLA thresholds defined in `app/metrics/service.py`.
+- No changes to authentication, RBAC roles, audit logging, or existing incident/ticket/evidence/remediation behavior beyond the new incident timestamp fields.

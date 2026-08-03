@@ -4,6 +4,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.auth.models import User
+from app.common.enums import IncidentStatus
 from app.common.models import utc_now
 from app.common.pagination import PaginationParams
 from app.incidents.models import Incident
@@ -14,6 +15,13 @@ from app.incidents.schemas import (
     IncidentListResponse,
     IncidentResponse,
     IncidentUpdateRequest,
+)
+from app.incidents.sla import (
+    RESOLVED_STATUSES,
+    age_in_status_seconds,
+    apply_status_transition_timestamps,
+    time_to_acknowledge_seconds,
+    time_to_resolve_seconds,
 )
 
 
@@ -29,6 +37,7 @@ def create_incident(
 ) -> IncidentResponse:
     """Create a synthetic incident owned by the authenticated actor."""
     _validate_assignee(db, payload.assigned_to)
+    now = utc_now()
     incident = Incident(
         title=payload.title,
         description=payload.description,
@@ -39,6 +48,11 @@ def create_incident(
         mitre_tactic=payload.mitre_tactic,
         mitre_technique=payload.mitre_technique,
         tags=payload.tags,
+        created_at=now,
+        updated_at=now,
+        status_changed_at=now,
+        acknowledged_at=now if payload.status != IncidentStatus.OPEN else None,
+        resolved_at=now if payload.status in RESOLVED_STATUSES else None,
     )
     db.add(incident)
     db.commit()
@@ -84,8 +98,13 @@ def update_incident(
     update_data = payload.model_dump(exclude_unset=True)
     if "assigned_to" in update_data:
         _validate_assignee(db, update_data["assigned_to"])
+    previous_status = incident.status
     for field_name, value in update_data.items():
         setattr(incident, field_name, value)
+    if "status" in update_data:
+        apply_status_transition_timestamps(
+            incident, previous_status=previous_status, new_status=incident.status
+        )
     incident.updated_at = utc_now()
     db.commit()
     db.refresh(incident)
@@ -118,6 +137,12 @@ def incident_response(incident: Incident) -> IncidentResponse:
         is_deleted=incident.is_deleted,
         created_at=incident.created_at.isoformat(),
         updated_at=incident.updated_at.isoformat(),
+        status_changed_at=incident.status_changed_at.isoformat(),
+        acknowledged_at=incident.acknowledged_at.isoformat() if incident.acknowledged_at else None,
+        resolved_at=incident.resolved_at.isoformat() if incident.resolved_at else None,
+        time_to_acknowledge_seconds=time_to_acknowledge_seconds(incident),
+        time_to_resolve_seconds=time_to_resolve_seconds(incident),
+        age_in_status_seconds=age_in_status_seconds(incident),
     )
 
 
