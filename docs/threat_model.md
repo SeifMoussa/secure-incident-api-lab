@@ -24,6 +24,7 @@ It does not cover cloud infrastructure, a real production deployment, organizati
 - Audit logs.
 - Admin role-management capability.
 - API configuration and secrets.
+- Aggregate incident volume, severity, and SLA metrics exposed at `/metrics`.
 
 ## Trust Boundaries
 
@@ -32,6 +33,7 @@ It does not cover cloud infrastructure, a real production deployment, organizati
 - Authenticated user to protected endpoints: bearer-token authentication gates protected routes.
 - ADMIN to user-management endpoints: ADMIN-only dependencies gate role updates and deactivation.
 - AUDITOR to audit logs: ADMIN and AUDITOR can read audit entries; audit mutation routes do not exist.
+- ADMIN/AUDITOR to metrics: `/metrics` is gated to the same roles as audit reads rather than left open, since incident counts and severities are still information about the (synthetic) incident data.
 - Local/dev/test environment boundaries: local settings, test fixtures, local SQLite, and generated docs are not production environments.
 
 ## Security Assumptions
@@ -202,6 +204,14 @@ Threat: Evidence attachment handling leads to path traversal, unsafe file reads,
 Mitigations: Attachments are metadata only. No binary upload, disk file reading, or file storage behavior exists. Filename and content-type metadata are validated.
 
 Residual risk: Adding real file handling would require a separate design and threat model update.
+
+### Metrics Endpoint Information Exposure
+
+Threat: Aggregate incident counts, severities, and SLA timing expose operational patterns to anyone who can reach `/metrics`.
+
+Mitigations: `/metrics` requires bearer authentication and is gated to ADMIN/AUDITOR, the same roles as audit reads. It returns only aggregate counts and averages, never individual incident content.
+
+Residual risk: This means `/metrics` is not directly scrapable by a standard anonymous Prometheus job; a real deployment would need to add a bearer token to its scrape config or run a token-injecting sidecar.
 
 ## Residual Risks And Limitations
 

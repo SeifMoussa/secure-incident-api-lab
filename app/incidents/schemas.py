@@ -104,6 +104,12 @@ class IncidentResponse(IncidentStrictSchema):
     is_deleted: bool
     created_at: str
     updated_at: str
+    status_changed_at: str
+    acknowledged_at: str | None
+    resolved_at: str | None
+    time_to_acknowledge_seconds: float | None
+    time_to_resolve_seconds: float | None
+    age_in_status_seconds: float
 
 
 class IncidentListResponse(IncidentStrictSchema):

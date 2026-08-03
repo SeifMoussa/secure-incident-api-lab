@@ -8,6 +8,10 @@ This project uses production-pattern language and is a defensive portfolio lab, 
 
 ### Added
 
+- ADMIN/AUDITOR-gated `/metrics` endpoint in Prometheus text-exposition format: incident counts by status/severity, acknowledged/resolved counts, average time-to-acknowledge/resolve, and illustrative SLA-breach counts.
+- Incident SLA tracking: `status_changed_at`, `acknowledged_at`, and `resolved_at` timestamps on the incident model, plus derived time-to-acknowledge, time-to-resolve, and age-in-status fields on incident responses.
+- Alembic migration for the new incident SLA timestamp columns.
+- Tests for metrics endpoint output, RBAC gating, and SLA calculation correctness (including reopened-incident behavior).
 - Post-release governance: merged release-status documentation and completion comments for F1-F13.
 - Annotated `v0.1.0` tag and published GitHub Release.
 - Live F1-F14 GitHub Issues and backlog labels.

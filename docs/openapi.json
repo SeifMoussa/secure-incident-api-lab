@@ -727,6 +727,21 @@
       "IncidentResponse": {
         "additionalProperties": false,
         "properties": {
+          "acknowledged_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acknowledged At"
+          },
+          "age_in_status_seconds": {
+            "title": "Age In Status Seconds",
+            "type": "number"
+          },
           "assigned_to": {
             "anyOf": [
               {
@@ -780,11 +795,26 @@
             ],
             "title": "Mitre Technique"
           },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          },
           "severity": {
             "$ref": "#/components/schemas/IncidentSeverity"
           },
           "status": {
             "$ref": "#/components/schemas/IncidentStatus"
+          },
+          "status_changed_at": {
+            "title": "Status Changed At",
+            "type": "string"
           },
           "tags": {
             "items": {
@@ -792,6 +822,28 @@
             },
             "title": "Tags",
             "type": "array"
+          },
+          "time_to_acknowledge_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time To Acknowledge Seconds"
+          },
+          "time_to_resolve_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time To Resolve Seconds"
           },
           "title": {
             "title": "Title",
@@ -815,7 +867,13 @@
           "tags",
           "is_deleted",
           "created_at",
-          "updated_at"
+          "updated_at",
+          "status_changed_at",
+          "acknowledged_at",
+          "resolved_at",
+          "time_to_acknowledge_seconds",
+          "time_to_resolve_seconds",
+          "age_in_status_seconds"
         ],
         "title": "IncidentResponse",
         "type": "object"
@@ -3577,6 +3635,32 @@
         "summary": "Get Incident Timeline Route",
         "tags": [
           "incidents"
+        ]
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "get_metrics_route_metrics_get",
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get Metrics Route",
+        "tags": [
+          "metrics"
         ]
       }
     }
