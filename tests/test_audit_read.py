@@ -88,7 +88,7 @@ def test_audit_response_is_sanitized(
 
     forbidden = [
         "password_hash",
-        "SyntheticPhase",
+        "SyntheticTestPass",
         "access_token",
         "refresh_token",
         "Authorization",

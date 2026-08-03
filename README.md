@@ -1,5 +1,8 @@
 # Secure Incident Management API
 
+[![CI](https://github.com/SeifMoussa/secure-incident-api-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/SeifMoussa/secure-incident-api-lab/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/SeifMoussa/secure-incident-api-lab/actions/workflows/codeql.yml/badge.svg)](https://github.com/SeifMoussa/secure-incident-api-lab/actions/workflows/codeql.yml)
+
 Production-pattern FastAPI backend for defensive security incident management.
 
 This is a defensive portfolio lab, not a deployed production SOC platform. It uses synthetic/demo data only. Do not use real credentials, real tokens, real customer incident data, or real evidence files.

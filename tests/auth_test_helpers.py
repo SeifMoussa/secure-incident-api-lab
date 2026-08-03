@@ -7,7 +7,7 @@ from app.auth.utils import create_access_token, create_refresh_token, hash_passw
 from app.common.enums import Role
 from app.config import Settings
 
-TEST_ONLY_PASSWORD = "SyntheticPhase4!123"
+TEST_ONLY_PASSWORD = "SyntheticTestPass4!123"
 
 
 def create_synthetic_user(
