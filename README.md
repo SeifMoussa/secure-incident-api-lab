@@ -176,6 +176,73 @@ I tracked the build through GitHub Issues F1-F14 and closed each item as its rel
 
 ![Secure Incident API Roadmap Project board](docs/agile/board_sprint1.png)
 
+## Screenshots
+
+All screenshots below are captured from the actual running app (interactive API docs at `/docs`), using seeded synthetic demo incidents. No fake or mocked screenshots are included.
+
+<p align="center">
+  <img src="docs/screenshots/swagger_ui_overview.png" width="700" alt="Full Swagger UI endpoint list">
+</p>
+
+*The full interactive API surface — auth, admin, incidents, tickets, evidence, remediation, audit, and the metrics endpoint from this session's work.*
+
+<p align="center">
+  <img src="docs/screenshots/swagger_incident_sla_response.png" width="700" alt="Real incident response showing populated SLA fields">
+</p>
+
+*A real incident response with SLA tracking fully populated — `status_changed_at`, `acknowledged_at`, `resolved_at`, and the derived `time_to_acknowledge_seconds`, `time_to_resolve_seconds`, and `age_in_status_seconds` fields, all computed from the actual status-transition history.*
+
+<p align="center">
+  <img src="docs/screenshots/swagger_metrics_endpoint.png" width="600" alt="Metrics endpoint documentation">
+</p>
+
+*The `/metrics` endpoint, gated to ADMIN/AUDITOR roles, returning Prometheus text-exposition format.*
+
+Real output from an authenticated request:
+
+```bash
+curl -s -X POST http://127.0.0.1:8010/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"<USER_EMAIL>","password":"<PASSWORD_PLACEHOLDER>"}'
+# Response includes: {"access_token": "<ACCESS_TOKEN>", ...}
+
+curl -s http://127.0.0.1:8010/metrics -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+```text
+# HELP incidents_by_status_total Current non-deleted incidents by status.
+# TYPE incidents_by_status_total gauge
+incidents_by_status_total{status="OPEN"} 1
+incidents_by_status_total{status="IN_PROGRESS"} 1
+incidents_by_status_total{status="CONTAINED"} 0
+incidents_by_status_total{status="RESOLVED"} 1
+incidents_by_status_total{status="CLOSED"} 0
+# HELP incidents_by_severity_total Current non-deleted incidents by severity.
+# TYPE incidents_by_severity_total gauge
+incidents_by_severity_total{severity="LOW"} 0
+incidents_by_severity_total{severity="MEDIUM"} 1
+incidents_by_severity_total{severity="HIGH"} 1
+incidents_by_severity_total{severity="CRITICAL"} 1
+# HELP incident_sla_acknowledged_total Incidents that have been acknowledged.
+# TYPE incident_sla_acknowledged_total gauge
+incident_sla_acknowledged_total 2
+# HELP incident_sla_resolved_total Incidents currently resolved or closed.
+# TYPE incident_sla_resolved_total gauge
+incident_sla_resolved_total 1
+# HELP incident_sla_time_to_acknowledge_seconds_avg Average seconds from creation to first acknowledgement.
+# TYPE incident_sla_time_to_acknowledge_seconds_avg gauge
+incident_sla_time_to_acknowledge_seconds_avg 1.6061695
+# HELP incident_sla_time_to_resolve_seconds_avg Average seconds from creation to resolution.
+# TYPE incident_sla_time_to_resolve_seconds_avg gauge
+incident_sla_time_to_resolve_seconds_avg 2.119817
+# HELP incident_sla_breaching_acknowledgement_total Unacknowledged incidents older than the illustrative acknowledgement threshold.
+# TYPE incident_sla_breaching_acknowledgement_total gauge
+incident_sla_breaching_acknowledgement_total 0
+# HELP incident_sla_breaching_resolution_total Unresolved incidents older than the illustrative resolution threshold.
+# TYPE incident_sla_breaching_resolution_total gauge
+incident_sla_breaching_resolution_total 0
+```
+
 ## Documentation
 
 - [STRIDE threat model](docs/threat_model.md)
