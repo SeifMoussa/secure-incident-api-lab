@@ -201,12 +201,12 @@ All screenshots below are captured from the actual running app (interactive API 
 Real output from an authenticated request:
 
 ```bash
-TOKEN=$(curl -s -X POST http://127.0.0.1:8010/auth/login \
+curl -s -X POST http://127.0.0.1:8010/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"demo-admin@example.com","password":"***"}' \
-  | python -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
+  -d '{"email":"<USER_EMAIL>","password":"<PASSWORD_PLACEHOLDER>"}'
+# Response includes: {"access_token": "<ACCESS_TOKEN>", ...}
 
-curl -s http://127.0.0.1:8010/metrics -H "Authorization: Bearer $TOKEN"
+curl -s http://127.0.0.1:8010/metrics -H "Authorization: Bearer <ACCESS_TOKEN>"
 ```
 
 ```text
